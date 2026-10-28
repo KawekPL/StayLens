@@ -7,17 +7,28 @@ Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Ber
 - React: mapa, filtry dzielnicy/typu/liczby gości/ceny, wyszukiwarka, sortowanie, szczegóły i porównanie trzech ofert.
 - Rzeczywiste dane Inside Airbnb Berlin z 19.09.2026. Podgląd obejmuje 5814 ofert z części treningowej.
 - Wskaźniki są obliczonymi medianami cen. **Model ML nie został jeszcze wytrenowany**, backend i nowe wdrożenie nie są ukończone.
-- Build, testy funkcji i odczyt HTTP sprawdzone. Automatyczna kontrola wizualna/interakcji w przeglądarce niedostępna: narzędzie zwróciło `Local browser use is disabled in Work settings`. To nie jest potwierdzony odbiór UI.
+- Build, testy funkcji i odczyt HTTP sprawdzone. Po naprawie startu 28.10 potwierdzono w przeglądarce wyświetlanie ofert/mapy, filtr Mitte, szczegóły i reset. Pełny odbiór UI/mobile jeszcze niewykonany.
 
 ## Uruchomienie
 
-W PowerShell:
+Uruchomienie podglądu w osobnym procesie Windows (pozostaje aktywny po zakończeniu polecenia):
+
+```powershell
+cd C:\Users\szymo\Documents\ChatGPT\StayLens
+.\scripts\start-preview.ps1
+```
+
+Ponowne wywołanie wykorzystuje działający podgląd. Opcjonalny parametr `-OpenBrowser` otwiera adres w przeglądarce systemowej. Logi są w `.local/preview.stdout.log` i `.local/preview.stderr.log`. Po restarcie komputera uruchom skrypt ponownie.
+
+Przy pierwszej instalacji lub podczas pracy w terminalu:
 
 ```powershell
 cd C:\Users\szymo\Documents\ChatGPT\StayLens\frontend
 npm.cmd ci
 npm.cmd run dev
 ```
+
+Wariant `npm.cmd run dev` działa tylko tak długo, jak uruchamiająca go sesja terminala. Nie służy do trwałego przekazania podglądu po zakończeniu sesji agenta.
 
 Adres: <http://127.0.0.1:5174/>. Dane do podglądu są w `frontend/public/data/`. Podgląd działa na tym komputerze; adres loopback nie jest linkiem do aplikacji w chmurze.
 

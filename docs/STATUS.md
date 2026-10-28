@@ -29,6 +29,14 @@ Użytkownik wybrał StayLens. Termin 03.11.2026, pakiet do 02.11.2026. SupportRo
 
 Obejrzenie przez użytkownika kierunku interfejsu pod http://127.0.0.1:5174/ (tylko ten komputer) i ewentualne wskazówki wizualne. Następnie S02: audyt cech, ustalenie protokołu, model bazowy i jeden kandydat, ocena oraz FastAPI. Kontrola UI w narzędziu, gdy dostępna, nadal wymagana przed wydaniem.
 
+### Naprawa podglądu — 28.10.2026
+
+Użytkownik zgłosił brak podglądu. Potwierdzono brak procesu nasłuchującego na 5174 i ERR_CONNECTION_REFUSED; poprzedni serwer był uruchomiony w tymczasowej sesji polecenia. Dodano scripts/start-preview.ps1, uruchamiający Vite w oddzielnym ukrytym procesie Windows, wyłącznie na 127.0.0.1. Skrypt sprawdza gotowość, zapisuje logi i przy powtórnym uruchomieniu wykorzystuje istniejący podgląd; nie zatrzymuje cudzych procesów na zajętym porcie.
+
+Zweryfikowano działanie po wyjściu skryptu, ponowne uruchomienie bez duplikatu oraz HTTP 200 dla strony/danych. Dostęp przeglądarkowy jest już możliwy. Dwie stare karty zawierały stronę błędu; otwarto świeżą kartę z działającą aplikacją i zachowano ją do podglądu. W przeglądarce potwierdzono 3438 ofert w widoku domyślnym, 873 po wyborze Mitte, szczegóły oferty 45475252 (122 EUR, mediana 169 EUR) i reset do widoku domyślnego. Obejrzano renderowanie zdjęć i mapy. Nie jest to pełny odbiór wszystkich funkcji ani test mobilny. Zrzut lokalny: .local/preview-restored.jpg.
+
+Przy oglądaniu wykryto dodatkowo błąd wysokości siatki: kontener wyników/mapy rozciągał się do 1976 px mimo wysokości obszaru 510 px, odsuwając znaczniki poza widok i powodując nakładanie stopki. Naprawiono minimalne wysokości elementów grid/flex, przewijanie listy oraz limit wysokości w układzie mobilnym. W kontrolnym widoku desktopowym potwierdzono zgodne wysokości obszaru, listy i mapy (około 510 px); tymczasowy rozmiar testowy przeglądarki przywrócono. Produkcyjny build po zmianie CSS przeszedł. Pełne testy mobilne i porównywanie nadal przed odbiorem.
+
 ### Jeszcze niewykonane
 
 Trening, wyniki ML, backend, Docker nowego projektu, repo GitHub StayLens, CI/CD, Terraform nowej aplikacji, wdrożenie Azure, dostęp prowadzącego i oddanie. Sam podgląd nie spełnia jeszcze wszystkich wymagań SUML.
