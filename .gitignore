@@ -17,3 +17,7 @@ build/
 *.tfstate*
 .terraform/
 *.tfvars
+.runtime/
+*.tfplan
+*.plan.json
+crash.log

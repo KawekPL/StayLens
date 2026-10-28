@@ -1,0 +1,15 @@
+**
+!Dockerfile
+!requirements.lock.txt
+!pyproject.toml
+!THIRD_PARTY_NOTICES.md
+!src/
+!src/**
+src/**/__pycache__/
+!frontend/
+!frontend/**
+frontend/node_modules/
+frontend/dist/
+frontend/public/data/listings.json
+!.runtime/
+!.runtime/**

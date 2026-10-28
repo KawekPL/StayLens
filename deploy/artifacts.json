@@ -1,0 +1,24 @@
+{
+  "release_tag": "s02-artifacts-v1",
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "catalog_sha256": "6c6d8c34d419f16684e815c720114ade2054001e46820c40d878c6a743906987",
+  "archives": {
+    "staylens-runtime.zip": {
+      "sha256": "48d6b85cfd33cc035d7e2df7363872d55231829370f6ef78247a296dff46e547",
+      "members": {
+        "catalog/catalog.json": "6c6d8c34d419f16684e815c720114ade2054001e46820c40d878c6a743906987",
+        "catalog/manifest.json": "781dce595ac9a90791ec19053ba2cacdac71fd9c5dbe532b5c5fec6bf9ed3f74",
+        "catalog/neighbourhoods.geojson": "b2941e38593025425d23209ff457e17a3da2afd45502fd288675bec1727708bd",
+        "model/hist_gradient_boosting.joblib": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+        "model/manifest.json": "0d17f53d1c66189a976309443e24e921d9d554db1afecbcf15940ecc08415f9a"
+      }
+    },
+    "staylens-ci.zip": {
+      "sha256": "532ff3b200b0dc9441d725a83e70c79e931f7c6a549e83bf2ec06c0391e1b00f",
+      "members": {
+        "cv_predictions.csv": "a76ed9b293e6a3cc4dfd82ed52e83da86d7ddb343bc37a6bf2d1d8c97a1e9270",
+        "validation_predictions.csv": "661af49678918550d2a7a6bd04c1e9e88744aba9373d5a85c745c56767e7dc74"
+      }
+    }
+  }
+}
