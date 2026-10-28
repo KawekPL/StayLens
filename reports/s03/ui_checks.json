@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-28",
+  "method": "Interactive assistant checks in the in-app browser; viewport emulation, not a physical phone or automated E2E suite",
+  "base_url": "http://127.0.0.1:5174/",
+  "viewports": [[1440, 1000], [390, 844]],
+  "checks": [
+    {"name": "default_catalog", "passed": true, "observed": "3438 matches, 12 cards, 60 map items"},
+    {"name": "pagination", "passed": true, "observed": "Load next 12 yields 24 cards"},
+    {"name": "rapid_district_changes", "passed": true, "observed": "Mitte, Pankow, Mitte: final 873 matches and 12 cards"},
+    {"name": "details", "passed": true, "observed": "45475252: offered 122 EUR, ML rounded 182 EUR, peer median 169 EUR; separate methods explained"},
+    {"name": "comparison", "passed": true, "observed": "Two selected offers show offered prices, saved ML prices and separate medians"},
+    {"name": "estimate_and_invalidation", "passed": true, "observed": "Valid form returns rounded 169 EUR; changing guests clears previous result"},
+    {"name": "outside_berlin", "passed": true, "observed": "52.301, 13.051: visible location error, submit disabled"},
+    {"name": "expensive_offers", "passed": true, "observed": "All prices + descending sort: 4021 matches, 10025 EUR offer first with large-error warning"},
+    {"name": "mobile_details", "passed": true, "observed": "List to selected offer 49070135 on map after hidden-container fix; 104 EUR offered, ML rounded 137 EUR"},
+    {"name": "mobile_layout", "passed": true, "observed": "Header and single-column form visible without horizontal page overflow"},
+    {"name": "api_failure_recovery", "passed": true, "observed": "Stopped verified project API, form showed error and retained data; restart and retry produced rounded 169 EUR"}
+  ],
+  "limitations": [
+    "No physical-device or multi-browser acceptance test",
+    "External map tiles, fonts and listing image availability can vary",
+    "Cloud deployment and final test-set evaluation belong to later stages"
+  ]
+}

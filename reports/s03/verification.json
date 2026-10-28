@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "catalog_rows": 5814,
+  "only_train_hosts": true,
+  "oof_prices_verified_for_every_row": true,
+  "original_s02_code_unchanged": true,
+  "static_bulk_catalog_removed": true,
+  "proxy_http": {
+    "meta": 200,
+    "page": 200,
+    "detail": 200,
+    "compare": 200,
+    "estimate": 200,
+    "bad_payload": 422,
+    "oversized_page": 422,
+    "unknown_id": 404,
+    "default_total": 3438,
+    "estimate_matches_frozen_api": true
+  },
+  "test_evaluated": false,
+  "cloud_deployed": false
+}

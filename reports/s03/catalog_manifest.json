@@ -1,0 +1,12 @@
+{
+  "catalog_sha256": "6c6d8c34d419f16684e815c720114ade2054001e46820c40d878c6a743906987",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "geo_sha256": "b2941e38593025425d23209ff457e17a3da2afd45502fd288675bec1727708bd",
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "oof_predictions_sha256": "0d14d99ec33c5f7bbcc55a6dd41ec322e17eee10dc3fed89d0cb5a692266998c",
+  "builder_sha256": "9091997da2a647bb1fb8a016cb49bfc89e81c79d2f7df64344ce197109e7eeeb",
+  "rows": 5814,
+  "scope": "train only; host_oof, not full-train predictions",
+  "public_host_ids": false,
+  "test_evaluated": false
+}

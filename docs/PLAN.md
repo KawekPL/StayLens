@@ -28,9 +28,9 @@ Azure Container Apps + istniejący wzorzec ACR/Log Analytics. Terraform zarządz
 | 02.11 | S06 — pakiet | README, data/model card, wyniki końcowe, dostęp prowadzącego, demo i szkic maila |
 | 03.11 | Rezerwa | Ostatnie poprawki i wysłanie przez użytkownika |
 
-Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md.
+Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md. **S01, S02 i S03 wykonane 28.10; kolejnym etapem jest S04.** Daty późniejszych etapów pozostają rezerwą, nie wymagają czekania z pracą.
 
-S02 ukończony wcześniej, 28.10: [porównanie modeli](../reports/s02/REPORT.md). Wybrany boosting (MAE validation 53,61 EUR vs 67,87 EUR). S03 wykorzysta API pełnego modelu dla nowych parametrów oraz zapisane przewidywania out-of-fold dla ofert train z katalogu. Test końcowy pozostaje do odbioru po zamrożeniu rozwiązania. Szczególnie duże błędy dla drogich ofert oraz małe próby hotel/shared należy pokazać w UI.
+S02 ukończony wcześniej, 28.10: [porównanie modeli](../reports/s02/REPORT.md). Wybrany boosting (MAE validation 53,61 EUR vs 67,87 EUR). S03 wykorzystuje API pełnego modelu dla nowych parametrów oraz zapisane przewidywania out-of-fold dla ofert train z katalogu. Test końcowy pozostaje do odbioru po zamrożeniu rozwiązania. Szczególnie duże błędy dla drogich ofert oraz małe próby hotel/shared pokazano w UI. [Raport integracji S03](../reports/s03/REPORT.md).
 
 Dodatkowy S02b wykonany 28.10 na prośbę użytkownika: 38 cech oraz kontrolowana augmentacja, 6 wariantów. [Wyniki](../reports/s02b/REPORT.md) nie uzasadniły zastąpienia S02. Harmonogram S03–S06 pozostaje bez zmian; nowy kontrakt cech jest eksperymentalny, nie jest częścią działającego API. Nie zwiększamy dalej zbioru sztucznymi wierszami bez nowej, sprawdzalnej hipotezy.
 

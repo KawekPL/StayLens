@@ -6,6 +6,7 @@ $frontendRoot = Join-Path $projectRoot 'frontend'
 $viteEntry = Join-Path $frontendRoot 'node_modules\vite\bin\vite.js'
 $runtimeDirectory = Join-Path $projectRoot '.local'
 $previewUrl = 'http://127.0.0.1:5174/'
+& (Join-Path $PSScriptRoot 'start-api.ps1')
 
 function Test-StayLensPreview {
     try {

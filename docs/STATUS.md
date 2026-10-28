@@ -1,5 +1,19 @@
 # Status StayLens
 
+**Aktualnie: S03 ukończony 28.10.2026; następny S04 (Docker, artefakty, GitHub/CI/CD, Terraform i Azure).** Lokalna aplikacja: http://127.0.0.1:5174/. Wcześniejsze sekcje poniżej opisują stan w chwili zakończenia danego etapu.
+
+## 28 października 2026 — S03 ukończony
+
+Podłączono zaakceptowany interfejs do modelu S02: API katalogu z filtrowaniem i paginacją, szczegóły, porównanie do trzech ofert oraz formularz Wycena. Katalog korzysta z zapisanych przewidywań host-out-of-fold; formularz z modelu pełnego train. Mediany pozostały osobnym odniesieniem. Pełny statyczny katalog S01 przeniesiono poza publiczny frontend do ignorowanego lokalnego archiwum. Katalog S03 zawiera 5814 rzeczywistych ofert train, bez pól gospodarza i bez danych Doorstep.
+
+Formularz ma wybór lokalizacji na mapie lub przez współrzędne, automatyczną dzielnicę, zgodne pary typów, parametry przestrzeni i osiem udogodnień z opcją „Nie wiem”. API sprawdza wielokąt dzielnicy i waliduje wejście. Zmiana parametrów usuwa poprzednią wycenę. Dodano ładowanie, błędy i ponowienie; ograniczenia jakości dla drogich ofert i małych prób hotel/shared są widoczne. Nie zmieniono modelu ani zamrożonych modułów S02/S02b/S02c; test końcowy nieoceniany.
+
+75 testów Python i 7 JS przeszło, 0 pominięć. Ruff, formatowanie zmienionego frontendu i build produkcyjny poprawne. Niezależna kontrola całego katalogu potwierdziła identyczność cen ML z oryginalnymi wynikami CV, tylko gospodarzy train, brak host_id i niezmienione hashe S02. Rzeczywiste HTTP przez proxy Vite sprawdzone dla listy, szczegółów, porównania, wyceny i błędnych żądań.
+
+Sprawdzono UI w przeglądarce przy 1440×1000 i emulowanej szerokości telefonu 390×844. Potwierdzono filtry, paginację, szczegóły, porównanie, wycenę i odrzucenie lokalizacji poza Berlinem. Naprawiono układ nagłówka mobilnego oraz mapę próbującą wycentrować ukryty kontener, co wcześniej powodowało zniknięcie strony. Rozdzielono inicjalizację korzenia React od komponentu aplikacji. Celowo zatrzymano zweryfikowane API projektu, potwierdzono zachowanie danych formularza po błędzie, uruchomiono API ponownie i uzyskano wycenę. To testy w przeglądarce, nie fizycznego telefonu ani wszystkich silników przeglądarek.
+
+`scripts/start-preview.ps1` startuje teraz cały stos; API S03 to `staylens.application:app`. Podgląd pozostawiono działający w osobnych procesach Windows. Artefakty są nadal lokalne; świeży klon potrzebuje ich odtworzenia. Dostarczanie artefaktów do kontenera/CI, chmura i odbiór wdrożenia pozostają przed nami. Infrastruktura SupportRouter nie była zmieniana. [Raport S03](../reports/s03/REPORT.md), [weryfikacja](../reports/s03/verification.json).
+
 ## 28 października 2026 — S01
 
 Użytkownik wybrał StayLens. Termin 03.11.2026, pakiet do 02.11.2026. SupportRouter PL zachowany, jego chmura/repo nie zostały zmienione w tym etapie.

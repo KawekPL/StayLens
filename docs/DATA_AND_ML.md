@@ -24,7 +24,9 @@ Manifest z URL, hashami, filtrami i schematem: [data_preflight.json](../reports/
 
 ## Co obecnie wyświetla UI
 
-Mediana wyników obejmuje przefiltrowane rekordy train. „Mediana dzielnicy” obejmuje inne oferty tej samej dzielnicy i typu, z wyłączeniem wybranej oferty. Przy mniej niż 5 porównywalnych rekordach brak procentowego odniesienia. Nie jest to wycena ML ani dowód okazji; nie kontroluje wszystkich różnic w standardzie czy terminie. Oceny i liczby opinii pochodzą ze źródła, nie zostały wygenerowane.
+Od S03 karty, szczegóły i porównanie pokazują oszacowanie ML oraz różnicę względem ceny ogłoszenia. Są to zapisane przewidywania host-out-of-fold S02. Formularz Wycena używa tego samego kontraktu 18 cech i modelu pełnego train. Metraż i cechy Doorstep z odrzuconych eksperymentów nie są używane.
+
+Mediana wyników obejmuje wszystkie przefiltrowane rekordy train, niezależnie od paginacji. Osobna „mediana podobnych ofert” obejmuje inne oferty tej samej dzielnicy i typu, z wyłączeniem wybranej oferty; nie jest wynikiem ML ani kontrolą wszystkich różnic w standardzie czy terminie. Oceny i liczby opinii pochodzą ze źródła, nie zostały wygenerowane. Pełny katalog nie jest już statycznym publicznym plikiem — API zwraca ograniczone strony i maksymalnie 60 wyników do mapy.
 
 ## Wykonany eksperyment S02 — 28.10.2026
 

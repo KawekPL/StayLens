@@ -4,7 +4,7 @@
 
 StayLens korzysta z projektu **Inside Airbnb**, danych przygotowanych przez jego autorów i współtwórców, w tym Murray Cox. Źródło: https://insideairbnb.com/get-the-data/. Berlin, snapshot 19 września 2026. Licencja zbioru: [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
 
-Zmiany: wybór rekordów z poprawną dodatnią ceną i lokalizacją w Berlinie, podział gospodarzy, wybór części treningowej, ograniczenie pól, serializacja do JSON, polski interfejs i obliczenia median. Nie sugerujemy poparcia autorów dla projektu. Dokładne źródła i SHA256 są w reports/data_preflight.json.
+Zmiany: wybór rekordów z poprawną dodatnią ceną i lokalizacją w Berlinie, podział gospodarzy, wybór części treningowej, ograniczenie pól, serializacja do JSON, polski interfejs, obliczenia median oraz własne oszacowania ML. S03 dodaje zapisane przewidywania z grupowanego CV, bez używania danych Doorstep. Nie sugerujemy poparcia autorów dla projektu. Dokładne źródła i SHA256 są w reports/data_preflight.json i reports/s03/catalog_manifest.json.
 
 [Założenia źródła](https://insideairbnb.com/data-assumptions/): lokalizacje są przybliżone, brak dostępności dnia nie jest równoznaczny z rezerwacją, snapshot nie gwarantuje aktualności.
 
