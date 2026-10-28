@@ -1,0 +1,13 @@
+{
+  "subscription_id": "bb6938c0-5eeb-4848-90dc-154a1b47e85b",
+  "tenant_id": "ae65f568-0ceb-42c2-9dda-731b9c16e6b4",
+  "deploy_client_id": "cdbbcf1c-2dfa-4baf-b5d0-e1ec52cfd4da",
+  "resource_group_name": "rg-staylens-14055600",
+  "environment_id": "/subscriptions/bb6938c0-5eeb-4848-90dc-154a1b47e85b/resourceGroups/rg-supportrouter-14055600/providers/Microsoft.App/managedEnvironments/env-supportrouter-14055600",
+  "runtime_identity_id": "/subscriptions/bb6938c0-5eeb-4848-90dc-154a1b47e85b/resourceGroups/rg-staylens-14055600/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-staylens-runtime-14055600",
+  "acr_name": "srpl14055600",
+  "acr_login_server": "srpl14055600.azurecr.io",
+  "state_storage_account": "stlens14055600",
+  "app_name": "staylens",
+  "location": "polandcentral"
+}

@@ -1,0 +1,161 @@
+name: Test, build and deploy StayLens
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', 'reports/**', '*.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: staylens-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.21.0'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
+        with:
+          terraform_version: '1.16.5'
+          terraform_wrapper: false
+      - name: Restore verified offline model and saved evaluation evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_artifacts.py fetch --ci --repo "$GITHUB_REPOSITORY"
+      - name: Python tests (including optional research contracts, no new model selection)
+        run: |
+          python -m pip install --require-hashes -r requirements-research.lock.txt
+          python -m pip install --no-deps -e .
+          python -m pip check
+          ruff check src tests scripts
+          python -m pytest -q --junitxml=.local/pytest.xml
+          python -c "import xml.etree.ElementTree as E; t=E.parse('.local/pytest.xml'); assert sum(int(x.get('skipped','0')) for x in t.iter('testsuite')) == 0"
+      - name: Frontend tests and build
+        working-directory: frontend
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+          npm run build
+      - name: Validate Terraform without cloud credentials
+        run: |
+          terraform fmt -check -recursive infra
+          terraform -chdir=infra/bootstrap init -backend=false -input=false -lockfile=readonly
+          terraform -chdir=infra/bootstrap validate
+          terraform -chdir=infra/app init -backend=false -input=false -lockfile=readonly
+          terraform -chdir=infra/app validate
+      - name: Build and test the production container
+        run: |
+          docker build --platform linux/amd64 --build-arg VCS_REF="$GITHUB_SHA" -t staylens:ci .
+          docker run -d --name staylens-ci -p 127.0.0.1:8080:8080 --cpus 0.5 --memory 1g --read-only --tmpfs /tmp:rw,noexec,nosuid,size=32m --cap-drop ALL --security-opt no-new-privileges staylens:ci
+          python scripts/smoke_deployment.py http://127.0.0.1:8080 --revision "$GITHUB_SHA" --output .local/container-smoke.json
+          docker save staylens:ci | gzip > .local/staylens-image.tar.gz
+      - name: Container diagnostic logs
+        if: failure()
+        run: docker logs staylens-ci || true
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tested-image
+          path: .local/staylens-image.tar.gz
+          include-hidden-files: true
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: test-evidence
+          path: |
+            .local/pytest.xml
+            .local/container-smoke.json
+          include-hidden-files: true
+          retention-days: 14
+
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      ARM_USE_OIDC: 'true'
+      ARM_USE_AZUREAD: 'true'
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_resource_group_name: ${{ vars.AZURE_RESOURCE_GROUP }}
+      TF_VAR_environment_id: ${{ vars.AZURE_ENVIRONMENT_ID }}
+      TF_VAR_runtime_identity_id: ${{ vars.AZURE_RUNTIME_IDENTITY_ID }}
+      TF_VAR_acr_login_server: ${{ vars.ACR_LOGIN_SERVER }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Do not deploy a superseded commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: test "$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" = "$GITHUB_SHA"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: tested-image
+          path: .local
+      - uses: azure/login@8216e11d8cd9b42fe925c852af8e76311ff067ac # v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
+        with:
+          terraform_version: '1.16.5'
+          terraform_wrapper: false
+      - name: Publish the tested image and resolve its immutable digest
+        env:
+          ACR_NAME: ${{ vars.ACR_NAME }}
+          ACR_SERVER: ${{ vars.ACR_LOGIN_SERVER }}
+        run: |
+          docker load -i .local/staylens-image.tar.gz
+          az acr login --name "$ACR_NAME"
+          image="$ACR_SERVER/staylens:$GITHUB_SHA"
+          docker tag staylens:ci "$image"
+          docker push "$image"
+          reference=$(docker inspect "$image" --format '{{index .RepoDigests 0}}')
+          digest="${reference##*@}"
+          [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+          echo "TF_VAR_image_digest=$digest" >> "$GITHUB_ENV"
+      - name: Plan and apply only the StayLens application
+        env:
+          TF_STATE_ACCOUNT: ${{ vars.TF_STATE_ACCOUNT }}
+        run: |
+          terraform -chdir=infra/app init -input=false -lockfile=readonly -backend-config="storage_account_name=$TF_STATE_ACCOUNT" -backend-config="container_name=tfstate-app" -backend-config="key=staylens.tfstate" -backend-config="use_azuread_auth=true" -backend-config="use_oidc=true"
+          terraform -chdir=infra/app plan -input=false -out=deployment.tfplan
+          terraform -chdir=infra/app show -json deployment.tfplan > .local/app.plan.json
+          python scripts/check_deployment_plan.py .local/app.plan.json
+          terraform -chdir=infra/app apply -input=false -auto-approve deployment.tfplan
+          echo "APP_URL=$(terraform -chdir=infra/app output -raw url)" >> "$GITHUB_ENV"
+      - name: Check public HTTPS, catalogue, model and form
+        run: python scripts/smoke_deployment.py "$APP_URL" --revision "$GITHUB_SHA" --output .local/azure-smoke.json
+      - name: Check infrastructure converged
+        run: terraform -chdir=infra/app plan -input=false -detailed-exitcode -no-color
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: deployment-evidence
+          path: .local/azure-smoke.json
+          include-hidden-files: true
+          retention-days: 30
+      - name: Summarize deployment
+        run: |
+          printf 'StayLens: %s\n\nImage: `%s`\n\nModel: unchanged s02-v1\n' "$APP_URL" "$TF_VAR_image_digest" >> "$GITHUB_STEP_SUMMARY"
