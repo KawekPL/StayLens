@@ -125,3 +125,5 @@ Pole `development_mae_eur` to średni błąd **walidacyjny całego zbioru**, nie
 ```
 
 `verify_s03.py` wymaga działającego podglądu na 5174 i sprawdza również rzeczywiste HTTP przez proxy. Starsze testy S02 potrafią pominąć integrację przy braku modelu; nowe S03 wymagają artefaktów i w takiej sytuacji kończą się błędem. Przy odbiorze S03 wykonano wszystkie **75 testów Pythona, bez pominięć**, 7 testów JS oraz build Vite. TestClient nadal emituje znane ostrzeżenie o przyszłym wycofaniu obsługi httpx w Starlette. Plan CI/S04 musi dostarczyć artefakty przed testami. Sam świeży klon nie jest jeszcze gotowym pakietem wykonawczym.
+
+Po badaniach S03b/S03c pełna suita liczy **81 testów** i wymaga opcjonalnego CatBoost. Do jej odtworzenia użyj `requirements-research.lock.txt` zamiast lockfile dev, następnie ponownie zainstaluj lokalny pakiet przez `uv pip install --no-deps -e .`. Bazowe wersje pozostają identyczne. Modele badawcze nie awansowały, więc wykonawczy model/API nadal używa bazowego `requirements.lock.txt`; CatBoost nie jest potrzebny przy serwowaniu S02. [Protokoły i odtwarzanie badań](../reports/s03b/REPORT.md).

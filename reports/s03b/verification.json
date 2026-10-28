@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "rows": 5814,
+  "same_real_rows_and_targets": true,
+  "host_isolation": true,
+  "independent_all_and_fold_metrics": true,
+  "original_s02_predictions_reproduced": true,
+  "frozen_inputs_and_artifact_hashes": true,
+  "validation_evaluated": false,
+  "promoted": false,
+  "test_evaluated": false
+}

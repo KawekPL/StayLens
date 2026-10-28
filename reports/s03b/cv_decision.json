@@ -1,0 +1,129 @@
+{
+  "cv_selected": null,
+  "diagnostic_best": "catboost_scope_sensitivity",
+  "cv_gates": {
+    "catboost_mae": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "catboost_log": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "catboost_derived_mae": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "catboost_derived_log": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "catboost_scope_sensitivity": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "extra_trees_log": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": false,
+        "fold_worst": true
+      }
+    },
+    "hgb_log": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    },
+    "catboost_fixed_blend": {
+      "passed": false,
+      "checks": {
+        "mae": false,
+        "within20": false,
+        "median": false,
+        "tail": true,
+        "rmse": true,
+        "room_type:Entire home/apt": true,
+        "room_type:Private room": true,
+        "fold_wins": true,
+        "fold_worst": true
+      }
+    }
+  },
+  "ranking": [
+    "catboost_scope_sensitivity",
+    "catboost_fixed_blend",
+    "catboost_derived_mae",
+    "catboost_log",
+    "catboost_derived_log",
+    "catboost_mae",
+    "hgb_log",
+    "extra_trees_log"
+  ],
+  "decided_at_utc": "2026-10-28T20:59:52.985860+00:00"
+}

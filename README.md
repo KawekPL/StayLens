@@ -11,6 +11,7 @@ Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Ber
 - Formularz sprawdza lokalizację w granicach Berlina, dobiera dzielnicę oraz rozróżnia brak udogodnienia od braku informacji. Wyniki zawierają ograniczenia jakości, szczególnie dla drogich ofert.
 - Dodatkowe eksperymenty [S02b](reports/s02b/REPORT.md) i [S02c](reports/s02c/REPORT.md) nie spełniły kryteriów zastąpienia S02. Aktywny model pozostał bez zmian.
 - S03: **75 testów Pythona, 7 testów JS**, produkcyjny build, rzeczywiste HTTP przez proxy oraz przeglądarkowe sprawdzenie głównych ścieżek desktop/mobile. [Raport S03](reports/s03/REPORT.md).
+- Późniejszy audyt jakości [S03b](reports/s03b/REPORT.md) i [S03c](reports/s03c/REPORT.md): 10 nowych wariantów i krzywe uczenia. Najlepsze CV 53,34 zamiast 54,90 EUR, zbyt mała poprawa do awansu. **Precyzyjnej wyceny nie osiągnięto; aktywny model i validation 53,61 EUR pozostają bez zmian.** Pełna suita po tych badaniach: 81 testów Pythona; wymaga dodatkowego lockfile research.
 - Docker, GitHub, CI/CD, Terraform i wdrożenie StayLens są kolejnym etapem S04. Obecny adres jest lokalny.
 
 ## Uruchomienie
@@ -74,6 +75,8 @@ npm.cmd run build
 - [Data engineering i sztuczne wersje ofert — S02b](reports/s02b/REPORT.md)
 - [Dodatkowe rzeczywiste dane — S02c](reports/s02c/REPORT.md)
 - [Integracja aplikacji i ML — S03](reports/s03/REPORT.md)
+- [Audyt celu ofert, inne modele i krzywe uczenia — S03b](reports/s03b/REPORT.md)
+- [Bogatsze rzeczywiste wejścia i końcowa decyzja badawcza — S03c](reports/s03c/REPORT.md)
 - [API, instalacja i odtwarzanie](docs/API_AND_REPRODUCTION.md)
 
 Źródło: [Inside Airbnb](https://insideairbnb.com/get-the-data/), CC BY 4.0. Ceny w EUR, historyczne ceny ofertowe, bez potwierdzenia dostępności i przychodów. Lokalizacje są przybliżone. StayLens nie jest powiązany z Airbnb. Zdjęcia ładowane z oryginalnych linków nie są kopiowane do projektu; prawa do nich pozostają po stronie właścicieli.

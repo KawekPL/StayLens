@@ -1,6 +1,20 @@
 # Status StayLens
 
-**Aktualnie: S03 ukończony 28.10.2026; następny S04 (Docker, artefakty, GitHub/CI/CD, Terraform i Azure).** Lokalna aplikacja: http://127.0.0.1:5174/. Wcześniejsze sekcje poniżej opisują stan w chwili zakończenia danego etapu.
+**Aktualnie: S03 i dodatkowe badania jakości S03b/S03c ukończone 28.10.2026. Brak nowego modelu spełniającego warunki awansu; aplikacja nadal na S02.** Następny planowany etap dostawczy S04 (Docker, artefakty, GitHub/CI/CD, Terraform i Azure). Lokalna aplikacja: http://127.0.0.1:5174/. Wcześniejsze sekcje poniżej opisują stan w chwili zakończenia danego etapu.
+
+## 28 października 2026 — zakończony dodatkowy audyt jakości S03b/S03c
+
+Użytkownik zakwestionował użyteczność błędu 53,61 EUR i zlecił samodzielne przemyślenie oraz wykonanie poprawy. Zamrożono dwa osobne protokoły w commitach 4187c95 i 05d5ff3 przed ich treningami. Łącznie sprawdzono 10 nowych wariantów na tych samych 5814 prawdziwych ofertach i grupach gospodarzy, 39 dopasowań w CV/krzywych, bez syntetycznych cen i bez usuwania trudnych rekordów z oceny.
+
+S03b: CatBoost, ExtraTrees, uczenie log ceny, pięć cech wyliczanych z obecnego formularza, stała mieszanka oraz pominięcie flag event/photo tylko w fit. Konserwatywne wzorce znalazły pięć ofert, opisy sprawdzone przez asystenta bez cen; nie wszystkie wykluczają nocleg. Najlepsze CV 53,37 vs 54,90 EUR (2,79%), typowa mediana błędu niemal bez zmiany. Krzywa uczenia: 60,82/55,94/54,11/53,37 EUR przy 25/50/75/100% gospodarzy fit; trening przy pełnym fit 41,64 EUR. Audyt samych pięciu ofert nie wyjaśnia wysokiego błędu.
+
+S03c: dwa dodatkowe CatBoost z 40 cechami Inside Airbnb, w tym wcześniejsze udogodnienia, wspólna łazienka, deklarowany metraż 667 lokali/118 pokoi i siatka współrzędnych. Bez Doorstep. Najlepsze CV 53,34 EUR (2,85% poprawy), trafienia do 20% ceny 45,91% vs 44,62%. Po pozostawieniu wszystkich nowych pól nieznanych MAE 54,93 EUR. Dla przedziału 100–200 EUR pełny wariant pogorszył MAE z 34,80 do 35,68 EUR.
+
+Żaden wariant nie osiągnął zamrożonego minimum korzyści (m.in. 5% MAE i +2 punkty procentowe trafień do 20%). **Nie oceniano validation ani testu, nie podmieniono modelu/UI.** Wynik validation działającej aplikacji pozostaje 53,61 EUR. Zgodnie z warunkiem stopu nie dokładano kolejnych konfiguracji po tej serii. Nie osiągnięto precyzyjnej wyceny; rekomendacja to zachowanie orientacyjnej funkcji ML albo osobna, nowa hipoteza z bardziej informacyjnymi danymi, bez obietnicy błędu 10–15 EUR.
+
+81 testów Pythona przeszło (0 pominięć); Ruff i zgodność zależności poprawne. Kontrole verify_s03b.py/verify_s03c.py potwierdzają hashe, ceny, foldy, metryki i decyzje. Istniejące API/katalog oraz HTTP przez frontend przeszły verify_s03.py; podgląd pozostaje działający. Dodano opcjonalny CatBoost 1.2.10 i osobny lock badawczy, bez zmiany bazowych wersji. Pełna suita wymaga research lockfile. Surowe dane, opisy i ID pozostają poza Git. Chmury/SupportRouter nie zmieniano.
+
+Raporty: [S03b](../reports/s03b/REPORT.md), [S03c](../reports/s03c/REPORT.md). Termin 03.11 i zakres technologiczny bez zmian. S04 pozostaje niewykonany; test końcowy dopiero po zamrożeniu rozwiązania do odbioru.
 
 ## 28 października 2026 — S03 ukończony
 

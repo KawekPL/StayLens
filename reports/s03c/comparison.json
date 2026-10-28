@@ -1,0 +1,1314 @@
+{
+  "started_at_utc": "2026-10-28T21:00:50.795398+00:00",
+  "protocol_sha256": "f4061a494513834b7e5528f53db51f656eef665249e7b2ddaf9e76812342a826",
+  "gates_protocol_sha256": "0eb9369808b9d294a03e453dc133ff384123ef02e88675244fd98b086f09921c",
+  "research_lock_sha256": "e752107dfc3d64a2c57b23a6f9b0f9e505f21fad2880b6386f3280106216bdda",
+  "code_sha256": {
+    "scripts/run_s03c.py": "90ac4931cdfa6a93bc38c96b13aa135858513d4dcffd092880c94a284ab7c1f5",
+    "src/staylens/rich_models.py": "4d1383ab9ad94a2b7a9da6be06bdedfdc589b1997f72761e6c88b13db5938ef3",
+    "src/staylens/research_models.py": "10c1b2a221c435021b2ebc93e345a1c89621013aa31b946f20c327f4c14c4e25",
+    "src/staylens/engineering.py": "feda8879e2a3ddfda0f893f8c0162e5ec6531a4ac3ead3209560f8056d07803a",
+    "src/staylens/enrichment.py": "fd6fc0d2aa4db22f090676abe4cb0ec124b98e2a0b239723175f3ba133588d02",
+    "src/staylens/scope_audit.py": "0625c0fe6d57969ebdebc5757590286873ba3d5e05fcb9f9cdefe6e6dc214790"
+  },
+  "test_evaluated": false,
+  "rows": 5814,
+  "feature_count": 40,
+  "new_inputs": [
+    "dishwasher",
+    "clothes_dryer",
+    "outdoor_space",
+    "private_outdoor_space",
+    "bathtub",
+    "hot_tub",
+    "sauna",
+    "waterfront",
+    "water_view",
+    "gym",
+    "fireplace",
+    "free_onsite_parking",
+    "swimming_pool",
+    "bathroom_shared",
+    "declared_entire_area_m2",
+    "declared_room_area_m2"
+  ],
+  "observed_new_inputs": {
+    "dishwasher": 5814,
+    "clothes_dryer": 5814,
+    "outdoor_space": 5814,
+    "private_outdoor_space": 5814,
+    "bathtub": 5814,
+    "hot_tub": 5814,
+    "sauna": 5814,
+    "waterfront": 5814,
+    "water_view": 5814,
+    "gym": 5814,
+    "fireplace": 5814,
+    "free_onsite_parking": 5814,
+    "swimming_pool": 5814,
+    "bathroom_shared": 5810,
+    "declared_entire_area_m2": 667,
+    "declared_room_area_m2": 118
+  },
+  "cv": {
+    "s02_control": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.90337502290897,
+        "median_absolute_error_eur": 27.579146452942453,
+        "rmse_eur": 181.54048684204523,
+        "within_20_percent": 0.4461644306845545,
+        "within_30_eur": 0.5252837977296182,
+        "p90_absolute_error_eur": 108.54751353786398
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.10222488273752,
+        "median_absolute_error_eur": 14.928215292177924,
+        "rmse_eur": 33.561984051404174,
+        "within_20_percent": 0.46274872744099954,
+        "within_30_eur": 0.7357704766311892,
+        "p90_absolute_error_eur": 53.66377136263134
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.8013548523196,
+        "median_absolute_error_eur": 27.452640610944783,
+        "rmse_eur": 45.77596553342731,
+        "within_20_percent": 0.49859550561797755,
+        "within_30_eur": 0.5383895131086143,
+        "p90_absolute_error_eur": 72.90815757398038
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 72.82761974910922,
+        "median_absolute_error_eur": 64.1996322312481,
+        "rmse_eur": 89.59957073922496,
+        "within_20_percent": 0.39872408293460926,
+        "within_30_eur": 0.24242424242424243,
+        "p90_absolute_error_eur": 147.8090663472391
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 394.00298586182254,
+        "median_absolute_error_eur": 263.4660388656373,
+        "rmse_eur": 814.8676881055958,
+        "within_20_percent": 0.11026615969581749,
+        "within_30_eur": 0.03802281368821293,
+        "p90_absolute_error_eur": 696.1179126822699
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1578.6193356749554,
+        "median_absolute_error_eur": 690.6122858668098,
+        "rmse_eur": 2271.7867752983007,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3625.6705556199313
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.59186188755688,
+        "median_absolute_error_eur": 27.55640017099052,
+        "rmse_eur": 168.94690785122182,
+        "within_20_percent": 0.4465484592873128,
+        "within_30_eur": 0.5257359270098123,
+        "p90_absolute_error_eur": 108.15292185668768
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.782261196155865,
+        "median_absolute_error_eur": 34.58239664654789,
+        "rmse_eur": 202.57877778403903,
+        "within_20_percent": 0.43166109253065776,
+        "within_30_eur": 0.45306577480490523,
+        "p90_absolute_error_eur": 121.95065774870864
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.55688458804229,
+        "median_absolute_error_eur": 12.097982366908518,
+        "rmse_eur": 75.03434292800083,
+        "within_20_percent": 0.5190194420963652,
+        "within_30_eur": 0.8038884192730347,
+        "p90_absolute_error_eur": 45.628533617138515
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 62.0048216070174,
+        "median_absolute_error_eur": 32.73421392053558,
+        "rmse_eur": 208.17615824181226,
+        "within_20_percent": 0.4581412278573162,
+        "within_30_eur": 0.47512739626304296,
+        "p90_absolute_error_eur": 122.34811524121784
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 98.50036927646322,
+        "median_absolute_error_eur": 72.223171283881,
+        "rmse_eur": 141.95915266796857,
+        "within_20_percent": 0.2647058823529412,
+        "within_30_eur": 0.29411764705882354,
+        "p90_absolute_error_eur": 237.15139052541048
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.014512875005664,
+        "median_absolute_error_eur": 19.21085681163342,
+        "rmse_eur": 87.0623529650257,
+        "within_20_percent": 0.43234738829452485,
+        "within_30_eur": 0.6645689112649465,
+        "p90_absolute_error_eur": 64.81234463508551
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 44.432557527004086,
+        "median_absolute_error_eur": 34.720244639822084,
+        "rmse_eur": 64.26095788405534,
+        "within_20_percent": 0.14285714285714285,
+        "within_30_eur": 0.42857142857142855,
+        "p90_absolute_error_eur": 83.17690500025928
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 54.14695820045851,
+        "median_absolute_error_eur": 29.06338706385614,
+        "rmse_eur": 106.51854369166622,
+        "within_20_percent": 0.425207756232687,
+        "within_30_eur": 0.5124653739612188,
+        "p90_absolute_error_eur": 108.06135581756848
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.55335195822958,
+        "median_absolute_error_eur": 25.606020049608247,
+        "rmse_eur": 116.24656335822294,
+        "within_20_percent": 0.4763135228251507,
+        "within_30_eur": 0.5564168819982773,
+        "p90_absolute_error_eur": 99.59397615549634
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 48.553317139776226,
+        "median_absolute_error_eur": 32.123398009191575,
+        "rmse_eur": 71.9058395531671,
+        "within_20_percent": 0.3668639053254438,
+        "within_30_eur": 0.47928994082840237,
+        "p90_absolute_error_eur": 130.92084327275649
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 52.07898559983284,
+        "median_absolute_error_eur": 26.112804519611586,
+        "rmse_eur": 111.16625412619493,
+        "within_20_percent": 0.3050847457627119,
+        "within_30_eur": 0.5423728813559322,
+        "p90_absolute_error_eur": 92.63402232171728
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 61.52815515966579,
+        "median_absolute_error_eur": 32.72159770359525,
+        "rmse_eur": 134.0079347607007,
+        "within_20_percent": 0.4240331491712707,
+        "within_30_eur": 0.47928176795580113,
+        "p90_absolute_error_eur": 124.86161946773916
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.16538888787097,
+        "median_absolute_error_eur": 25.50698994816988,
+        "rmse_eur": 64.29459820557595,
+        "within_20_percent": 0.4634703196347032,
+        "within_30_eur": 0.5570776255707762,
+        "p90_absolute_error_eur": 88.53430530540805
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 54.281154869852024,
+        "median_absolute_error_eur": 29.322340082403954,
+        "rmse_eur": 121.18902611460977,
+        "within_20_percent": 0.48760330578512395,
+        "within_30_eur": 0.5064935064935064,
+        "p90_absolute_error_eur": 111.14679965702142
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 28.36968361333652,
+        "median_absolute_error_eur": 17.98633196041452,
+        "rmse_eur": 40.81320555523223,
+        "within_20_percent": 0.3875,
+        "within_30_eur": 0.65,
+        "p90_absolute_error_eur": 66.02823612555845
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 61.168654721752,
+        "median_absolute_error_eur": 32.30640169249136,
+        "rmse_eur": 100.29026891956988,
+        "within_20_percent": 0.3382352941176471,
+        "within_30_eur": 0.45588235294117646,
+        "p90_absolute_error_eur": 160.44993177156485
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.7427419805664,
+        "median_absolute_error_eur": 18.19479718385047,
+        "rmse_eur": 745.758677460327,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6914285714285714,
+        "p90_absolute_error_eur": 67.23371410820084
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 48.04229272960836,
+        "median_absolute_error_eur": 28.558841413347665,
+        "rmse_eur": 89.4607782488741,
+        "within_20_percent": 0.44,
+        "within_30_eur": 0.5125,
+        "p90_absolute_error_eur": 100.09014506535816
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 68.23975248788697,
+        "median_absolute_error_eur": 21.37480560997973,
+        "rmse_eur": 315.12764423882976,
+        "within_20_percent": 0.42105263157894735,
+        "within_30_eur": 0.6032388663967612,
+        "p90_absolute_error_eur": 89.39394829726768
+      }
+    },
+    "rich_catboost_mae": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.33874586335297,
+        "median_absolute_error_eur": 27.158085355786284,
+        "rmse_eur": 173.7355661826711,
+        "within_20_percent": 0.4590643274853801,
+        "within_30_eur": 0.5311317509459924,
+        "p90_absolute_error_eur": 107.01009247707228
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 22.537928898406246,
+        "median_absolute_error_eur": 14.809420376123406,
+        "rmse_eur": 33.074753543316355,
+        "within_20_percent": 0.4641369736233225,
+        "within_30_eur": 0.7450254511800093,
+        "p90_absolute_error_eur": 52.04261579742044
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 35.67961024478626,
+        "median_absolute_error_eur": 27.24867167924357,
+        "rmse_eur": 48.04147325653239,
+        "within_20_percent": 0.5042134831460674,
+        "within_30_eur": 0.5355805243445693,
+        "p90_absolute_error_eur": 74.77208979279148
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 71.28509316879898,
+        "median_absolute_error_eur": 59.475905220695864,
+        "rmse_eur": 91.08157579740492,
+        "within_20_percent": 0.43859649122807015,
+        "within_30_eur": 0.25996810207336524,
+        "p90_absolute_error_eur": 145.76368691066682
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 364.2731930933113,
+        "median_absolute_error_eur": 249.5578073815444,
+        "rmse_eur": 774.5799644083481,
+        "within_20_percent": 0.1482889733840304,
+        "within_30_eur": 0.030418250950570342,
+        "p90_absolute_error_eur": 650.4883239260548
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1494.2116899123848,
+        "median_absolute_error_eur": 785.1060664320283,
+        "rmse_eur": 1958.3523757305063,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3062.479659365339
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.09853847477573,
+        "median_absolute_error_eur": 27.10632105679207,
+        "rmse_eur": 164.03960200472252,
+        "within_20_percent": 0.4594594594594595,
+        "within_30_eur": 0.5315889137545189,
+        "p90_absolute_error_eur": 106.56286568609441
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 60.76787635734623,
+        "median_absolute_error_eur": 33.434062152472336,
+        "rmse_eur": 193.62309367461611,
+        "within_20_percent": 0.45217391304347826,
+        "within_30_eur": 0.4635451505016722,
+        "p90_absolute_error_eur": 121.77165670041997
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.6634038759362,
+        "median_absolute_error_eur": 12.623319919638178,
+        "rmse_eur": 74.13918459310044,
+        "within_20_percent": 0.5054945054945055,
+        "within_30_eur": 0.797971259509721,
+        "p90_absolute_error_eur": 47.421000514607655
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 60.1671281226173,
+        "median_absolute_error_eur": 32.66783720580574,
+        "rmse_eur": 198.69291336813768,
+        "within_20_percent": 0.4608104828925018,
+        "within_30_eur": 0.4739140985197767,
+        "p90_absolute_error_eur": 121.00197256709691
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 95.23261958525025,
+        "median_absolute_error_eur": 70.26847150104803,
+        "rmse_eur": 133.76190971363155,
+        "within_20_percent": 0.2647058823529412,
+        "within_30_eur": 0.23529411764705882,
+        "p90_absolute_error_eur": 217.8345408655471
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.37095027868445,
+        "median_absolute_error_eur": 17.76569714161306,
+        "rmse_eur": 86.83413301730603,
+        "within_20_percent": 0.47010698552548774,
+        "within_30_eur": 0.684078036500944,
+        "p90_absolute_error_eur": 65.36620259989347
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 38.86263425000211,
+        "median_absolute_error_eur": 20.776697854741627,
+        "rmse_eur": 54.50409120429399,
+        "within_20_percent": 0.2,
+        "within_30_eur": 0.5714285714285714,
+        "p90_absolute_error_eur": 97.6930225126104
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 52.56068686928349,
+        "median_absolute_error_eur": 26.805795240179535,
+        "rmse_eur": 102.12797261364624,
+        "within_20_percent": 0.4445983379501385,
+        "within_30_eur": 0.5277008310249307,
+        "p90_absolute_error_eur": 112.30037841054379
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 48.194884021069505,
+        "median_absolute_error_eur": 23.493021376721998,
+        "rmse_eur": 105.79530428441404,
+        "within_20_percent": 0.4737295434969854,
+        "within_30_eur": 0.570198105081826,
+        "p90_absolute_error_eur": 102.33554470863592
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 45.14515169025613,
+        "median_absolute_error_eur": 26.05044169351177,
+        "rmse_eur": 67.35582643042684,
+        "within_20_percent": 0.4970414201183432,
+        "within_30_eur": 0.5502958579881657,
+        "p90_absolute_error_eur": 113.24401433770393
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 49.6783066387908,
+        "median_absolute_error_eur": 24.046715499927586,
+        "rmse_eur": 109.92070275854006,
+        "within_20_percent": 0.3389830508474576,
+        "within_30_eur": 0.6101694915254238,
+        "p90_absolute_error_eur": 73.03955303853029
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.29455862532794,
+        "median_absolute_error_eur": 33.286661212590495,
+        "rmse_eur": 127.90597976338275,
+        "within_20_percent": 0.43232044198895025,
+        "within_30_eur": 0.46408839779005523,
+        "p90_absolute_error_eur": 124.45504315685449
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.98412854605315,
+        "median_absolute_error_eur": 24.511588161305426,
+        "rmse_eur": 64.89680117473824,
+        "within_20_percent": 0.4657534246575342,
+        "within_30_eur": 0.5707762557077626,
+        "p90_absolute_error_eur": 86.53208911622417
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 54.1240166051661,
+        "median_absolute_error_eur": 29.207175466533727,
+        "rmse_eur": 119.39156454070806,
+        "within_20_percent": 0.4899645808736718,
+        "within_30_eur": 0.5076741440377804,
+        "p90_absolute_error_eur": 108.54148082472366
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 27.0847227116384,
+        "median_absolute_error_eur": 18.360913324051467,
+        "rmse_eur": 39.51297878899828,
+        "within_20_percent": 0.45,
+        "within_30_eur": 0.7125,
+        "p90_absolute_error_eur": 66.13503505214995
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 52.31616348394918,
+        "median_absolute_error_eur": 35.88223774244321,
+        "rmse_eur": 79.7368737134948,
+        "within_20_percent": 0.38235294117647056,
+        "within_30_eur": 0.39705882352941174,
+        "p90_absolute_error_eur": 94.32158887891332
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 93.7989803443488,
+        "median_absolute_error_eur": 16.68835651597888,
+        "rmse_eur": 745.5009492947019,
+        "within_20_percent": 0.5314285714285715,
+        "within_30_eur": 0.6628571428571428,
+        "p90_absolute_error_eur": 70.62037860931416
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.574156098471775,
+        "median_absolute_error_eur": 27.007223092546127,
+        "rmse_eur": 86.09107229003567,
+        "within_20_percent": 0.465,
+        "within_30_eur": 0.5475,
+        "p90_absolute_error_eur": 95.2129389776237
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 60.94926827286101,
+        "median_absolute_error_eur": 23.271526295767018,
+        "rmse_eur": 247.21927131248634,
+        "within_20_percent": 0.43724696356275305,
+        "within_30_eur": 0.5870445344129555,
+        "p90_absolute_error_eur": 111.32855738769294
+      }
+    },
+    "rich_catboost_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.39468086720807,
+        "median_absolute_error_eur": 27.79640849500943,
+        "rmse_eur": 176.47652443020004,
+        "within_20_percent": 0.4528723770209838,
+        "within_30_eur": 0.5256277949776402,
+        "p90_absolute_error_eur": 104.26293827470676
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 22.630486090154744,
+        "median_absolute_error_eur": 15.509118759772022,
+        "rmse_eur": 32.735887704638834,
+        "within_20_percent": 0.44562702452568254,
+        "within_30_eur": 0.7366959740860712,
+        "p90_absolute_error_eur": 51.03557895345193
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.997426935992735,
+        "median_absolute_error_eur": 27.865882301155835,
+        "rmse_eur": 47.567088802521575,
+        "within_20_percent": 0.5070224719101124,
+        "within_30_eur": 0.5318352059925093,
+        "p90_absolute_error_eur": 73.86068364387057
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 72.21135836076088,
+        "median_absolute_error_eur": 60.305273803820924,
+        "rmse_eur": 102.27621039891092,
+        "within_20_percent": 0.43779904306220097,
+        "within_30_eur": 0.2543859649122807,
+        "p90_absolute_error_eur": 145.6079176400905
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 365.8731817545579,
+        "median_absolute_error_eur": 242.77089402535702,
+        "rmse_eur": 781.9368814337981,
+        "within_20_percent": 0.1444866920152091,
+        "within_30_eur": 0.034220532319391636,
+        "p90_absolute_error_eur": 655.4533517231793
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1794.5122034685876,
+        "median_absolute_error_eur": 1819.3742614627877,
+        "rmse_eur": 2208.7354540029364,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3271.428819590656
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 51.89604295827246,
+        "median_absolute_error_eur": 27.775440061158648,
+        "rmse_eur": 164.23054560083176,
+        "within_20_percent": 0.45326217937682906,
+        "within_30_eur": 0.5260802203477363,
+        "p90_absolute_error_eur": 103.75513463212647
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 60.99128328829104,
+        "median_absolute_error_eur": 33.444923439137014,
+        "rmse_eur": 196.80552345168482,
+        "within_20_percent": 0.44704570791527315,
+        "within_30_eur": 0.4544035674470457,
+        "p90_absolute_error_eur": 116.40157693799179
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.603045591143516,
+        "median_absolute_error_eur": 13.151590747754582,
+        "rmse_eur": 74.40320407598297,
+        "within_20_percent": 0.4894336432797971,
+        "within_30_eur": 0.7988165680473372,
+        "p90_absolute_error_eur": 45.618989791070646
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 60.68739500694715,
+        "median_absolute_error_eur": 32.17229629081646,
+        "rmse_eur": 202.2708784720161,
+        "within_20_percent": 0.45959718514923564,
+        "within_30_eur": 0.4712448434845911,
+        "p90_absolute_error_eur": 117.15305224237818
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 87.4801442297088,
+        "median_absolute_error_eur": 67.82472028882776,
+        "rmse_eur": 128.10997504907397,
+        "within_20_percent": 0.35294117647058826,
+        "within_30_eur": 0.35294117647058826,
+        "p90_absolute_error_eur": 199.59607480601264
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 34.9355368945751,
+        "median_absolute_error_eur": 18.294817326264663,
+        "rmse_eur": 86.23406422098054,
+        "within_20_percent": 0.4505978602894902,
+        "within_30_eur": 0.6658275645059786,
+        "p90_absolute_error_eur": 60.09295359279519
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 26.528952986122835,
+        "median_absolute_error_eur": 19.061215615311674,
+        "rmse_eur": 36.276887576112934,
+        "within_20_percent": 0.15714285714285714,
+        "within_30_eur": 0.6285714285714286,
+        "p90_absolute_error_eur": 48.61996748215182
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 53.33205300376261,
+        "median_absolute_error_eur": 27.259713123269457,
+        "rmse_eur": 117.09376126700433,
+        "within_20_percent": 0.43351800554016623,
+        "within_30_eur": 0.5373961218836565,
+        "p90_absolute_error_eur": 107.32738438364831
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.464244509203475,
+        "median_absolute_error_eur": 26.34217305686809,
+        "rmse_eur": 111.59717500162617,
+        "within_20_percent": 0.45305770887166236,
+        "within_30_eur": 0.537467700258398,
+        "p90_absolute_error_eur": 101.16027319376425
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 44.48675006559006,
+        "median_absolute_error_eur": 26.254049004963278,
+        "rmse_eur": 66.68734111417844,
+        "within_20_percent": 0.5088757396449705,
+        "within_30_eur": 0.5325443786982249,
+        "p90_absolute_error_eur": 111.25558092928014
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 47.19675255568149,
+        "median_absolute_error_eur": 22.90738687006194,
+        "rmse_eur": 108.87781903807769,
+        "within_20_percent": 0.3728813559322034,
+        "within_30_eur": 0.6101694915254238,
+        "p90_absolute_error_eur": 69.84158416954544
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.180056286160905,
+        "median_absolute_error_eur": 33.573273353660916,
+        "rmse_eur": 124.9705924044103,
+        "within_20_percent": 0.4191988950276243,
+        "within_30_eur": 0.46408839779005523,
+        "p90_absolute_error_eur": 122.1739773052785
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.06234354524751,
+        "median_absolute_error_eur": 24.57935434127053,
+        "rmse_eur": 63.540296448479985,
+        "within_20_percent": 0.4817351598173516,
+        "within_30_eur": 0.5547945205479452,
+        "p90_absolute_error_eur": 83.75676398035422
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 53.489834400222044,
+        "median_absolute_error_eur": 29.165332998691337,
+        "rmse_eur": 117.441484425319,
+        "within_20_percent": 0.4757969303423849,
+        "within_30_eur": 0.5076741440377804,
+        "p90_absolute_error_eur": 105.40603967991912
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 24.773376462585098,
+        "median_absolute_error_eur": 17.405315589740233,
+        "rmse_eur": 36.957354251361394,
+        "within_20_percent": 0.5,
+        "within_30_eur": 0.7,
+        "p90_absolute_error_eur": 56.03050401335296
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 49.72561691910205,
+        "median_absolute_error_eur": 34.65427213408046,
+        "rmse_eur": 80.006319106113,
+        "within_20_percent": 0.39705882352941174,
+        "within_30_eur": 0.45588235294117646,
+        "p90_absolute_error_eur": 97.32725344760149
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 93.26341797646894,
+        "median_absolute_error_eur": 16.78388898009875,
+        "rmse_eur": 746.2807556752811,
+        "within_20_percent": 0.5314285714285715,
+        "within_30_eur": 0.7028571428571428,
+        "p90_absolute_error_eur": 71.00478134725837
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.56610635270226,
+        "median_absolute_error_eur": 28.994872512979086,
+        "rmse_eur": 85.54694671701372,
+        "within_20_percent": 0.4475,
+        "within_30_eur": 0.5125,
+        "p90_absolute_error_eur": 89.64649908233618
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 61.422691455626634,
+        "median_absolute_error_eur": 17.294315462700027,
+        "rmse_eur": 271.9048244858138,
+        "within_20_percent": 0.5101214574898786,
+        "within_30_eur": 0.6396761133603239,
+        "p90_absolute_error_eur": 102.2705269644177
+      }
+    }
+  },
+  "missing_new_fields": {
+    "rich_catboost_mae": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.92518491075647,
+        "median_absolute_error_eur": 28.18396812515543,
+        "rmse_eur": 177.12410013051542,
+        "within_20_percent": 0.4504643962848297,
+        "within_30_eur": 0.52046783625731,
+        "p90_absolute_error_eur": 113.20126050645935
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.86891023781145,
+        "median_absolute_error_eur": 16.455917246743667,
+        "rmse_eur": 33.6949389618552,
+        "within_20_percent": 0.4289680703378066,
+        "within_30_eur": 0.7066173068024063,
+        "p90_absolute_error_eur": 55.11563911634934
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 32.427917428003944,
+        "median_absolute_error_eur": 25.35812875962222,
+        "rmse_eur": 43.33361594199821,
+        "within_20_percent": 0.549625468164794,
+        "within_30_eur": 0.5735018726591761,
+        "p90_absolute_error_eur": 68.30766679374064
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 76.71029417514205,
+        "median_absolute_error_eur": 66.5553145303274,
+        "rmse_eur": 95.21236396915411,
+        "within_20_percent": 0.3939393939393939,
+        "within_30_eur": 0.21291866028708134,
+        "p90_absolute_error_eur": 149.00040959397253
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 388.94893355658957,
+        "median_absolute_error_eur": 273.3698262536331,
+        "rmse_eur": 791.0378078284302,
+        "within_20_percent": 0.09125475285171103,
+        "within_30_eur": 0.026615969581749048,
+        "p90_absolute_error_eur": 694.9230377751584
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1558.857667805495,
+        "median_absolute_error_eur": 738.5890738194809,
+        "rmse_eur": 2061.423016965199,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3240.8203211595683
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.63070007438641,
+        "median_absolute_error_eur": 28.172361210622597,
+        "rmse_eur": 166.5601827878855,
+        "within_20_percent": 0.45085212601136165,
+        "within_30_eur": 0.5209158202788776,
+        "p90_absolute_error_eur": 112.31885458104964
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.77170470552327,
+        "median_absolute_error_eur": 34.25142195868048,
+        "rmse_eur": 197.43381966130704,
+        "within_20_percent": 0.4399108138238573,
+        "within_30_eur": 0.44816053511705684,
+        "p90_absolute_error_eur": 124.34039238864305
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.572961657127262,
+        "median_absolute_error_eur": 11.975462375447563,
+        "rmse_eur": 74.93009994491746,
+        "within_20_percent": 0.514792899408284,
+        "within_30_eur": 0.8047337278106509,
+        "p90_absolute_error_eur": 47.76685285239342
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.64588643682074,
+        "median_absolute_error_eur": 32.15432973020805,
+        "rmse_eur": 202.8628614123882,
+        "within_20_percent": 0.47270080077651055,
+        "within_30_eur": 0.47634069400630913,
+        "p90_absolute_error_eur": 125.3007166957928
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 103.30260229616115,
+        "median_absolute_error_eur": 72.70401273262802,
+        "rmse_eur": 144.17754900409255,
+        "within_20_percent": 0.23529411764705882,
+        "within_30_eur": 0.23529411764705882,
+        "p90_absolute_error_eur": 260.27903732525925
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.544860727818254,
+        "median_absolute_error_eur": 20.007829737870026,
+        "rmse_eur": 86.15091823540692,
+        "within_20_percent": 0.4122089364380113,
+        "within_30_eur": 0.6488357457520453,
+        "p90_absolute_error_eur": 64.91944137326996
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 53.00364129181716,
+        "median_absolute_error_eur": 44.66727588025195,
+        "rmse_eur": 66.4514449314092,
+        "within_20_percent": 0.11428571428571428,
+        "within_30_eur": 0.34285714285714286,
+        "p90_absolute_error_eur": 115.1576341770983
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 53.79814164520651,
+        "median_absolute_error_eur": 27.69939028243091,
+        "rmse_eur": 109.89282594598379,
+        "within_20_percent": 0.4376731301939058,
+        "within_30_eur": 0.5332409972299169,
+        "p90_absolute_error_eur": 113.36771783509656
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 50.04129240711641,
+        "median_absolute_error_eur": 25.62000993269831,
+        "rmse_eur": 111.67813138662584,
+        "within_20_percent": 0.47114556416882,
+        "within_30_eur": 0.549526270456503,
+        "p90_absolute_error_eur": 103.99874881820287
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 45.58549762806581,
+        "median_absolute_error_eur": 27.57124277723267,
+        "rmse_eur": 68.94215801386692,
+        "within_20_percent": 0.4378698224852071,
+        "within_30_eur": 0.5384615384615384,
+        "p90_absolute_error_eur": 110.00966357772384
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 46.826376739118196,
+        "median_absolute_error_eur": 18.882356923875335,
+        "rmse_eur": 108.97869331301237,
+        "within_20_percent": 0.3728813559322034,
+        "within_30_eur": 0.6101694915254238,
+        "p90_absolute_error_eur": 69.32886976767949
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 62.66866698879266,
+        "median_absolute_error_eur": 33.02460287753684,
+        "rmse_eur": 132.10544909457,
+        "within_20_percent": 0.43370165745856354,
+        "within_30_eur": 0.45027624309392267,
+        "p90_absolute_error_eur": 133.28027795670155
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.63612602264797,
+        "median_absolute_error_eur": 25.11937897096378,
+        "rmse_eur": 66.26627770920243,
+        "within_20_percent": 0.4589041095890411,
+        "within_30_eur": 0.5570776255707762,
+        "p90_absolute_error_eur": 85.91695217433818
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 55.65664187928088,
+        "median_absolute_error_eur": 28.869322912608013,
+        "rmse_eur": 122.63804415230378,
+        "within_20_percent": 0.4793388429752066,
+        "within_30_eur": 0.512396694214876,
+        "p90_absolute_error_eur": 117.38555345210683
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 28.62448940878994,
+        "median_absolute_error_eur": 22.84373883377902,
+        "rmse_eur": 39.78929154879456,
+        "within_20_percent": 0.3625,
+        "within_30_eur": 0.6375,
+        "p90_absolute_error_eur": 64.0709916378383
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 57.30216505441361,
+        "median_absolute_error_eur": 35.57975043780091,
+        "rmse_eur": 91.17093878270269,
+        "within_20_percent": 0.35294117647058826,
+        "within_30_eur": 0.47058823529411764,
+        "p90_absolute_error_eur": 121.3810565224359
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.94352414336996,
+        "median_absolute_error_eur": 18.35772982000551,
+        "rmse_eur": 745.809554524595,
+        "within_20_percent": 0.5028571428571429,
+        "within_30_eur": 0.68,
+        "p90_absolute_error_eur": 69.42483369150419
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 47.26426163099342,
+        "median_absolute_error_eur": 29.554469876032336,
+        "rmse_eur": 89.12543684961992,
+        "within_20_percent": 0.43,
+        "within_30_eur": 0.5025,
+        "p90_absolute_error_eur": 95.34276640161004
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 60.626577200618954,
+        "median_absolute_error_eur": 23.332098706002185,
+        "rmse_eur": 258.90439676094576,
+        "within_20_percent": 0.4534412955465587,
+        "within_30_eur": 0.5789473684210527,
+        "p90_absolute_error_eur": 114.29651438851025
+      }
+    },
+    "rich_catboost_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.5211146252259,
+        "median_absolute_error_eur": 27.702888295651384,
+        "rmse_eur": 178.74851302491552,
+        "within_20_percent": 0.45476436188510494,
+        "within_30_eur": 0.5275197798417612,
+        "p90_absolute_error_eur": 110.94581860541842
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 22.34053972474835,
+        "median_absolute_error_eur": 15.62188567250476,
+        "rmse_eur": 31.420584382067403,
+        "within_20_percent": 0.4534937528921795,
+        "within_30_eur": 0.7292919944470153,
+        "p90_absolute_error_eur": 50.31807095421044
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 31.513431748846585,
+        "median_absolute_error_eur": 25.39634479298499,
+        "rmse_eur": 42.3019205575714,
+        "within_20_percent": 0.5529026217228464,
+        "within_30_eur": 0.576310861423221,
+        "p90_absolute_error_eur": 64.34225632119418
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 78.88456441154389,
+        "median_absolute_error_eur": 68.41252812407497,
+        "rmse_eur": 106.71696867231834,
+        "within_20_percent": 0.36363636363636365,
+        "within_30_eur": 0.2025518341307815,
+        "p90_absolute_error_eur": 150.20943891381725
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 389.63467717973305,
+        "median_absolute_error_eur": 268.9259510015719,
+        "rmse_eur": 793.3333820910814,
+        "within_20_percent": 0.10266159695817491,
+        "within_30_eur": 0.022813688212927757,
+        "p90_absolute_error_eur": 705.5261900225172
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1731.1062945594058,
+        "median_absolute_error_eur": 1797.609173620407,
+        "rmse_eur": 2153.632699403925,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3167.540569806445
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.07802185544264,
+        "median_absolute_error_eur": 27.675000424723038,
+        "rmse_eur": 167.29117072810607,
+        "within_20_percent": 0.45515579273541057,
+        "within_30_eur": 0.5279738337063178,
+        "p90_absolute_error_eur": 110.36235385118403
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.367940002176944,
+        "median_absolute_error_eur": 34.14941059218495,
+        "rmse_eur": 199.29459889847928,
+        "within_20_percent": 0.44013377926421404,
+        "within_30_eur": 0.45484949832775917,
+        "p90_absolute_error_eur": 121.39881833744778
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.32969596227828,
+        "median_absolute_error_eur": 11.76994283183872,
+        "rmse_eur": 75.0546151604483,
+        "within_20_percent": 0.5283178360101437,
+        "within_30_eur": 0.8081149619611158,
+        "p90_absolute_error_eur": 44.47626225674994
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.93120250313383,
+        "median_absolute_error_eur": 32.08166076959597,
+        "rmse_eur": 205.06002052274795,
+        "within_20_percent": 0.4637223974763407,
+        "within_30_eur": 0.47828197039553505,
+        "p90_absolute_error_eur": 124.70926167724522
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 87.94351892395396,
+        "median_absolute_error_eur": 69.56481731393411,
+        "rmse_eur": 127.71350297001693,
+        "within_20_percent": 0.29411764705882354,
+        "within_30_eur": 0.3235294117647059,
+        "p90_absolute_error_eur": 218.0844661781788
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.512925745339025,
+        "median_absolute_error_eur": 18.48471769840721,
+        "rmse_eur": 86.19254835234771,
+        "within_20_percent": 0.4487098804279421,
+        "within_30_eur": 0.658904971680302,
+        "p90_absolute_error_eur": 61.560848607775014
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 33.53080375558089,
+        "median_absolute_error_eur": 28.605682951674712,
+        "rmse_eur": 40.944133345373686,
+        "within_20_percent": 0.14285714285714285,
+        "within_30_eur": 0.5428571428571428,
+        "p90_absolute_error_eur": 54.64074040536966
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 55.380596309650564,
+        "median_absolute_error_eur": 27.649542513227637,
+        "rmse_eur": 124.9519665295778,
+        "within_20_percent": 0.44321329639889195,
+        "within_30_eur": 0.5235457063711911,
+        "p90_absolute_error_eur": 111.5014604554872
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.31952128508214,
+        "median_absolute_error_eur": 25.861692441293414,
+        "rmse_eur": 106.06743176854839,
+        "within_20_percent": 0.4694229112833764,
+        "within_30_eur": 0.5452196382428941,
+        "p90_absolute_error_eur": 108.06814967614562
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 45.36199121370595,
+        "median_absolute_error_eur": 27.611437590569437,
+        "rmse_eur": 69.63895136848598,
+        "within_20_percent": 0.44970414201183434,
+        "within_30_eur": 0.5502958579881657,
+        "p90_absolute_error_eur": 112.57146442553052
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 45.68731613814136,
+        "median_absolute_error_eur": 20.52890501332587,
+        "rmse_eur": 109.77151287157291,
+        "within_20_percent": 0.4067796610169492,
+        "within_30_eur": 0.6779661016949152,
+        "p90_absolute_error_eur": 68.67881236268282
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 61.21913435117773,
+        "median_absolute_error_eur": 32.74720390176054,
+        "rmse_eur": 129.37807973842706,
+        "within_20_percent": 0.43370165745856354,
+        "within_30_eur": 0.4723756906077348,
+        "p90_absolute_error_eur": 123.46961063150766
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.92949152066496,
+        "median_absolute_error_eur": 25.281945407839885,
+        "rmse_eur": 65.99594336141438,
+        "within_20_percent": 0.4840182648401826,
+        "within_30_eur": 0.5593607305936074,
+        "p90_absolute_error_eur": 86.84646677595453
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 55.66061434251667,
+        "median_absolute_error_eur": 30.37022156827183,
+        "rmse_eur": 121.35680630028084,
+        "within_20_percent": 0.4604486422668241,
+        "within_30_eur": 0.4970484061393152,
+        "p90_absolute_error_eur": 117.23937526117088
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 25.577763893530364,
+        "median_absolute_error_eur": 16.801005076590144,
+        "rmse_eur": 36.660701687312944,
+        "within_20_percent": 0.475,
+        "within_30_eur": 0.6625,
+        "p90_absolute_error_eur": 53.09322789202835
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 56.55915358721455,
+        "median_absolute_error_eur": 32.244424722824505,
+        "rmse_eur": 91.91455006193043,
+        "within_20_percent": 0.3088235294117647,
+        "within_30_eur": 0.45588235294117646,
+        "p90_absolute_error_eur": 128.43507415595084
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 93.58675311523565,
+        "median_absolute_error_eur": 15.255309548102275,
+        "rmse_eur": 747.446606481395,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6857142857142857,
+        "p90_absolute_error_eur": 64.15628290818755
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 46.89724842747862,
+        "median_absolute_error_eur": 28.23812542471126,
+        "rmse_eur": 89.20507431040406,
+        "within_20_percent": 0.4325,
+        "within_30_eur": 0.525,
+        "p90_absolute_error_eur": 96.90055721276693
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 62.79145190287315,
+        "median_absolute_error_eur": 17.56014356703831,
+        "rmse_eur": 282.0235993311391,
+        "within_20_percent": 0.5141700404858299,
+        "within_30_eur": 0.6437246963562753,
+        "p90_absolute_error_eur": 92.64997222864551
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "fit_rows": 4015,
+      "score_rows": 1799,
+      "models": {
+        "rich_catboost_mae": {
+          "mae": 56.04075814173551,
+          "control_mae": 56.83813344257452
+        },
+        "rich_catboost_log": {
+          "mae": 55.33316650208843,
+          "control_mae": 56.83813344257452
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "fit_rows": 3817,
+      "score_rows": 1997,
+      "models": {
+        "rich_catboost_mae": {
+          "mae": 47.666978924697005,
+          "control_mae": 49.45647892270413
+        },
+        "rich_catboost_log": {
+          "mae": 48.44136114100343,
+          "control_mae": 49.45647892270413
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "fit_rows": 3796,
+      "score_rows": 2018,
+      "models": {
+        "rich_catboost_mae": {
+          "mae": 56.54270943505058,
+          "control_mae": 58.56879678461894
+        },
+        "rich_catboost_log": {
+          "mae": 56.568339854364105,
+          "control_mae": 58.56879678461894
+        }
+      }
+    }
+  ],
+  "decision": {
+    "selected": null,
+    "gates": {
+      "rich_catboost_mae": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "rich_catboost_log": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      }
+    },
+    "empty_fields_gates": {
+      "rich_catboost_mae": {
+        "passed": true,
+        "checks": {
+          "mae": true,
+          "within20": true
+        }
+      },
+      "rich_catboost_log": {
+        "passed": true,
+        "checks": {
+          "mae": true,
+          "within20": true
+        }
+      }
+    },
+    "decided_at_utc": "2026-10-28T21:04:03.008435+00:00"
+  },
+  "validation_evaluated": false,
+  "promoted": false,
+  "best_cv_bootstrap": {
+    "method": "paired bootstrap of validation hosts, row-weighted MAE, percentile 95% interval",
+    "hosts": 3114,
+    "replicates": 1000,
+    "seed": 42,
+    "mae_improvement_eur_95ci": [
+      0.4449463449857307,
+      2.6811166068293093
+    ],
+    "mae_reduction_fraction_95ci": [
+      0.008371147636969709,
+      0.04756878456757305
+    ],
+    "not_a_prediction_interval": true
+  },
+  "completed_at_utc": "2026-10-28T21:04:03.185294+00:00",
+  "outputs_sha256": {
+    "cv_decision.json": "54724df5ac6933046b5c5a0a2da83cd0118e7f68e94d0455b7b3ddf84b163fea",
+    "cv_predictions.csv": "510ffd2296e75f60bbff9ac9d83405f99980323bd38c655b820653ac765a9339",
+    "protocol.json": "f27c4dbbca057b834d5c47ea593e4bd47bfae1804fd2a7936cfd3ff66b12f471",
+    "run_started.json": "982489eeeaab83e98177e9a7f60135c83cb1b87174cfd9dc6686a813a82d08a6",
+    "train_features.csv": "5dcd918814608eb0456ac3da8e6281d2349402fe565ed993862b6c2964bb1cc7"
+  }
+}

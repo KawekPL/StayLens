@@ -56,6 +56,12 @@ Z posiadanych opisów Inside Airbnb wyodrębniono deklarowany metraż 785 ofert 
 
 Cztery ustalone warianty z tymi samymi parametrami i foldami gospodarzy dały CV MAE: kontrola 54,90; metraż 54,59; jakość 54,79; oba 54,57 EUR. Nie osiągnięto wymaganej skali poprawy; validation nie wczytano do oceny, test nadal odłożony. Nadal obowiązuje S02. Samo dodanie metrażu do przyszłego formularza nie sprawi, że użyje go aktywny model.
 
+### Dodatkowy audyt S03b/S03c — 28.10.2026
+
+[S03b](../reports/s03b/REPORT.md) i [S03c](../reports/s03c/REPORT.md) sprawdziły 10 nowych wariantów z innymi algorytmami, logarytmem celu, dodatkowymi prawdziwymi atrybutami i filtrem przeznaczenia wyłącznie w treningu. Wszystkie główne oceny zachowują te same 5814 ofert, ceny i foldy gospodarzy. Najlepsze CV MAE 53,34 vs 54,90 EUR nie spełniło zadeklarowanego minimum korzyści; wynik w zakresie 100–200 EUR pogorszył się. Nie awansowano modelu na validation, test nadal nietknięty. Krzywe wskazują korzyść większego fit, lecz bez podstaw do obietnicy dokładnej wyceny. Nie ustalają nieprzekraczalnego limitu jakości.
+
+Pięć tytułów z przeznaczeniem eventowym/zdjęciowym to sygnały do przeglądu, nie automatycznie błędne dane. Odrzucanie tych rekordów tylko z oceny sztucznie zmieniłoby problem. Dodatkowe metraże są nadal deklaracjami gospodarzy, braki nie są uzupełniane fikcyjnymi wartościami. Rozszerzone wejścia pozostają badawcze, nie w formularzu działającego S02. Samo spełnienie wymagań technicznych kursu nie potwierdza użyteczności predykcji.
+
 ### Ograniczenia źródła i zastosowania
 
 Historyczny snapshot, bez bieżącej dostępności. Lokalizacje są anonimizowane/przybliżone. Danych zagranicznych nie przedstawiamy jako polskich. Zdjęcia pozostają pod oryginalnymi URL i mogą nie działać; UI ma zastępstwo. Zbiór, model i UI nie są afiliowane z Airbnb. Przed wdrożeniem trzeba ocenić możliwość uogólniania, powtarzalne oferty i zakres właściwych predykcji; sam duży zbiór nie dowodzi braku overfittingu.

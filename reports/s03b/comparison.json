@@ -1,0 +1,3126 @@
+{
+  "started_at_utc": "2026-10-28T20:52:43.614852+00:00",
+  "protocol_sha256": "0eb9369808b9d294a03e453dc133ff384123ef02e88675244fd98b086f09921c",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "catboost": "1.2.10",
+    "joblib": "1.6.0",
+    "scipy": "1.18.1"
+  },
+  "source_code_sha256": {
+    "scripts/run_s03b.py": "e0c4082208414f630b0572b94c8257268eec8689fa4ccac1d6f8a4a725650c01",
+    "src/staylens/research_models.py": "10c1b2a221c435021b2ebc93e345a1c89621013aa31b946f20c327f4c14c4e25",
+    "src/staylens/scope_audit.py": "0625c0fe6d57969ebdebc5757590286873ba3d5e05fcb9f9cdefe6e6dc214790"
+  },
+  "research_lock_sha256": "e752107dfc3d64a2c57b23a6f9b0f9e505f21fad2880b6386f3280106216bdda",
+  "test_evaluated": false,
+  "counts": {
+    "train": 5814,
+    "hosts": 3114,
+    "purpose_flags": 5
+  },
+  "control_max_difference": 0.0,
+  "cv": {
+    "s02_control": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.90337502290897,
+        "median_absolute_error_eur": 27.579146452942453,
+        "rmse_eur": 181.54048684204523,
+        "within_20_percent": 0.4461644306845545,
+        "within_30_eur": 0.5252837977296182,
+        "p90_absolute_error_eur": 108.54751353786398
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.10222488273752,
+        "median_absolute_error_eur": 14.928215292177924,
+        "rmse_eur": 33.561984051404174,
+        "within_20_percent": 0.46274872744099954,
+        "within_30_eur": 0.7357704766311892,
+        "p90_absolute_error_eur": 53.66377136263134
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.8013548523196,
+        "median_absolute_error_eur": 27.452640610944783,
+        "rmse_eur": 45.77596553342731,
+        "within_20_percent": 0.49859550561797755,
+        "within_30_eur": 0.5383895131086143,
+        "p90_absolute_error_eur": 72.90815757398038
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 72.82761974910922,
+        "median_absolute_error_eur": 64.1996322312481,
+        "rmse_eur": 89.59957073922496,
+        "within_20_percent": 0.39872408293460926,
+        "within_30_eur": 0.24242424242424243,
+        "p90_absolute_error_eur": 147.8090663472391
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 394.00298586182254,
+        "median_absolute_error_eur": 263.4660388656373,
+        "rmse_eur": 814.8676881055958,
+        "within_20_percent": 0.11026615969581749,
+        "within_30_eur": 0.03802281368821293,
+        "p90_absolute_error_eur": 696.1179126822699
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1578.6193356749554,
+        "median_absolute_error_eur": 690.6122858668098,
+        "rmse_eur": 2271.7867752983007,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3625.6705556199313
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.59186188755688,
+        "median_absolute_error_eur": 27.55640017099052,
+        "rmse_eur": 168.94690785122182,
+        "within_20_percent": 0.4465484592873128,
+        "within_30_eur": 0.5257359270098123,
+        "p90_absolute_error_eur": 108.15292185668768
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.782261196155865,
+        "median_absolute_error_eur": 34.58239664654789,
+        "rmse_eur": 202.57877778403903,
+        "within_20_percent": 0.43166109253065776,
+        "within_30_eur": 0.45306577480490523,
+        "p90_absolute_error_eur": 121.95065774870864
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.55688458804229,
+        "median_absolute_error_eur": 12.097982366908518,
+        "rmse_eur": 75.03434292800083,
+        "within_20_percent": 0.5190194420963652,
+        "within_30_eur": 0.8038884192730347,
+        "p90_absolute_error_eur": 45.628533617138515
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 62.0048216070174,
+        "median_absolute_error_eur": 32.73421392053558,
+        "rmse_eur": 208.17615824181226,
+        "within_20_percent": 0.4581412278573162,
+        "within_30_eur": 0.47512739626304296,
+        "p90_absolute_error_eur": 122.34811524121784
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 98.50036927646322,
+        "median_absolute_error_eur": 72.223171283881,
+        "rmse_eur": 141.95915266796857,
+        "within_20_percent": 0.2647058823529412,
+        "within_30_eur": 0.29411764705882354,
+        "p90_absolute_error_eur": 237.15139052541048
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.014512875005664,
+        "median_absolute_error_eur": 19.21085681163342,
+        "rmse_eur": 87.0623529650257,
+        "within_20_percent": 0.43234738829452485,
+        "within_30_eur": 0.6645689112649465,
+        "p90_absolute_error_eur": 64.81234463508551
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 44.432557527004086,
+        "median_absolute_error_eur": 34.720244639822084,
+        "rmse_eur": 64.26095788405534,
+        "within_20_percent": 0.14285714285714285,
+        "within_30_eur": 0.42857142857142855,
+        "p90_absolute_error_eur": 83.17690500025928
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 54.14695820045851,
+        "median_absolute_error_eur": 29.06338706385614,
+        "rmse_eur": 106.51854369166622,
+        "within_20_percent": 0.425207756232687,
+        "within_30_eur": 0.5124653739612188,
+        "p90_absolute_error_eur": 108.06135581756848
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.55335195822958,
+        "median_absolute_error_eur": 25.606020049608247,
+        "rmse_eur": 116.24656335822294,
+        "within_20_percent": 0.4763135228251507,
+        "within_30_eur": 0.5564168819982773,
+        "p90_absolute_error_eur": 99.59397615549634
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 48.553317139776226,
+        "median_absolute_error_eur": 32.123398009191575,
+        "rmse_eur": 71.9058395531671,
+        "within_20_percent": 0.3668639053254438,
+        "within_30_eur": 0.47928994082840237,
+        "p90_absolute_error_eur": 130.92084327275649
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 52.07898559983284,
+        "median_absolute_error_eur": 26.112804519611586,
+        "rmse_eur": 111.16625412619493,
+        "within_20_percent": 0.3050847457627119,
+        "within_30_eur": 0.5423728813559322,
+        "p90_absolute_error_eur": 92.63402232171728
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 61.52815515966579,
+        "median_absolute_error_eur": 32.72159770359525,
+        "rmse_eur": 134.0079347607007,
+        "within_20_percent": 0.4240331491712707,
+        "within_30_eur": 0.47928176795580113,
+        "p90_absolute_error_eur": 124.86161946773916
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.16538888787097,
+        "median_absolute_error_eur": 25.50698994816988,
+        "rmse_eur": 64.29459820557595,
+        "within_20_percent": 0.4634703196347032,
+        "within_30_eur": 0.5570776255707762,
+        "p90_absolute_error_eur": 88.53430530540805
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 54.281154869852024,
+        "median_absolute_error_eur": 29.322340082403954,
+        "rmse_eur": 121.18902611460977,
+        "within_20_percent": 0.48760330578512395,
+        "within_30_eur": 0.5064935064935064,
+        "p90_absolute_error_eur": 111.14679965702142
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 28.36968361333652,
+        "median_absolute_error_eur": 17.98633196041452,
+        "rmse_eur": 40.81320555523223,
+        "within_20_percent": 0.3875,
+        "within_30_eur": 0.65,
+        "p90_absolute_error_eur": 66.02823612555845
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 61.168654721752,
+        "median_absolute_error_eur": 32.30640169249136,
+        "rmse_eur": 100.29026891956988,
+        "within_20_percent": 0.3382352941176471,
+        "within_30_eur": 0.45588235294117646,
+        "p90_absolute_error_eur": 160.44993177156485
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.7427419805664,
+        "median_absolute_error_eur": 18.19479718385047,
+        "rmse_eur": 745.758677460327,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6914285714285714,
+        "p90_absolute_error_eur": 67.23371410820084
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 48.04229272960836,
+        "median_absolute_error_eur": 28.558841413347665,
+        "rmse_eur": 89.4607782488741,
+        "within_20_percent": 0.44,
+        "within_30_eur": 0.5125,
+        "p90_absolute_error_eur": 100.09014506535816
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 68.23975248788697,
+        "median_absolute_error_eur": 21.37480560997973,
+        "rmse_eur": 315.12764423882976,
+        "within_20_percent": 0.42105263157894735,
+        "within_30_eur": 0.6032388663967612,
+        "p90_absolute_error_eur": 89.39394829726768
+      }
+    },
+    "catboost_mae": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.6198011771312,
+        "median_absolute_error_eur": 28.05599113177388,
+        "rmse_eur": 174.42428186828275,
+        "within_20_percent": 0.44891640866873067,
+        "within_30_eur": 0.5189198486412109,
+        "p90_absolute_error_eur": 109.90225884375295
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.85473506189881,
+        "median_absolute_error_eur": 15.671222591291396,
+        "rmse_eur": 37.846089924494805,
+        "within_20_percent": 0.44932901434521055,
+        "within_30_eur": 0.7279037482646923,
+        "p90_absolute_error_eur": 54.24059798140138
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 35.51044300168274,
+        "median_absolute_error_eur": 27.827774727180028,
+        "rmse_eur": 48.59560780362322,
+        "within_20_percent": 0.5065543071161048,
+        "within_30_eur": 0.5280898876404494,
+        "p90_absolute_error_eur": 75.37577785088453
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 73.29846541870582,
+        "median_absolute_error_eur": 63.20286717314178,
+        "rmse_eur": 92.68272968498998,
+        "within_20_percent": 0.41706539074960125,
+        "within_30_eur": 0.24481658692185007,
+        "p90_absolute_error_eur": 144.280120926919
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 373.5469950130267,
+        "median_absolute_error_eur": 262.57662301588437,
+        "rmse_eur": 775.0203850844723,
+        "within_20_percent": 0.12927756653992395,
+        "within_30_eur": 0.034220532319391636,
+        "p90_absolute_error_eur": 685.8809033679809
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1465.6733523453224,
+        "median_absolute_error_eur": 702.9162999444118,
+        "rmse_eur": 1926.6146898171303,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3030.2964509953777
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.40526033432848,
+        "median_absolute_error_eur": 28.023650910809963,
+        "rmse_eur": 165.09121378337022,
+        "within_20_percent": 0.4493028059907041,
+        "within_30_eur": 0.51936650025822,
+        "p90_absolute_error_eur": 109.40995589752778
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.15203255956572,
+        "median_absolute_error_eur": 34.597851582548145,
+        "rmse_eur": 193.9981215850999,
+        "within_20_percent": 0.44169453734671127,
+        "within_30_eur": 0.4468227424749164,
+        "p90_absolute_error_eur": 118.94715373331337
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 26.712676772457062,
+        "median_absolute_error_eur": 13.014320116556334,
+        "rmse_eur": 78.27716222235019,
+        "within_20_percent": 0.49281487743026203,
+        "within_30_eur": 0.797971259509721,
+        "p90_absolute_error_eur": 47.64183222548573
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.47539778792642,
+        "median_absolute_error_eur": 33.33912882372354,
+        "rmse_eur": 199.3899202040811,
+        "within_20_percent": 0.4561999514680903,
+        "within_30_eur": 0.46590633341421983,
+        "p90_absolute_error_eur": 119.66879149695299
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 99.25281095698591,
+        "median_absolute_error_eur": 71.0815473459653,
+        "rmse_eur": 140.0046956942867,
+        "within_20_percent": 0.23529411764705882,
+        "within_30_eur": 0.23529411764705882,
+        "p90_absolute_error_eur": 240.44495079638378
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.204311268133495,
+        "median_absolute_error_eur": 18.82501789479487,
+        "rmse_eur": 87.30207935692006,
+        "within_20_percent": 0.4499685336689742,
+        "within_30_eur": 0.6714915040906231,
+        "p90_absolute_error_eur": 67.60419165317565
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 47.37376545991933,
+        "median_absolute_error_eur": 41.374146354362146,
+        "rmse_eur": 62.22293170921651,
+        "within_20_percent": 0.1,
+        "within_30_eur": 0.3142857142857143,
+        "p90_absolute_error_eur": 82.81036759671822
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 54.43402923262139,
+        "median_absolute_error_eur": 29.147273425488173,
+        "rmse_eur": 107.78637856039288,
+        "within_20_percent": 0.43213296398891965,
+        "within_30_eur": 0.5096952908587258,
+        "p90_absolute_error_eur": 116.7539152059567
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 50.200251332844914,
+        "median_absolute_error_eur": 26.897028830560245,
+        "rmse_eur": 112.09675526287614,
+        "within_20_percent": 0.4780361757105943,
+        "within_30_eur": 0.5391903531438416,
+        "p90_absolute_error_eur": 101.25004005921426
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 45.823571278137635,
+        "median_absolute_error_eur": 28.028318678289992,
+        "rmse_eur": 66.45373942105826,
+        "within_20_percent": 0.40828402366863903,
+        "within_30_eur": 0.514792899408284,
+        "p90_absolute_error_eur": 105.62281908288165
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 52.20969329906805,
+        "median_absolute_error_eur": 25.103126176870376,
+        "rmse_eur": 112.3772904860663,
+        "within_20_percent": 0.3389830508474576,
+        "within_30_eur": 0.559322033898305,
+        "p90_absolute_error_eur": 97.08661670724346
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 61.05513587361895,
+        "median_absolute_error_eur": 33.413340444344655,
+        "rmse_eur": 128.2483018537461,
+        "within_20_percent": 0.4116022099447514,
+        "within_30_eur": 0.46685082872928174,
+        "p90_absolute_error_eur": 123.69118447548203
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.56769953120168,
+        "median_absolute_error_eur": 24.664657573356024,
+        "rmse_eur": 65.86406232425847,
+        "within_20_percent": 0.4726027397260274,
+        "within_30_eur": 0.5730593607305936,
+        "p90_absolute_error_eur": 92.23443860331759
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 54.20285938811851,
+        "median_absolute_error_eur": 29.711621557060738,
+        "rmse_eur": 119.64098865399914,
+        "within_20_percent": 0.4805194805194805,
+        "within_30_eur": 0.5017709563164109,
+        "p90_absolute_error_eur": 110.63927035168699
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 25.58477244754213,
+        "median_absolute_error_eur": 17.602198992437096,
+        "rmse_eur": 37.170550328240616,
+        "within_20_percent": 0.425,
+        "within_30_eur": 0.675,
+        "p90_absolute_error_eur": 61.150990992870405
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 62.73879788623383,
+        "median_absolute_error_eur": 35.026553971332255,
+        "rmse_eur": 102.02622914119135,
+        "within_20_percent": 0.3382352941176471,
+        "within_30_eur": 0.4264705882352941,
+        "p90_absolute_error_eur": 120.95023903333761
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 104.72167614380234,
+        "median_absolute_error_eur": 16.339553087524394,
+        "rmse_eur": 745.4168233681482,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6457142857142857,
+        "p90_absolute_error_eur": 73.00136399297891
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 46.39760322167731,
+        "median_absolute_error_eur": 27.93147408926474,
+        "rmse_eur": 86.88537729880191,
+        "within_20_percent": 0.4625,
+        "within_30_eur": 0.5175,
+        "p90_absolute_error_eur": 98.34157950221707
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 57.912720576916364,
+        "median_absolute_error_eur": 21.499105551807702,
+        "rmse_eur": 233.78244940350706,
+        "within_20_percent": 0.4534412955465587,
+        "within_30_eur": 0.5991902834008097,
+        "p90_absolute_error_eur": 94.05588837104085
+      }
+    },
+    "catboost_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.93547573703841,
+        "median_absolute_error_eur": 27.901608017704753,
+        "rmse_eur": 176.3828610232575,
+        "within_20_percent": 0.44788441692466463,
+        "within_30_eur": 0.520983832129343,
+        "p90_absolute_error_eur": 105.87916233331859
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 22.857737299007674,
+        "median_absolute_error_eur": 15.1816784930041,
+        "rmse_eur": 33.19235647446042,
+        "within_20_percent": 0.4479407681628875,
+        "within_30_eur": 0.7329939842665433,
+        "p90_absolute_error_eur": 53.387408098643476
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.991258669033044,
+        "median_absolute_error_eur": 27.570613606724763,
+        "rmse_eur": 47.31034047226565,
+        "within_20_percent": 0.5074906367041199,
+        "within_30_eur": 0.5308988764044944,
+        "p90_absolute_error_eur": 73.87767076989022
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 73.56276220638357,
+        "median_absolute_error_eur": 62.448608010168854,
+        "rmse_eur": 98.15831985805286,
+        "within_20_percent": 0.4082934609250399,
+        "within_30_eur": 0.24082934609250398,
+        "p90_absolute_error_eur": 147.18748555299112
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 369.5675030727229,
+        "median_absolute_error_eur": 242.82001205971278,
+        "rmse_eur": 783.9519341003645,
+        "within_20_percent": 0.1520912547528517,
+        "within_30_eur": 0.034220532319391636,
+        "p90_absolute_error_eur": 686.268714251049
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1688.9823609514096,
+        "median_absolute_error_eur": 1381.7191777745188,
+        "rmse_eur": 2143.305197781551,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3265.673867912054
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.52813636260703,
+        "median_absolute_error_eur": 27.88810307981592,
+        "rmse_eur": 164.87477638689313,
+        "within_20_percent": 0.4482699259769323,
+        "within_30_eur": 0.5214322602857635,
+        "p90_absolute_error_eur": 105.67551216514337
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 61.761934180421314,
+        "median_absolute_error_eur": 35.05093611209054,
+        "rmse_eur": 196.72636286775557,
+        "within_20_percent": 0.43656633221850616,
+        "within_30_eur": 0.4463768115942029,
+        "p90_absolute_error_eur": 116.66565414192743
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.15170493173491,
+        "median_absolute_error_eur": 12.214310378228234,
+        "rmse_eur": 74.23599971935839,
+        "within_20_percent": 0.5029585798816568,
+        "within_30_eur": 0.8089602704987321,
+        "p90_absolute_error_eur": 44.70121712058972
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.36761345052513,
+        "median_absolute_error_eur": 33.34603411651983,
+        "rmse_eur": 202.19957401456062,
+        "within_20_percent": 0.45207473914098517,
+        "within_30_eur": 0.46736229070613927,
+        "p90_absolute_error_eur": 117.60970290292036
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 92.92598172467403,
+        "median_absolute_error_eur": 67.6371437230573,
+        "rmse_eur": 134.19229171152455,
+        "within_20_percent": 0.29411764705882354,
+        "within_30_eur": 0.29411764705882354,
+        "p90_absolute_error_eur": 230.82224354699173
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 34.985407729057634,
+        "median_absolute_error_eur": 17.731360353674845,
+        "rmse_eur": 85.75826019726858,
+        "within_20_percent": 0.4556324732536186,
+        "within_30_eur": 0.6614222781623663,
+        "p90_absolute_error_eur": 65.39957556328247
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 27.623209220224812,
+        "median_absolute_error_eur": 21.092076144367596,
+        "rmse_eur": 36.76400754735415,
+        "within_20_percent": 0.1,
+        "within_30_eur": 0.6,
+        "p90_absolute_error_eur": 45.172865870775475
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 55.3904581336648,
+        "median_absolute_error_eur": 29.590107948449816,
+        "rmse_eur": 115.51699976468777,
+        "within_20_percent": 0.4113573407202216,
+        "within_30_eur": 0.5055401662049861,
+        "p90_absolute_error_eur": 108.95210550242683
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.159866976338286,
+        "median_absolute_error_eur": 26.373888798979166,
+        "rmse_eur": 106.82660559856453,
+        "within_20_percent": 0.45478036175710596,
+        "within_30_eur": 0.5366063738156761,
+        "p90_absolute_error_eur": 98.40700887025713
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 44.09173540621844,
+        "median_absolute_error_eur": 25.226941621796797,
+        "rmse_eur": 66.87944474379944,
+        "within_20_percent": 0.4970414201183432,
+        "within_30_eur": 0.5384615384615384,
+        "p90_absolute_error_eur": 115.49059848803917
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 51.94007710540635,
+        "median_absolute_error_eur": 24.4271543042002,
+        "rmse_eur": 111.65688499148678,
+        "within_20_percent": 0.3050847457627119,
+        "within_30_eur": 0.576271186440678,
+        "p90_absolute_error_eur": 98.49025341824625
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.298555218330385,
+        "median_absolute_error_eur": 33.81746584017848,
+        "rmse_eur": 127.30964407265216,
+        "within_20_percent": 0.42748618784530384,
+        "within_30_eur": 0.4585635359116022,
+        "p90_absolute_error_eur": 118.85028677525455
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.19471220326687,
+        "median_absolute_error_eur": 24.01847666631028,
+        "rmse_eur": 65.72678910830234,
+        "within_20_percent": 0.4680365296803653,
+        "within_30_eur": 0.5662100456621004,
+        "p90_absolute_error_eur": 88.09615321069029
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 54.32510392506394,
+        "median_absolute_error_eur": 29.46366876415749,
+        "rmse_eur": 115.66532169420638,
+        "within_20_percent": 0.4722550177095632,
+        "within_30_eur": 0.5041322314049587,
+        "p90_absolute_error_eur": 112.58506378480246
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 24.882501795164465,
+        "median_absolute_error_eur": 15.25760515758445,
+        "rmse_eur": 36.927015325815205,
+        "within_20_percent": 0.475,
+        "within_30_eur": 0.7125,
+        "p90_absolute_error_eur": 53.266436299655986
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 51.36004495201598,
+        "median_absolute_error_eur": 31.071295378090255,
+        "rmse_eur": 87.07123863606306,
+        "within_20_percent": 0.4117647058823529,
+        "within_30_eur": 0.47058823529411764,
+        "p90_absolute_error_eur": 101.04968543562663
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.30264454073385,
+        "median_absolute_error_eur": 16.275118886789016,
+        "rmse_eur": 743.3972991484425,
+        "within_20_percent": 0.5314285714285715,
+        "within_30_eur": 0.6914285714285714,
+        "p90_absolute_error_eur": 66.11827965415343
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.22501987605279,
+        "median_absolute_error_eur": 27.444403635065783,
+        "rmse_eur": 87.1980639604509,
+        "within_20_percent": 0.4425,
+        "within_30_eur": 0.525,
+        "p90_absolute_error_eur": 93.75267749603358
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 62.46705627179929,
+        "median_absolute_error_eur": 19.45059918337799,
+        "rmse_eur": 280.4936709690285,
+        "within_20_percent": 0.47368421052631576,
+        "within_30_eur": 0.6356275303643725,
+        "p90_absolute_error_eur": 98.0046395894123
+      }
+    },
+    "catboost_derived_mae": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.74075201831455,
+        "median_absolute_error_eur": 27.90677562801831,
+        "rmse_eur": 172.72724122839819,
+        "within_20_percent": 0.44857241142070864,
+        "within_30_eur": 0.520983832129343,
+        "p90_absolute_error_eur": 106.86138952149267
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.28984722410962,
+        "median_absolute_error_eur": 15.491840089684402,
+        "rmse_eur": 33.895530495562326,
+        "within_20_percent": 0.4451642757982416,
+        "within_30_eur": 0.7260527533549282,
+        "p90_absolute_error_eur": 54.032724913347124
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 35.673997269730336,
+        "median_absolute_error_eur": 28.31006654973347,
+        "rmse_eur": 48.102391362592115,
+        "within_20_percent": 0.50187265917603,
+        "within_30_eur": 0.5243445692883895,
+        "p90_absolute_error_eur": 74.92125508285582
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 71.74027853013068,
+        "median_absolute_error_eur": 60.96514401016191,
+        "rmse_eur": 96.75603101656513,
+        "within_20_percent": 0.4258373205741627,
+        "within_30_eur": 0.26395534290271133,
+        "p90_absolute_error_eur": 146.48076122750382
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 364.8570529971559,
+        "median_absolute_error_eur": 255.98753760612016,
+        "rmse_eur": 765.9438021108042,
+        "within_20_percent": 0.1520912547528517,
+        "within_30_eur": 0.034220532319391636,
+        "p90_absolute_error_eur": 673.0121748060341
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1537.071442469579,
+        "median_absolute_error_eur": 1401.0705300027707,
+        "rmse_eur": 1892.4851127172312,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 2824.7134853944835
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.463999831663436,
+        "median_absolute_error_eur": 27.857808729088987,
+        "rmse_eur": 163.6388193351947,
+        "within_20_percent": 0.4489585126527802,
+        "within_30_eur": 0.5214322602857635,
+        "p90_absolute_error_eur": 105.99178766104926
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 61.05107656463571,
+        "median_absolute_error_eur": 34.438839221324656,
+        "rmse_eur": 192.2990769684609,
+        "within_20_percent": 0.44481605351170567,
+        "within_30_eur": 0.45551839464882943,
+        "p90_absolute_error_eur": 118.61133214585301
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 26.414174537468956,
+        "median_absolute_error_eur": 12.994861435223982,
+        "rmse_eur": 75.32762715595936,
+        "within_20_percent": 0.48689771766694845,
+        "within_30_eur": 0.7810650887573964,
+        "p90_absolute_error_eur": 49.39380672461959
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 60.44052571331038,
+        "median_absolute_error_eur": 32.814690471681445,
+        "rmse_eur": 197.5244616619996,
+        "within_20_percent": 0.4600825042465421,
+        "within_30_eur": 0.4705168648386314,
+        "p90_absolute_error_eur": 119.69837712809579
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 103.67267423408654,
+        "median_absolute_error_eur": 63.2098618032861,
+        "rmse_eur": 145.66608612210644,
+        "within_20_percent": 0.17647058823529413,
+        "within_30_eur": 0.17647058823529413,
+        "p90_absolute_error_eur": 258.7222388094605
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.79534696944631,
+        "median_absolute_error_eur": 18.52464097558388,
+        "rmse_eur": 86.07027205137288,
+        "within_20_percent": 0.4417872876022656,
+        "within_30_eur": 0.6683448709880428,
+        "p90_absolute_error_eur": 68.11694578234238
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 42.423550164565555,
+        "median_absolute_error_eur": 35.90682694549433,
+        "rmse_eur": 50.91691528158925,
+        "within_20_percent": 0.05714285714285714,
+        "within_30_eur": 0.3142857142857143,
+        "p90_absolute_error_eur": 77.08961377848432
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 54.99619639780802,
+        "median_absolute_error_eur": 28.12519237598717,
+        "rmse_eur": 117.03004586129623,
+        "within_20_percent": 0.4224376731301939,
+        "within_30_eur": 0.5138504155124654,
+        "p90_absolute_error_eur": 112.07206314321705
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.3759140960939,
+        "median_absolute_error_eur": 26.522459999314393,
+        "rmse_eur": 110.2310171030426,
+        "within_20_percent": 0.45564168819982775,
+        "within_30_eur": 0.533161068044789,
+        "p90_absolute_error_eur": 100.33404858480469
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 45.47792781007595,
+        "median_absolute_error_eur": 25.653946666220826,
+        "rmse_eur": 67.39430634094705,
+        "within_20_percent": 0.4556213017751479,
+        "within_30_eur": 0.5207100591715976,
+        "p90_absolute_error_eur": 102.92366312100744
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 50.23336375801266,
+        "median_absolute_error_eur": 23.451071834849927,
+        "rmse_eur": 110.39264715722929,
+        "within_20_percent": 0.3389830508474576,
+        "within_30_eur": 0.6271186440677966,
+        "p90_absolute_error_eur": 98.53431403560685
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.43368779146442,
+        "median_absolute_error_eur": 33.878699543062226,
+        "rmse_eur": 123.8696513663887,
+        "within_20_percent": 0.42472375690607733,
+        "within_30_eur": 0.4544198895027624,
+        "p90_absolute_error_eur": 124.47429260868832
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.48773548320733,
+        "median_absolute_error_eur": 23.8246585555555,
+        "rmse_eur": 66.31205601499755,
+        "within_20_percent": 0.4657534246575342,
+        "within_30_eur": 0.5684931506849316,
+        "p90_absolute_error_eur": 91.43404250125633
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 53.606453651448646,
+        "median_absolute_error_eur": 28.678746189621833,
+        "rmse_eur": 117.99497711219436,
+        "within_20_percent": 0.4946871310507674,
+        "within_30_eur": 0.5206611570247934,
+        "p90_absolute_error_eur": 107.96216537310941
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 29.22166391263305,
+        "median_absolute_error_eur": 20.071581468535463,
+        "rmse_eur": 41.76087041551439,
+        "within_20_percent": 0.4,
+        "within_30_eur": 0.625,
+        "p90_absolute_error_eur": 67.81438994135306
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 52.738019625358994,
+        "median_absolute_error_eur": 33.72511800027996,
+        "rmse_eur": 88.68358204377897,
+        "within_20_percent": 0.45588235294117646,
+        "within_30_eur": 0.47058823529411764,
+        "p90_absolute_error_eur": 103.84957101486673
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 96.16118729662611,
+        "median_absolute_error_eur": 15.914724719440883,
+        "rmse_eur": 746.321355960686,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6571428571428571,
+        "p90_absolute_error_eur": 67.43180494368418
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.244149791406784,
+        "median_absolute_error_eur": 25.097793448405305,
+        "rmse_eur": 87.9964799676931,
+        "within_20_percent": 0.4575,
+        "within_30_eur": 0.54,
+        "p90_absolute_error_eur": 95.59564975425556
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 55.49977109555927,
+        "median_absolute_error_eur": 20.28942648634201,
+        "rmse_eur": 209.05068098861517,
+        "within_20_percent": 0.41700404858299595,
+        "within_30_eur": 0.6194331983805668,
+        "p90_absolute_error_eur": 108.58158677187885
+      }
+    },
+    "catboost_derived_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.1479700231699,
+        "median_absolute_error_eur": 27.729666017237136,
+        "rmse_eur": 178.23912217216224,
+        "within_20_percent": 0.4434124527003784,
+        "within_30_eur": 0.5237358101135191,
+        "p90_absolute_error_eur": 106.81357408415074
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.439298846596717,
+        "median_absolute_error_eur": 15.8269236055624,
+        "rmse_eur": 33.644120627408796,
+        "within_20_percent": 0.42943081906524755,
+        "within_30_eur": 0.7343822304488663,
+        "p90_absolute_error_eur": 53.664868705489724
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.948181113037755,
+        "median_absolute_error_eur": 27.7583025795968,
+        "rmse_eur": 47.5640749731603,
+        "within_20_percent": 0.5107677902621723,
+        "within_30_eur": 0.5271535580524345,
+        "p90_absolute_error_eur": 75.09465182365558
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 74.00865705896814,
+        "median_absolute_error_eur": 62.379994778954554,
+        "rmse_eur": 114.83007371137498,
+        "within_20_percent": 0.4098883572567783,
+        "within_30_eur": 0.2527910685805423,
+        "p90_absolute_error_eur": 144.57704800215188
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 367.71027413619595,
+        "median_absolute_error_eur": 249.65208835010577,
+        "rmse_eur": 782.1497353219372,
+        "within_20_percent": 0.17110266159695817,
+        "within_30_eur": 0.057034220532319393,
+        "p90_absolute_error_eur": 687.1542840487124
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1890.3437764401183,
+        "median_absolute_error_eur": 2059.072407832339,
+        "rmse_eur": 2325.644865710665,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3405.2685753114756
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.567495064986936,
+        "median_absolute_error_eur": 27.68722224391746,
+        "rmse_eur": 164.74570224230402,
+        "within_20_percent": 0.4437941125839215,
+        "within_30_eur": 0.5241866069891548,
+        "p90_absolute_error_eur": 106.3009633235723
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 61.821881845402,
+        "median_absolute_error_eur": 34.626544120086166,
+        "rmse_eur": 198.78774113700692,
+        "within_20_percent": 0.43768115942028984,
+        "within_30_eur": 0.44949832775919735,
+        "p90_absolute_error_eur": 117.05490820846083
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.653021181503032,
+        "median_absolute_error_eur": 12.661739735385915,
+        "rmse_eur": 74.57519902300092,
+        "within_20_percent": 0.48774302620456467,
+        "within_30_eur": 0.8106508875739645,
+        "p90_absolute_error_eur": 46.54178508175917
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.489921334714744,
+        "median_absolute_error_eur": 33.0836531654237,
+        "rmse_eur": 204.50625293351374,
+        "within_20_percent": 0.4535306964329046,
+        "within_30_eur": 0.4712448434845911,
+        "p90_absolute_error_eur": 118.79724766978939
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 88.03861964643288,
+        "median_absolute_error_eur": 65.85275537769624,
+        "rmse_eur": 124.6618562726116,
+        "within_20_percent": 0.23529411764705882,
+        "within_30_eur": 0.2647058823529412,
+        "p90_absolute_error_eur": 195.67706555120895
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.53610522067455,
+        "median_absolute_error_eur": 18.791937579543372,
+        "rmse_eur": 85.9503031341003,
+        "within_20_percent": 0.43612334801762115,
+        "within_30_eur": 0.6595342983008181,
+        "p90_absolute_error_eur": 65.72170437823617
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 27.944966153138804,
+        "median_absolute_error_eur": 22.338042439903464,
+        "rmse_eur": 35.295686895996276,
+        "within_20_percent": 0.11428571428571428,
+        "within_30_eur": 0.6571428571428571,
+        "p90_absolute_error_eur": 52.28773112480456
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 56.30577867595906,
+        "median_absolute_error_eur": 28.465537954214366,
+        "rmse_eur": 139.81936260407969,
+        "within_20_percent": 0.4293628808864266,
+        "within_30_eur": 0.5124653739612188,
+        "p90_absolute_error_eur": 110.30841571669934
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.339361269878445,
+        "median_absolute_error_eur": 26.17436294873434,
+        "rmse_eur": 103.56014839385355,
+        "within_20_percent": 0.4289405684754522,
+        "within_30_eur": 0.5391903531438416,
+        "p90_absolute_error_eur": 97.97892257870315
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 44.2787993246485,
+        "median_absolute_error_eur": 24.563734576764332,
+        "rmse_eur": 67.075133165085,
+        "within_20_percent": 0.5088757396449705,
+        "within_30_eur": 0.5502958579881657,
+        "p90_absolute_error_eur": 113.76183724090427
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 48.5776184690204,
+        "median_absolute_error_eur": 21.63046805747392,
+        "rmse_eur": 109.9655230511478,
+        "within_20_percent": 0.3728813559322034,
+        "within_30_eur": 0.6101694915254238,
+        "p90_absolute_error_eur": 91.89708039704145
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.39434367328799,
+        "median_absolute_error_eur": 33.93723271695447,
+        "rmse_eur": 125.85267561215281,
+        "within_20_percent": 0.4240331491712707,
+        "within_30_eur": 0.46408839779005523,
+        "p90_absolute_error_eur": 120.08078385902193
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.954207018794484,
+        "median_absolute_error_eur": 24.07398645179053,
+        "rmse_eur": 65.66751262148745,
+        "within_20_percent": 0.4726027397260274,
+        "within_30_eur": 0.5547945205479452,
+        "p90_absolute_error_eur": 86.33817192416201
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 53.82500020485405,
+        "median_absolute_error_eur": 28.87213146550897,
+        "rmse_eur": 115.25213461850836,
+        "within_20_percent": 0.4793388429752066,
+        "within_30_eur": 0.5159386068476978,
+        "p90_absolute_error_eur": 110.27260657561119
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 26.91609199437543,
+        "median_absolute_error_eur": 16.671720663429493,
+        "rmse_eur": 38.888498539146994,
+        "within_20_percent": 0.425,
+        "within_30_eur": 0.675,
+        "p90_absolute_error_eur": 60.440812692878396
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 53.853726718015004,
+        "median_absolute_error_eur": 30.829701929976217,
+        "rmse_eur": 84.58262076600252,
+        "within_20_percent": 0.3088235294117647,
+        "within_30_eur": 0.47058823529411764,
+        "p90_absolute_error_eur": 108.55953015338602
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 95.29332701550197,
+        "median_absolute_error_eur": 17.486673538990203,
+        "rmse_eur": 745.156734963792,
+        "within_20_percent": 0.5142857142857142,
+        "within_30_eur": 0.6628571428571428,
+        "p90_absolute_error_eur": 72.8240218753753
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.97214750651572,
+        "median_absolute_error_eur": 27.934432196529425,
+        "rmse_eur": 88.30267877143902,
+        "within_20_percent": 0.4425,
+        "within_30_eur": 0.525,
+        "p90_absolute_error_eur": 97.11681470127351
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 62.947655900575164,
+        "median_absolute_error_eur": 20.823508392945712,
+        "rmse_eur": 282.37905485955457,
+        "within_20_percent": 0.4574898785425101,
+        "within_30_eur": 0.631578947368421,
+        "p90_absolute_error_eur": 99.07013976899668
+      }
+    },
+    "catboost_scope_sensitivity": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.370673120059166,
+        "median_absolute_error_eur": 27.561275939242336,
+        "rmse_eur": 172.88659802300307,
+        "within_20_percent": 0.4549363605091159,
+        "within_30_eur": 0.5270037839697282,
+        "p90_absolute_error_eur": 107.29237487771739
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 22.98023103242752,
+        "median_absolute_error_eur": 15.641161290777035,
+        "rmse_eur": 33.43327865909903,
+        "within_20_percent": 0.45395650161962053,
+        "within_30_eur": 0.7343822304488663,
+        "p90_absolute_error_eur": 52.87116362995542
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.93033133013298,
+        "median_absolute_error_eur": 27.53088436749526,
+        "rmse_eur": 46.612790725714696,
+        "within_20_percent": 0.5070224719101124,
+        "within_30_eur": 0.5337078651685393,
+        "p90_absolute_error_eur": 74.1612704432686
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 70.86973144883464,
+        "median_absolute_error_eur": 60.544456342253056,
+        "rmse_eur": 89.0215890043163,
+        "within_20_percent": 0.43301435406698563,
+        "within_30_eur": 0.2607655502392344,
+        "p90_absolute_error_eur": 144.44156227491675
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 369.41058289332864,
+        "median_absolute_error_eur": 252.3365247315948,
+        "rmse_eur": 772.1011590252471,
+        "within_20_percent": 0.1444866920152091,
+        "within_30_eur": 0.03802281368821293,
+        "p90_absolute_error_eur": 684.714180425596
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1320.0741558663485,
+        "median_absolute_error_eur": 684.8304569710176,
+        "rmse_eur": 1722.415757725802,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 2691.350841666471
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.28037919447275,
+        "median_absolute_error_eur": 27.538422672837363,
+        "rmse_eur": 165.4144838891608,
+        "within_20_percent": 0.45532793940437255,
+        "within_30_eur": 0.5274573936994319,
+        "p90_absolute_error_eur": 106.77301435432172
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 60.71353867204509,
+        "median_absolute_error_eur": 33.49768181479364,
+        "rmse_eur": 192.55741327995423,
+        "within_20_percent": 0.4512820512820513,
+        "within_30_eur": 0.4568561872909699,
+        "p90_absolute_error_eur": 119.05294476203844
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 26.075592011975182,
+        "median_absolute_error_eur": 12.771569656463996,
+        "rmse_eur": 74.95801979358767,
+        "within_20_percent": 0.4919695688926458,
+        "within_30_eur": 0.797971259509721,
+        "p90_absolute_error_eur": 49.22387102155447
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 59.937943903968616,
+        "median_absolute_error_eur": 31.83687788572834,
+        "rmse_eur": 197.7506196797523,
+        "within_20_percent": 0.46954622664401846,
+        "within_30_eur": 0.48022324678476097,
+        "p90_absolute_error_eur": 118.63310884302268
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 94.10905979252277,
+        "median_absolute_error_eur": 61.1661223927985,
+        "rmse_eur": 134.28909319691618,
+        "within_20_percent": 0.20588235294117646,
+        "within_30_eur": 0.20588235294117646,
+        "p90_absolute_error_eur": 209.83164467733923
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.963135370670486,
+        "median_absolute_error_eur": 19.273707496673737,
+        "rmse_eur": 86.28088612753207,
+        "within_20_percent": 0.4380113278791693,
+        "within_30_eur": 0.6645689112649465,
+        "p90_absolute_error_eur": 67.29887175308329
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 42.109950783258945,
+        "median_absolute_error_eur": 37.03272882111666,
+        "rmse_eur": 51.25635250952972,
+        "within_20_percent": 0.1,
+        "within_30_eur": 0.3142857142857143,
+        "p90_absolute_error_eur": 83.6581918440098
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 53.7791180567496,
+        "median_absolute_error_eur": 28.845283892976923,
+        "rmse_eur": 106.57661241043483,
+        "within_20_percent": 0.42105263157894735,
+        "within_30_eur": 0.5055401662049861,
+        "p90_absolute_error_eur": 110.93708782515898
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 48.642607423681504,
+        "median_absolute_error_eur": 26.020573006072,
+        "rmse_eur": 109.56868779628337,
+        "within_20_percent": 0.4728682170542636,
+        "within_30_eur": 0.5521102497846684,
+        "p90_absolute_error_eur": 98.5244920724183
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 46.39896179223558,
+        "median_absolute_error_eur": 28.80667257252017,
+        "rmse_eur": 69.51017752015267,
+        "within_20_percent": 0.46745562130177515,
+        "within_30_eur": 0.5266272189349113,
+        "p90_absolute_error_eur": 121.98790167691129
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 46.95239243187993,
+        "median_absolute_error_eur": 20.96606292118949,
+        "rmse_eur": 108.73187760381357,
+        "within_20_percent": 0.4406779661016949,
+        "within_30_eur": 0.6440677966101694,
+        "p90_absolute_error_eur": 84.38050523070136
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.56884494482082,
+        "median_absolute_error_eur": 33.49481028650719,
+        "rmse_eur": 130.4434383570635,
+        "within_20_percent": 0.4302486187845304,
+        "within_30_eur": 0.462707182320442,
+        "p90_absolute_error_eur": 121.93890627996971
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 39.204939448418635,
+        "median_absolute_error_eur": 24.64149527031737,
+        "rmse_eur": 65.37570822071177,
+        "within_20_percent": 0.4657534246575342,
+        "within_30_eur": 0.5821917808219178,
+        "p90_absolute_error_eur": 89.72238869772761
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 53.96663426729994,
+        "median_absolute_error_eur": 28.726958737766097,
+        "rmse_eur": 118.98258577721434,
+        "within_20_percent": 0.48642266824085006,
+        "within_30_eur": 0.51357733175915,
+        "p90_absolute_error_eur": 112.67732701894813
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 28.812721810266538,
+        "median_absolute_error_eur": 19.032392096950268,
+        "rmse_eur": 40.71919359463935,
+        "within_20_percent": 0.3875,
+        "within_30_eur": 0.6875,
+        "p90_absolute_error_eur": 63.33759144168887
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 52.40504075417775,
+        "median_absolute_error_eur": 36.296057415879105,
+        "rmse_eur": 86.95337289958701,
+        "within_20_percent": 0.39705882352941174,
+        "within_30_eur": 0.39705882352941174,
+        "p90_absolute_error_eur": 93.52150368523768
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.33464570935799,
+        "median_absolute_error_eur": 17.712766131756183,
+        "rmse_eur": 744.1703071522821,
+        "within_20_percent": 0.5028571428571429,
+        "within_30_eur": 0.6971428571428572,
+        "p90_absolute_error_eur": 64.30476937366214
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.530422247659665,
+        "median_absolute_error_eur": 28.549727087896486,
+        "rmse_eur": 87.36697272809809,
+        "within_20_percent": 0.47,
+        "within_30_eur": 0.53,
+        "p90_absolute_error_eur": 89.72265853329468
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 53.47532295777303,
+        "median_absolute_error_eur": 19.24995481485489,
+        "rmse_eur": 211.14306927794684,
+        "within_20_percent": 0.46153846153846156,
+        "within_30_eur": 0.6275303643724697,
+        "p90_absolute_error_eur": 98.84093676885594
+      }
+    },
+    "extra_trees_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 55.860660527210264,
+        "median_absolute_error_eur": 28.317142188481256,
+        "rmse_eur": 178.14791820583068,
+        "within_20_percent": 0.4408324733402133,
+        "within_30_eur": 0.5177158582731338,
+        "p90_absolute_error_eur": 112.84459796015518
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 24.471518185610066,
+        "median_absolute_error_eur": 15.604727664475284,
+        "rmse_eur": 36.47409637227345,
+        "within_20_percent": 0.4317445627024526,
+        "within_30_eur": 0.7357704766311892,
+        "p90_absolute_error_eur": 57.93252621047081
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 37.280233134828904,
+        "median_absolute_error_eur": 28.80995461902618,
+        "rmse_eur": 49.836080330528624,
+        "within_20_percent": 0.49250936329588013,
+        "within_30_eur": 0.5131086142322098,
+        "p90_absolute_error_eur": 79.37567218347779
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 74.50236592752435,
+        "median_absolute_error_eur": 61.9015898024183,
+        "rmse_eur": 101.03235158192615,
+        "within_20_percent": 0.42902711323763953,
+        "within_30_eur": 0.25199362041467305,
+        "p90_absolute_error_eur": 150.18424948565035
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 375.7961393801788,
+        "median_absolute_error_eur": 251.647224315265,
+        "rmse_eur": 788.5513025850453,
+        "within_20_percent": 0.1520912547528517,
+        "within_30_eur": 0.030418250950570342,
+        "p90_absolute_error_eur": 689.2449587342567
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1705.5767250994481,
+        "median_absolute_error_eur": 1530.3163751557663,
+        "rmse_eur": 2132.1620693304094,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3211.6548356487333
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 54.44069490096458,
+        "median_absolute_error_eur": 28.314395031536904,
+        "rmse_eur": 166.88620294453222,
+        "within_20_percent": 0.44121191254949216,
+        "within_30_eur": 0.5181614735754864,
+        "p90_absolute_error_eur": 112.25549155203147
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 63.9567919910785,
+        "median_absolute_error_eur": 34.93747248695226,
+        "rmse_eur": 198.6644035982737,
+        "within_20_percent": 0.43032329988851725,
+        "within_30_eur": 0.44481605351170567,
+        "p90_absolute_error_eur": 125.81551770085902
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 26.07832375962049,
+        "median_absolute_error_eur": 13.447953152571884,
+        "rmse_eur": 74.88118207071003,
+        "within_20_percent": 0.49366018596787825,
+        "within_30_eur": 0.7945900253592562,
+        "p90_absolute_error_eur": 48.31754715833631
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 63.688694413157506,
+        "median_absolute_error_eur": 34.4350183996396,
+        "rmse_eur": 204.05453999453403,
+        "within_20_percent": 0.4481921863625334,
+        "within_30_eur": 0.45547197282213053,
+        "p90_absolute_error_eur": 125.84503855893757
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 108.67230095331055,
+        "median_absolute_error_eur": 58.27049841080349,
+        "rmse_eur": 156.79733594687357,
+        "within_20_percent": 0.11764705882352941,
+        "within_30_eur": 0.17647058823529413,
+        "p90_absolute_error_eur": 300.15180265618176
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.023263865499345,
+        "median_absolute_error_eur": 19.534762290325233,
+        "rmse_eur": 86.97717754136853,
+        "within_20_percent": 0.4417872876022656,
+        "within_30_eur": 0.6733794839521712,
+        "p90_absolute_error_eur": 68.9688977905869
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 19.670658769818854,
+        "median_absolute_error_eur": 13.21857610027293,
+        "rmse_eur": 31.413462211783056,
+        "within_20_percent": 0.14285714285714285,
+        "within_30_eur": 0.8142857142857143,
+        "p90_absolute_error_eur": 37.404444501864766
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 58.128638516608206,
+        "median_absolute_error_eur": 29.254933095141578,
+        "rmse_eur": 119.9603898459093,
+        "within_20_percent": 0.4307479224376731,
+        "within_30_eur": 0.502770083102493,
+        "p90_absolute_error_eur": 123.05083282298818
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 51.21582651475718,
+        "median_absolute_error_eur": 27.461171178533448,
+        "rmse_eur": 110.26438042944022,
+        "within_20_percent": 0.4418604651162791,
+        "within_30_eur": 0.5322997416020672,
+        "p90_absolute_error_eur": 109.69713720645063
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 44.63609224552593,
+        "median_absolute_error_eur": 28.922557582293223,
+        "rmse_eur": 65.59932042787729,
+        "within_20_percent": 0.5029585798816568,
+        "within_30_eur": 0.514792899408284,
+        "p90_absolute_error_eur": 104.18386548506909
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 52.151647488852454,
+        "median_absolute_error_eur": 28.654564558746543,
+        "rmse_eur": 110.1137155915873,
+        "within_20_percent": 0.3389830508474576,
+        "within_30_eur": 0.5254237288135594,
+        "p90_absolute_error_eur": 94.1159701371948
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 61.80145303574005,
+        "median_absolute_error_eur": 33.6733983135711,
+        "rmse_eur": 129.09207218608583,
+        "within_20_percent": 0.42679558011049723,
+        "within_30_eur": 0.46685082872928174,
+        "p90_absolute_error_eur": 127.5262110535781
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 40.225169514525206,
+        "median_absolute_error_eur": 24.981653496533283,
+        "rmse_eur": 66.77756715306037,
+        "within_20_percent": 0.4383561643835616,
+        "within_30_eur": 0.5662100456621004,
+        "p90_absolute_error_eur": 97.79411398929484
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 55.089823297701685,
+        "median_absolute_error_eur": 28.83466979746123,
+        "rmse_eur": 118.02170495823285,
+        "within_20_percent": 0.4781582054309327,
+        "within_30_eur": 0.5076741440377804,
+        "p90_absolute_error_eur": 112.31183157938932
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 32.41961946765091,
+        "median_absolute_error_eur": 24.509618576625655,
+        "rmse_eur": 43.06215655069251,
+        "within_20_percent": 0.325,
+        "within_30_eur": 0.5375,
+        "p90_absolute_error_eur": 63.707241090368
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 59.86954053412483,
+        "median_absolute_error_eur": 32.96555203196894,
+        "rmse_eur": 101.9522540958084,
+        "within_20_percent": 0.36764705882352944,
+        "within_30_eur": 0.47058823529411764,
+        "p90_absolute_error_eur": 120.19035617190669
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 94.747966324377,
+        "median_absolute_error_eur": 16.534109541168192,
+        "rmse_eur": 746.1804605179337,
+        "within_20_percent": 0.5542857142857143,
+        "within_30_eur": 0.6685714285714286,
+        "p90_absolute_error_eur": 65.99291129777743
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 48.09934699544894,
+        "median_absolute_error_eur": 26.87274533813096,
+        "rmse_eur": 89.78920299050513,
+        "within_20_percent": 0.4475,
+        "within_30_eur": 0.5525,
+        "p90_absolute_error_eur": 106.07980727034555
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 66.67790334532386,
+        "median_absolute_error_eur": 24.796908347484056,
+        "rmse_eur": 278.58572073184615,
+        "within_20_percent": 0.3724696356275304,
+        "within_30_eur": 0.582995951417004,
+        "p90_absolute_error_eur": 94.98083865344155
+      }
+    },
+    "hgb_log": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 54.84091491448114,
+        "median_absolute_error_eur": 28.46535175492781,
+        "rmse_eur": 176.06367783539724,
+        "within_20_percent": 0.44496044031647747,
+        "within_30_eur": 0.5196078431372549,
+        "p90_absolute_error_eur": 109.59563058981406
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.762843320929512,
+        "median_absolute_error_eur": 15.358953202618338,
+        "rmse_eur": 34.50327020686124,
+        "within_20_percent": 0.4451642757982416,
+        "within_30_eur": 0.7274409995372513,
+        "p90_absolute_error_eur": 56.295768974401625
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 36.76894018554241,
+        "median_absolute_error_eur": 28.987518442558752,
+        "rmse_eur": 49.55287969757731,
+        "within_20_percent": 0.4892322097378277,
+        "within_30_eur": 0.5159176029962547,
+        "p90_absolute_error_eur": 75.77743901853444
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 73.28319774212811,
+        "median_absolute_error_eur": 61.336932020451954,
+        "rmse_eur": 94.38838074701403,
+        "within_20_percent": 0.4258373205741627,
+        "within_30_eur": 0.26395534290271133,
+        "p90_absolute_error_eur": 151.48379095734455
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 369.04178209626394,
+        "median_absolute_error_eur": 249.1979246179898,
+        "rmse_eur": 782.9824314706398,
+        "within_20_percent": 0.17490494296577946,
+        "within_30_eur": 0.060836501901140684,
+        "p90_absolute_error_eur": 677.6619956316088
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1617.265804906307,
+        "median_absolute_error_eur": 864.9045217537952,
+        "rmse_eur": 2095.019655737057,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3276.5403348777445
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 53.49608371290442,
+        "median_absolute_error_eur": 28.457252541818537,
+        "rmse_eur": 165.06740734797359,
+        "within_20_percent": 0.4453434326045791,
+        "within_30_eur": 0.5200550869340679,
+        "p90_absolute_error_eur": 109.04221559557246
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 62.59149742220373,
+        "median_absolute_error_eur": 35.3850828298099,
+        "rmse_eur": 196.1945476736512,
+        "within_20_percent": 0.43768115942028984,
+        "within_30_eur": 0.44503901895206244,
+        "p90_absolute_error_eur": 123.72763296202739
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 26.265338997998253,
+        "median_absolute_error_eur": 12.345501719570706,
+        "rmse_eur": 75.38376799827014,
+        "within_20_percent": 0.4945054945054945,
+        "within_30_eur": 0.8005071851225697,
+        "p90_absolute_error_eur": 48.91964038015489
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 61.87844364478648,
+        "median_absolute_error_eur": 32.73531515853496,
+        "rmse_eur": 201.69643518500553,
+        "within_20_percent": 0.45692793011405,
+        "within_30_eur": 0.47342877942247025,
+        "p90_absolute_error_eur": 124.3257265958234
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 106.59662623235747,
+        "median_absolute_error_eur": 75.77440974056559,
+        "rmse_eur": 147.85716989947048,
+        "within_20_percent": 0.14705882352941177,
+        "within_30_eur": 0.20588235294117646,
+        "p90_absolute_error_eur": 199.7956421546454
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 36.467368096081984,
+        "median_absolute_error_eur": 20.014115242688675,
+        "rmse_eur": 85.81677555508183,
+        "within_20_percent": 0.43171806167400884,
+        "within_30_eur": 0.6412838263058528,
+        "p90_absolute_error_eur": 67.27723079730615
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 32.47256937219739,
+        "median_absolute_error_eur": 26.318703161160247,
+        "rmse_eur": 43.26374353190204,
+        "within_20_percent": 0.18571428571428572,
+        "within_30_eur": 0.6285714285714286,
+        "p90_absolute_error_eur": 65.03805393061484
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 56.242794288682795,
+        "median_absolute_error_eur": 29.67666072477202,
+        "rmse_eur": 107.90982889113063,
+        "within_20_percent": 0.407202216066482,
+        "within_30_eur": 0.5083102493074793,
+        "p90_absolute_error_eur": 113.94685636710217
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 50.119075451387594,
+        "median_absolute_error_eur": 25.495431497761672,
+        "rmse_eur": 112.27395531186934,
+        "within_20_percent": 0.46597760551248923,
+        "within_30_eur": 0.540913006029285,
+        "p90_absolute_error_eur": 102.81899472831526
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 47.15476831735102,
+        "median_absolute_error_eur": 28.255360574128645,
+        "rmse_eur": 71.54387411323161,
+        "within_20_percent": 0.4378698224852071,
+        "within_30_eur": 0.5325443786982249,
+        "p90_absolute_error_eur": 132.46716815593902
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 54.147408081468306,
+        "median_absolute_error_eur": 27.895832454707644,
+        "rmse_eur": 117.31064902536058,
+        "within_20_percent": 0.3220338983050847,
+        "within_30_eur": 0.576271186440678,
+        "p90_absolute_error_eur": 94.64016766920021
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.21488135184227,
+        "median_absolute_error_eur": 32.54910987494952,
+        "rmse_eur": 128.5527739378684,
+        "within_20_percent": 0.43646408839779005,
+        "within_30_eur": 0.4744475138121547,
+        "p90_absolute_error_eur": 124.9047899976211
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.44458254307048,
+        "median_absolute_error_eur": 24.048560028529423,
+        "rmse_eur": 64.68320761365882,
+        "within_20_percent": 0.4771689497716895,
+        "within_30_eur": 0.5730593607305936,
+        "p90_absolute_error_eur": 91.79192202328409
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 55.628410970933636,
+        "median_absolute_error_eur": 31.1839426371111,
+        "rmse_eur": 117.16365650574694,
+        "within_20_percent": 0.46871310507674147,
+        "within_30_eur": 0.48760330578512395,
+        "p90_absolute_error_eur": 116.26958804140553
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 30.938611321522718,
+        "median_absolute_error_eur": 19.839572443008702,
+        "rmse_eur": 47.39574730839355,
+        "within_20_percent": 0.375,
+        "within_30_eur": 0.6375,
+        "p90_absolute_error_eur": 73.18872493877642
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 58.40499863094749,
+        "median_absolute_error_eur": 34.47442980827819,
+        "rmse_eur": 96.46681512664982,
+        "within_20_percent": 0.29411764705882354,
+        "within_30_eur": 0.45588235294117646,
+        "p90_absolute_error_eur": 113.9869999099288
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 96.44613801943862,
+        "median_absolute_error_eur": 17.479713762210466,
+        "rmse_eur": 739.6936998198667,
+        "within_20_percent": 0.49714285714285716,
+        "within_30_eur": 0.6342857142857142,
+        "p90_absolute_error_eur": 74.21741979567382
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 46.46668994976933,
+        "median_absolute_error_eur": 26.747493553620394,
+        "rmse_eur": 87.57518047180345,
+        "within_20_percent": 0.45,
+        "within_30_eur": 0.5425,
+        "p90_absolute_error_eur": 101.07242646988891
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 64.07758674176274,
+        "median_absolute_error_eur": 23.954153329893465,
+        "rmse_eur": 273.5700876543659,
+        "within_20_percent": 0.42105263157894735,
+        "within_30_eur": 0.5708502024291497,
+        "p90_absolute_error_eur": 103.70640184972808
+      }
+    },
+    "catboost_fixed_blend": {
+      "all": {
+        "rows": 5814,
+        "mae_eur": 53.620729503033914,
+        "median_absolute_error_eur": 27.702580864819616,
+        "rmse_eur": 174.84496165599597,
+        "within_20_percent": 0.44908840729274163,
+        "within_30_eur": 0.5257997936016512,
+        "p90_absolute_error_eur": 105.75727750871474
+      },
+      "up_to_100": {
+        "rows": 2161,
+        "mae_eur": 23.130580827889926,
+        "median_absolute_error_eur": 15.461744150669915,
+        "rmse_eur": 33.30282168054675,
+        "within_20_percent": 0.44377602961591855,
+        "within_30_eur": 0.7343822304488663,
+        "p90_absolute_error_eur": 52.51845846014035
+      },
+      "100_to_200": {
+        "rows": 2136,
+        "mae_eur": 34.990353472191025,
+        "median_absolute_error_eur": 27.897271606331543,
+        "rmse_eur": 47.236772978873866,
+        "within_20_percent": 0.5056179775280899,
+        "within_30_eur": 0.528558052434457,
+        "p90_absolute_error_eur": 74.01671480108396
+      },
+      "200_to_400": {
+        "rows": 1254,
+        "mae_eur": 72.36182574535965,
+        "median_absolute_error_eur": 61.76024561784368,
+        "rmse_eur": 104.30926922195215,
+        "within_20_percent": 0.42105263157894735,
+        "within_30_eur": 0.2623604465709729,
+        "p90_absolute_error_eur": 143.87061431153123
+      },
+      "over_400": {
+        "rows": 263,
+        "mae_eur": 366.10118502010664,
+        "median_absolute_error_eur": 255.02100107421563,
+        "rmse_eur": 772.4622367350939,
+        "within_20_percent": 0.16730038022813687,
+        "within_30_eur": 0.045627376425855515,
+        "p90_absolute_error_eur": 685.3204719744197
+      },
+      "purpose_flag": {
+        "rows": 5,
+        "mae_eur": 1713.7076094548488,
+        "median_absolute_error_eur": 1982.0825610484849,
+        "rmse_eur": 2092.474747177243,
+        "within_20_percent": 0.0,
+        "within_30_eur": 0.0,
+        "p90_absolute_error_eur": 3014.186593500608
+      },
+      "no_purpose_flag": {
+        "rows": 5809,
+        "mae_eur": 52.19183737017816,
+        "median_absolute_error_eur": 27.640703608923133,
+        "rmse_eur": 163.7937590001917,
+        "within_20_percent": 0.449474952659666,
+        "within_30_eur": 0.5262523670166982,
+        "p90_absolute_error_eur": 105.16525054028425
+      },
+      "minimum_up_to_14": {
+        "rows": 4485,
+        "mae_eur": 61.11117482051455,
+        "median_absolute_error_eur": 34.31431987496691,
+        "rmse_eur": 194.84466921081855,
+        "within_20_percent": 0.44214046822742475,
+        "within_30_eur": 0.4561872909698997,
+        "p90_absolute_error_eur": 117.21073018246017
+      },
+      "minimum_28_or_more": {
+        "rows": 1183,
+        "mae_eur": 25.724949441293678,
+        "median_absolute_error_eur": 12.730697064258607,
+        "rmse_eur": 74.58340106582675,
+        "within_20_percent": 0.4978867286559594,
+        "within_30_eur": 0.797971259509721,
+        "p90_absolute_error_eur": 46.790120459199144
+      },
+      "room_type:Entire home/apt": {
+        "rows": 4121,
+        "mae_eur": 60.67629778605075,
+        "median_absolute_error_eur": 32.880367301808064,
+        "rmse_eur": 200.28706875152224,
+        "within_20_percent": 0.4588692065032759,
+        "within_30_eur": 0.47318611987381703,
+        "p90_absolute_error_eur": 117.76250279034451
+      },
+      "room_type:Hotel room": {
+        "rows": 34,
+        "mae_eur": 95.04862991603768,
+        "median_absolute_error_eur": 69.8012459597973,
+        "rmse_eur": 133.32721764756656,
+        "within_20_percent": 0.23529411764705882,
+        "within_30_eur": 0.23529411764705882,
+        "p90_absolute_error_eur": 227.4632877117926
+      },
+      "room_type:Private room": {
+        "rows": 1589,
+        "mae_eur": 35.26420789775202,
+        "median_absolute_error_eur": 18.101043066367623,
+        "rmse_eur": 85.79658666540728,
+        "within_20_percent": 0.4436752674638137,
+        "within_30_eur": 0.6696035242290749,
+        "p90_absolute_error_eur": 64.99236502094523
+      },
+      "room_type:Shared room": {
+        "rows": 70,
+        "mae_eur": 34.82026268072572,
+        "median_absolute_error_eur": 29.899572092525244,
+        "rmse_eur": 42.046612864734165,
+        "within_20_percent": 0.1,
+        "within_30_eur": 0.5,
+        "p90_absolute_error_eur": 61.09053925993283
+      },
+      "district:Charlottenburg-Wilm.": {
+        "rows": 722,
+        "mae_eur": 55.27037106404467,
+        "median_absolute_error_eur": 27.789341631363854,
+        "rmse_eur": 126.77672796221428,
+        "within_20_percent": 0.42382271468144045,
+        "within_30_eur": 0.5166204986149584,
+        "p90_absolute_error_eur": 108.79793008169706
+      },
+      "district:Friedrichshain-Kreuzberg": {
+        "rows": 1161,
+        "mae_eur": 49.025619360850676,
+        "median_absolute_error_eur": 26.21766280816817,
+        "rmse_eur": 106.55326966590127,
+        "within_20_percent": 0.446167097329888,
+        "within_30_eur": 0.5443583118001722,
+        "p90_absolute_error_eur": 95.5275721714429
+      },
+      "district:Lichtenberg": {
+        "rows": 169,
+        "mae_eur": 44.711890622435625,
+        "median_absolute_error_eur": 26.470187259540495,
+        "rmse_eur": 66.69267963313142,
+        "within_20_percent": 0.5266272189349113,
+        "within_30_eur": 0.5443786982248521,
+        "p90_absolute_error_eur": 115.4302102254446
+      },
+      "district:Marzahn - Hellersdorf": {
+        "rows": 59,
+        "mae_eur": 49.322592842996784,
+        "median_absolute_error_eur": 21.327324657471323,
+        "rmse_eur": 109.98433038876402,
+        "within_20_percent": 0.3559322033898305,
+        "within_30_eur": 0.6101694915254238,
+        "p90_absolute_error_eur": 95.21569721632414
+      },
+      "district:Mitte": {
+        "rows": 1448,
+        "mae_eur": 60.04490040070147,
+        "median_absolute_error_eur": 34.091135106628315,
+        "rmse_eur": 124.45261756413119,
+        "within_20_percent": 0.4219613259668508,
+        "within_30_eur": 0.462707182320442,
+        "p90_absolute_error_eur": 120.7485652143644
+      },
+      "district:Neukölln": {
+        "rows": 438,
+        "mae_eur": 38.797384988091665,
+        "median_absolute_error_eur": 23.184600713819435,
+        "rmse_eur": 65.7331877486971,
+        "within_20_percent": 0.45662100456621,
+        "within_30_eur": 0.5821917808219178,
+        "p90_absolute_error_eur": 89.25421689475222
+      },
+      "district:Pankow": {
+        "rows": 847,
+        "mae_eur": 53.4354698713193,
+        "median_absolute_error_eur": 28.788258956340794,
+        "rmse_eur": 116.33255545402992,
+        "within_20_percent": 0.4970484061393152,
+        "within_30_eur": 0.51357733175915,
+        "p90_absolute_error_eur": 107.74318690628738
+      },
+      "district:Reinickendorf": {
+        "rows": 80,
+        "mae_eur": 27.90962948854992,
+        "median_absolute_error_eur": 19.108410264029196,
+        "rmse_eur": 39.86246835688628,
+        "within_20_percent": 0.425,
+        "within_30_eur": 0.65,
+        "p90_absolute_error_eur": 64.72332061337227
+      },
+      "district:Spandau": {
+        "rows": 68,
+        "mae_eur": 53.03202090993987,
+        "median_absolute_error_eur": 32.19583911957757,
+        "rmse_eur": 85.73088776636297,
+        "within_20_percent": 0.4117647058823529,
+        "within_30_eur": 0.4264705882352941,
+        "p90_absolute_error_eur": 106.80175666194624
+      },
+      "district:Steglitz - Zehlendorf": {
+        "rows": 175,
+        "mae_eur": 95.38011115938728,
+        "median_absolute_error_eur": 17.013166664203986,
+        "rmse_eur": 745.6204869347124,
+        "within_20_percent": 0.5257142857142857,
+        "within_30_eur": 0.6628571428571428,
+        "p90_absolute_error_eur": 68.39227175994883
+      },
+      "district:Tempelhof - Schöneberg": {
+        "rows": 400,
+        "mae_eur": 45.446715186297276,
+        "median_absolute_error_eur": 26.85048450691575,
+        "rmse_eur": 87.83599784888528,
+        "within_20_percent": 0.4475,
+        "within_30_eur": 0.535,
+        "p90_absolute_error_eur": 88.29255534291838
+      },
+      "district:Treptow - Köpenick": {
+        "rows": 247,
+        "mae_eur": 58.920486466169905,
+        "median_absolute_error_eur": 20.674740034604227,
+        "rmse_eur": 243.959876702742,
+        "within_20_percent": 0.4534412955465587,
+        "within_30_eur": 0.6194331983805668,
+        "p90_absolute_error_eur": 104.38601652378426
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "fit_rows": 4015,
+      "score_rows": 1799,
+      "host_overlap": 0,
+      "models": {
+        "s02_control": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 56.83813344257452,
+            "median_absolute_error_eur": 28.123329161403873,
+            "rmse_eur": 256.5128089316238,
+            "within_20_percent": 0.4452473596442468,
+            "within_30_eur": 0.5186214563646471,
+            "p90_absolute_error_eur": 107.51559456531652
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 46.16768088143468,
+            "median_absolute_error_eur": 19.510436416152913,
+            "rmse_eur": 129.5775793360355,
+            "within_20_percent": 0.5656288916562889,
+            "within_30_eur": 0.6092154420921544,
+            "p90_absolute_error_eur": 96.94313488939072
+          },
+          "fit_rows": 4015,
+          "seconds": 0.281
+        },
+        "catboost_mae": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 56.39405378512297,
+            "median_absolute_error_eur": 29.707535766115598,
+            "rmse_eur": 252.96320639921998,
+            "within_20_percent": 0.4535853251806559,
+            "within_30_eur": 0.5030572540300167,
+            "p90_absolute_error_eur": 106.16787204384343
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 42.12946053673273,
+            "median_absolute_error_eur": 19.282973443850523,
+            "rmse_eur": 96.69475426828494,
+            "within_20_percent": 0.5815691158156912,
+            "within_30_eur": 0.6189290161892902,
+            "p90_absolute_error_eur": 91.58751918960037
+          },
+          "fit_rows": 4015,
+          "seconds": 27.0
+        },
+        "catboost_log": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 55.869703990144885,
+            "median_absolute_error_eur": 28.900304149259654,
+            "rmse_eur": 253.20343203725974,
+            "within_20_percent": 0.45692051139521955,
+            "within_30_eur": 0.5102834908282379,
+            "p90_absolute_error_eur": 104.74410233309543
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 44.10637873720399,
+            "median_absolute_error_eur": 23.001039931206407,
+            "rmse_eur": 93.8820964946447,
+            "within_20_percent": 0.5250311332503114,
+            "within_30_eur": 0.5870485678704856,
+            "p90_absolute_error_eur": 91.83205915621627
+          },
+          "fit_rows": 4015,
+          "seconds": 26.25
+        },
+        "catboost_derived_mae": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 55.69488505185401,
+            "median_absolute_error_eur": 29.118811582246366,
+            "rmse_eur": 252.67426036108594,
+            "within_20_percent": 0.4441356309060589,
+            "within_30_eur": 0.50917176209005,
+            "p90_absolute_error_eur": 103.66477369593984
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 40.833004268863874,
+            "median_absolute_error_eur": 18.04397598276097,
+            "rmse_eur": 89.10178204238305,
+            "within_20_percent": 0.5915317559153176,
+            "within_30_eur": 0.6283935242839352,
+            "p90_absolute_error_eur": 90.43988397817122
+          },
+          "fit_rows": 4015,
+          "seconds": 28.266
+        },
+        "catboost_derived_log": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 56.1288402044082,
+            "median_absolute_error_eur": 28.342095277921857,
+            "rmse_eur": 253.3051303161026,
+            "within_20_percent": 0.44858254585881047,
+            "within_30_eur": 0.5202890494719289,
+            "p90_absolute_error_eur": 105.56382528460578
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 42.43925739031826,
+            "median_absolute_error_eur": 21.864410847730227,
+            "rmse_eur": 85.38643017821059,
+            "within_20_percent": 0.5339975093399751,
+            "within_30_eur": 0.5970112079701121,
+            "p90_absolute_error_eur": 89.99622806543461
+          },
+          "fit_rows": 4015,
+          "seconds": 28.515
+        },
+        "catboost_scope_sensitivity": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 55.40144110132297,
+            "median_absolute_error_eur": 27.925420306438866,
+            "rmse_eur": 254.77165083909293,
+            "within_20_percent": 0.47026125625347415,
+            "within_30_eur": 0.5219566425792107,
+            "p90_absolute_error_eur": 105.11355217290979
+          },
+          "train": {
+            "rows": 4011,
+            "mae_eur": 39.799753706346124,
+            "median_absolute_error_eur": 17.573389452417416,
+            "rmse_eur": 82.51196265425601,
+            "within_20_percent": 0.5973572675143356,
+            "within_30_eur": 0.6335078534031413,
+            "p90_absolute_error_eur": 90.82188029906945
+          },
+          "fit_rows": 4011,
+          "seconds": 28.422
+        },
+        "extra_trees_log": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 57.5659812261228,
+            "median_absolute_error_eur": 28.563229478576034,
+            "rmse_eur": 254.49101002884402,
+            "within_20_percent": 0.43913285158421345,
+            "within_30_eur": 0.5180655919955531,
+            "p90_absolute_error_eur": 106.11898189531654
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 27.98028089540792,
+            "median_absolute_error_eur": 12.375112621967979,
+            "rmse_eur": 81.11031593696515,
+            "within_20_percent": 0.7496886674968867,
+            "within_30_eur": 0.7621419676214197,
+            "p90_absolute_error_eur": 56.069623794305464
+          },
+          "fit_rows": 4015,
+          "seconds": 2.782
+        },
+        "hgb_log": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 56.69041458757857,
+            "median_absolute_error_eur": 28.25918274787736,
+            "rmse_eur": 253.04069148723184,
+            "within_20_percent": 0.4452473596442468,
+            "within_30_eur": 0.5225125069483046,
+            "p90_absolute_error_eur": 108.13287397321255
+          },
+          "train": {
+            "rows": 4015,
+            "mae_eur": 38.79555639532765,
+            "median_absolute_error_eur": 19.09605651331296,
+            "rmse_eur": 89.37767759654152,
+            "within_20_percent": 0.5805728518057285,
+            "within_30_eur": 0.6323785803237858,
+            "p90_absolute_error_eur": 81.30464371484103
+          },
+          "fit_rows": 4015,
+          "seconds": 0.312
+        },
+        "catboost_fixed_blend": {
+          "score": {
+            "rows": 1799,
+            "mae_eur": 55.57230703827683,
+            "median_absolute_error_eur": 28.24921783842848,
+            "rmse_eur": 252.83991657059363,
+            "within_20_percent": 0.45247359644246804,
+            "within_30_eur": 0.5219566425792107,
+            "p90_absolute_error_eur": 104.10292832518287
+          },
+          "train": null,
+          "fit_rows": 4015,
+          "seconds": 0.0
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "fit_rows": 3817,
+      "score_rows": 1997,
+      "host_overlap": 0,
+      "models": {
+        "s02_control": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.45647892270413,
+            "median_absolute_error_eur": 24.389517816974376,
+            "rmse_eur": 100.24787156599433,
+            "within_20_percent": 0.45968953430145215,
+            "within_30_eur": 0.5513269904857286,
+            "p90_absolute_error_eur": 112.41534934983308
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 50.10345197607152,
+            "median_absolute_error_eur": 21.18205462272985,
+            "rmse_eur": 210.04709140711475,
+            "within_20_percent": 0.5614356824731465,
+            "within_30_eur": 0.6030914330626146,
+            "p90_absolute_error_eur": 97.3472107102566
+          },
+          "fit_rows": 3817,
+          "seconds": 0.281
+        },
+        "catboost_mae": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.70847809648502,
+            "median_absolute_error_eur": 26.3097655570036,
+            "rmse_eur": 91.7365520401872,
+            "within_20_percent": 0.4511767651477216,
+            "within_30_eur": 0.5388082123184778,
+            "p90_absolute_error_eur": 112.17802829113097
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 47.33114128598241,
+            "median_absolute_error_eur": 20.813636065672824,
+            "rmse_eur": 186.60644714804627,
+            "within_20_percent": 0.5596017815037988,
+            "within_30_eur": 0.6101650510872413,
+            "p90_absolute_error_eur": 94.6112209478896
+          },
+          "fit_rows": 3817,
+          "seconds": 27.219
+        },
+        "catboost_log": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 48.61419903190119,
+            "median_absolute_error_eur": 25.231373848012353,
+            "rmse_eur": 97.13397073079504,
+            "within_20_percent": 0.44667000500751125,
+            "within_30_eur": 0.5488232348522785,
+            "p90_absolute_error_eur": 105.39015947187707
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 47.890215897009405,
+            "median_absolute_error_eur": 24.659345732630896,
+            "rmse_eur": 180.54699873256152,
+            "within_20_percent": 0.5171600733560388,
+            "within_30_eur": 0.5674613570867173,
+            "p90_absolute_error_eur": 93.55553198502528
+          },
+          "fit_rows": 3817,
+          "seconds": 26.266
+        },
+        "catboost_derived_mae": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.43263202798065,
+            "median_absolute_error_eur": 25.956095269583088,
+            "rmse_eur": 94.67604661273077,
+            "within_20_percent": 0.4511767651477216,
+            "within_30_eur": 0.5368052078117176,
+            "p90_absolute_error_eur": 107.11334037681803
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 45.938243729294626,
+            "median_absolute_error_eur": 20.613881005682615,
+            "rmse_eur": 182.54685301156957,
+            "within_20_percent": 0.5708671731726487,
+            "within_30_eur": 0.6122609379093529,
+            "p90_absolute_error_eur": 93.346066544378
+          },
+          "fit_rows": 3817,
+          "seconds": 29.187
+        },
+        "catboost_derived_log": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.35900424768727,
+            "median_absolute_error_eur": 25.222847484327673,
+            "rmse_eur": 107.15614514412168,
+            "within_20_percent": 0.4471707561342013,
+            "within_30_eur": 0.5498247371056585,
+            "p90_absolute_error_eur": 106.91407964513071
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 46.82825265350328,
+            "median_absolute_error_eur": 24.118096321370672,
+            "rmse_eur": 177.22304143387282,
+            "within_20_percent": 0.5200419177364423,
+            "within_30_eur": 0.5808226355776788,
+            "p90_absolute_error_eur": 93.48348373592363
+          },
+          "fit_rows": 3817,
+          "seconds": 28.735
+        },
+        "catboost_scope_sensitivity": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 48.73452674470088,
+            "median_absolute_error_eur": 26.561389563401832,
+            "rmse_eur": 93.44947371012242,
+            "within_20_percent": 0.44466700050075114,
+            "within_30_eur": 0.5403104656985478,
+            "p90_absolute_error_eur": 107.1124775031865
+          },
+          "train": {
+            "rows": 3814,
+            "mae_eur": 44.269645686414385,
+            "median_absolute_error_eur": 19.476875953583516,
+            "rmse_eur": 178.8199051917537,
+            "within_20_percent": 0.588883062401678,
+            "within_30_eur": 0.6263765076035658,
+            "p90_absolute_error_eur": 91.43937688017913
+          },
+          "fit_rows": 3814,
+          "seconds": 30.046
+        },
+        "extra_trees_log": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 50.748350164362584,
+            "median_absolute_error_eur": 26.582319982684055,
+            "rmse_eur": 100.86580636340919,
+            "within_20_percent": 0.4381572358537807,
+            "within_30_eur": 0.5327991987981973,
+            "p90_absolute_error_eur": 111.34853027660627
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 31.167187489691305,
+            "median_absolute_error_eur": 13.865534318892031,
+            "rmse_eur": 166.6386429046861,
+            "within_20_percent": 0.7395860623526329,
+            "within_30_eur": 0.7537332984018863,
+            "p90_absolute_error_eur": 56.83041334308246
+          },
+          "fit_rows": 3817,
+          "seconds": 2.672
+        },
+        "hgb_log": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.448314172579124,
+            "median_absolute_error_eur": 25.597162544130697,
+            "rmse_eur": 95.91129993911028,
+            "within_20_percent": 0.4611917876815223,
+            "within_30_eur": 0.5528292438657987,
+            "p90_absolute_error_eur": 107.90646101650077
+          },
+          "train": {
+            "rows": 3817,
+            "mae_eur": 43.829808999011426,
+            "median_absolute_error_eur": 21.305547183771466,
+            "rmse_eur": 172.27700688352178,
+            "within_20_percent": 0.5609117107676186,
+            "within_30_eur": 0.6099030652344773,
+            "p90_absolute_error_eur": 86.38834178780624
+          },
+          "fit_rows": 3817,
+          "seconds": 0.313
+        },
+        "catboost_fixed_blend": {
+          "score": {
+            "rows": 1997,
+            "mae_eur": 49.130897965190506,
+            "median_absolute_error_eur": 25.881792772625772,
+            "rmse_eur": 99.4226572981167,
+            "within_20_percent": 0.4506760140210315,
+            "within_30_eur": 0.542313470205308,
+            "p90_absolute_error_eur": 105.18717591793948
+          },
+          "train": null,
+          "fit_rows": 3817,
+          "seconds": 0.0
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "fit_rows": 3796,
+      "score_rows": 2018,
+      "host_overlap": 0,
+      "models": {
+        "s02_control": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 58.56879678461894,
+            "median_absolute_error_eur": 29.62654964914426,
+            "rmse_eur": 162.32102431808752,
+            "within_20_percent": 0.433597621407334,
+            "within_30_eur": 0.5054509415262636,
+            "p90_absolute_error_eur": 108.07341059744901
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 44.94813387753472,
+            "median_absolute_error_eur": 19.14597480837353,
+            "rmse_eur": 188.1826782075545,
+            "within_20_percent": 0.5787671232876712,
+            "within_30_eur": 0.6182824025289779,
+            "p90_absolute_error_eur": 94.35445296160836
+          },
+          "fit_rows": 3796,
+          "seconds": 0.266
+        },
+        "catboost_mae": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 57.898310468644176,
+            "median_absolute_error_eur": 28.855981134502414,
+            "rmse_eur": 149.26231659450943,
+            "within_20_percent": 0.4425173439048563,
+            "within_30_eur": 0.5133795837462835,
+            "p90_absolute_error_eur": 111.69548827316379
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 42.609363422723504,
+            "median_absolute_error_eur": 18.95022603302216,
+            "rmse_eur": 156.2520370714979,
+            "within_20_percent": 0.5879873551106428,
+            "within_30_eur": 0.6298735511064278,
+            "p90_absolute_error_eur": 91.86658881879826
+          },
+          "fit_rows": 3796,
+          "seconds": 26.328
+        },
+        "catboost_log": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 57.47705797332208,
+            "median_absolute_error_eur": 29.807856038876142,
+            "rmse_eur": 152.12354159047345,
+            "within_20_percent": 0.44103072348860256,
+            "within_30_eur": 0.5029732408325074,
+            "p90_absolute_error_eur": 107.82290547284478
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 43.975491651296345,
+            "median_absolute_error_eur": 22.04901073947461,
+            "rmse_eur": 172.9066540871169,
+            "within_20_percent": 0.5405690200210748,
+            "within_30_eur": 0.5985247629083246,
+            "p90_absolute_error_eur": 91.01151758976275
+          },
+          "fit_rows": 3796,
+          "seconds": 26.297
+        },
+        "catboost_derived_mae": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 56.26197614782857,
+            "median_absolute_error_eur": 28.69316567107593,
+            "rmse_eur": 142.02078500993352,
+            "within_20_percent": 0.4499504459861249,
+            "within_30_eur": 0.5158572844400396,
+            "p90_absolute_error_eur": 108.46445235935144
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 41.79912595337482,
+            "median_absolute_error_eur": 17.797691764505387,
+            "rmse_eur": 180.77677435066082,
+            "within_20_percent": 0.6101159114857745,
+            "within_30_eur": 0.6448893572181243,
+            "p90_absolute_error_eur": 88.52400959650987
+          },
+          "fit_rows": 3796,
+          "seconds": 27.813
+        },
+        "catboost_derived_log": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 57.12120054724871,
+            "median_absolute_error_eur": 29.83201311577259,
+            "rmse_eur": 151.54554168379502,
+            "within_20_percent": 0.43508424182358774,
+            "within_30_eur": 0.5009910802775025,
+            "p90_absolute_error_eur": 106.90656857505937
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 43.510497730220166,
+            "median_absolute_error_eur": 22.165288977407133,
+            "rmse_eur": 174.02532684720322,
+            "within_20_percent": 0.5450474183350895,
+            "within_30_eur": 0.5966807165437302,
+            "p90_absolute_error_eur": 89.9246497939901
+          },
+          "fit_rows": 3796,
+          "seconds": 28.453
+        },
+        "catboost_scope_sensitivity": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 56.148191808511534,
+            "median_absolute_error_eur": 28.06829009161207,
+            "rmse_eur": 140.02899630035998,
+            "within_20_percent": 0.4514370664023786,
+            "within_30_eur": 0.5183349851337958,
+            "p90_absolute_error_eur": 108.39192115619495
+          },
+          "train": {
+            "rows": 3793,
+            "mae_eur": 40.93920724753541,
+            "median_absolute_error_eur": 17.196138450504804,
+            "rmse_eur": 173.8429512763892,
+            "within_20_percent": 0.612180332190878,
+            "within_30_eur": 0.6506722910624835,
+            "p90_absolute_error_eur": 87.40667872925056
+          },
+          "fit_rows": 3793,
+          "seconds": 28.297
+        },
+        "extra_trees_log": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 59.399516749838185,
+            "median_absolute_error_eur": 29.833482265722573,
+            "rmse_eur": 153.72209558658614,
+            "within_20_percent": 0.4449950445986125,
+            "within_30_eur": 0.5024777006937562,
+            "p90_absolute_error_eur": 119.42794801244709
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 28.178554383645455,
+            "median_absolute_error_eur": 12.137710379953738,
+            "rmse_eur": 160.05649751676077,
+            "within_20_percent": 0.7568493150684932,
+            "within_30_eur": 0.779768177028451,
+            "p90_absolute_error_eur": 54.3601618944987
+          },
+          "fit_rows": 3796,
+          "seconds": 2.734
+        },
+        "hgb_log": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 58.52861252086172,
+            "median_absolute_error_eur": 31.261564151040325,
+            "rmse_eur": 152.0673734301523,
+            "within_20_percent": 0.4286422200198216,
+            "within_30_eur": 0.48414271555996036,
+            "p90_absolute_error_eur": 111.35875984903039
+          },
+          "train": {
+            "rows": 3796,
+            "mae_eur": 38.68887406073301,
+            "median_absolute_error_eur": 18.792977346928545,
+            "rmse_eur": 163.92486689735856,
+            "within_20_percent": 0.6019494204425712,
+            "within_30_eur": 0.6498946259220232,
+            "p90_absolute_error_eur": 78.21624227027834
+          },
+          "fit_rows": 3796,
+          "seconds": 0.328
+        },
+        "catboost_fixed_blend": {
+          "score": {
+            "rows": 2018,
+            "mae_eur": 56.32405239459552,
+            "median_absolute_error_eur": 29.018402019213866,
+            "rmse_eur": 145.9594774076077,
+            "within_20_percent": 0.44449950445986125,
+            "within_30_eur": 0.5128840436075323,
+            "p90_absolute_error_eur": 107.51941387796424
+          },
+          "train": null,
+          "fit_rows": 3796,
+          "seconds": 0.0
+        }
+      }
+    }
+  ],
+  "selection": {
+    "cv_selected": null,
+    "diagnostic_best": "catboost_scope_sensitivity",
+    "cv_gates": {
+      "catboost_mae": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "catboost_log": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "catboost_derived_mae": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "catboost_derived_log": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "catboost_scope_sensitivity": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "extra_trees_log": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": false,
+          "fold_worst": true
+        }
+      },
+      "hgb_log": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      },
+      "catboost_fixed_blend": {
+        "passed": false,
+        "checks": {
+          "mae": false,
+          "within20": false,
+          "median": false,
+          "tail": true,
+          "rmse": true,
+          "room_type:Entire home/apt": true,
+          "room_type:Private room": true,
+          "fold_wins": true,
+          "fold_worst": true
+        }
+      }
+    },
+    "ranking": [
+      "catboost_scope_sensitivity",
+      "catboost_fixed_blend",
+      "catboost_derived_mae",
+      "catboost_log",
+      "catboost_derived_log",
+      "catboost_mae",
+      "hgb_log",
+      "extra_trees_log"
+    ],
+    "decided_at_utc": "2026-10-28T20:59:52.985860+00:00"
+  },
+  "validation_evaluated": false,
+  "promoted": false,
+  "scope_audit": {
+    "title_rule_sha256": "0625c0fe6d57969ebdebc5757590286873ba3d5e05fcb9f9cdefe6e6dc214790",
+    "flagged_train_rows": 5,
+    "assistant_review": "Five train title/description matches reviewed without prices; mixed event use is not proof that overnight use is impossible",
+    "main_evaluation_excludes_nothing": true
+  },
+  "cv_bootstrap_best_vs_s02": {
+    "method": "paired bootstrap of validation hosts, row-weighted MAE, percentile 95% interval",
+    "hosts": 3114,
+    "replicates": 1000,
+    "seed": 42,
+    "mae_improvement_eur_95ci": [
+      0.4578390966096361,
+      2.843748739619615
+    ],
+    "mae_reduction_fraction_95ci": [
+      0.008283942429339308,
+      0.050447966937414934
+    ],
+    "not_a_prediction_interval": true
+  },
+  "learning_curve": {
+    "candidate": "catboost_scope_sensitivity",
+    "rows": [
+      {
+        "fold": 1,
+        "host_fraction": 0.25,
+        "fit_rows": 1012,
+        "score_rows": 1799,
+        "train": {
+          "rows": 1012,
+          "mae_eur": 32.211709858382676,
+          "median_absolute_error_eur": 13.489756704559738,
+          "rmse_eur": 66.76793918539333,
+          "within_20_percent": 0.6709486166007905,
+          "within_30_eur": 0.6956521739130435,
+          "p90_absolute_error_eur": 76.02634470881519
+        },
+        "score": {
+          "rows": 1799,
+          "mae_eur": 57.629776978834236,
+          "median_absolute_error_eur": 29.706384342203194,
+          "rmse_eur": 258.17573713267,
+          "within_20_percent": 0.43357420789327406,
+          "within_30_eur": 0.5030572540300167,
+          "p90_absolute_error_eur": 107.57341403570891
+        }
+      },
+      {
+        "fold": 1,
+        "host_fraction": 0.5,
+        "fit_rows": 1947,
+        "score_rows": 1799,
+        "train": {
+          "rows": 1947,
+          "mae_eur": 33.94761491769026,
+          "median_absolute_error_eur": 14.04368386896698,
+          "rmse_eur": 70.42607413720322,
+          "within_20_percent": 0.6230097586029789,
+          "within_30_eur": 0.6805341551104263,
+          "p90_absolute_error_eur": 77.91293848589079
+        },
+        "score": {
+          "rows": 1799,
+          "mae_eur": 56.18142086554289,
+          "median_absolute_error_eur": 28.045211735542466,
+          "rmse_eur": 255.03004436643667,
+          "within_20_percent": 0.4602556976097832,
+          "within_30_eur": 0.5230683713173986,
+          "p90_absolute_error_eur": 106.98388288527185
+        }
+      },
+      {
+        "fold": 1,
+        "host_fraction": 0.75,
+        "fit_rows": 2956,
+        "score_rows": 1799,
+        "train": {
+          "rows": 2956,
+          "mae_eur": 38.34497606694029,
+          "median_absolute_error_eur": 17.23444922018599,
+          "rmse_eur": 77.14580539360907,
+          "within_20_percent": 0.6018267929634641,
+          "within_30_eur": 0.6437753721244925,
+          "p90_absolute_error_eur": 89.264164528898
+        },
+        "score": {
+          "rows": 1799,
+          "mae_eur": 56.3439142980569,
+          "median_absolute_error_eur": 29.36430313789441,
+          "rmse_eur": 256.530225111374,
+          "within_20_percent": 0.44191217342968314,
+          "within_30_eur": 0.5086158977209561,
+          "p90_absolute_error_eur": 106.70856949592442
+        }
+      },
+      {
+        "fold": 1,
+        "host_fraction": 1.0,
+        "fit_rows": 4011,
+        "score_rows": 1799,
+        "train": {
+          "rows": 4011,
+          "mae_eur": 39.799753706346124,
+          "median_absolute_error_eur": 17.573389452417416,
+          "rmse_eur": 82.51196265425601,
+          "within_20_percent": 0.5973572675143356,
+          "within_30_eur": 0.6335078534031413,
+          "p90_absolute_error_eur": 90.82188029906945
+        },
+        "score": {
+          "rows": 1799,
+          "mae_eur": 55.40144110132297,
+          "median_absolute_error_eur": 27.925420306438866,
+          "rmse_eur": 254.77165083909293,
+          "within_20_percent": 0.47026125625347415,
+          "within_30_eur": 0.5219566425792107,
+          "p90_absolute_error_eur": 105.11355217290979
+        }
+      },
+      {
+        "fold": 2,
+        "host_fraction": 0.25,
+        "fit_rows": 922,
+        "score_rows": 1997,
+        "train": {
+          "rows": 922,
+          "mae_eur": 31.779108080515815,
+          "median_absolute_error_eur": 13.692759363765362,
+          "rmse_eur": 61.94192603919081,
+          "within_20_percent": 0.6876355748373102,
+          "within_30_eur": 0.6963123644251626,
+          "p90_absolute_error_eur": 75.90432130914952
+        },
+        "score": {
+          "rows": 1997,
+          "mae_eur": 53.556211091091065,
+          "median_absolute_error_eur": 31.485226843566267,
+          "rmse_eur": 96.47865710687553,
+          "within_20_percent": 0.40911367050575864,
+          "within_30_eur": 0.4847270906359539,
+          "p90_absolute_error_eur": 118.4659451120592
+        }
+      },
+      {
+        "fold": 2,
+        "host_fraction": 0.5,
+        "fit_rows": 1812,
+        "score_rows": 1997,
+        "train": {
+          "rows": 1812,
+          "mae_eur": 40.688956207209046,
+          "median_absolute_error_eur": 17.15742927789841,
+          "rmse_eur": 210.06561195706382,
+          "within_20_percent": 0.6269315673289183,
+          "within_30_eur": 0.6639072847682119,
+          "p90_absolute_error_eur": 79.61909265796517
+        },
+        "score": {
+          "rows": 1997,
+          "mae_eur": 51.69314532154099,
+          "median_absolute_error_eur": 29.072582976730104,
+          "rmse_eur": 96.96267182571339,
+          "within_20_percent": 0.41812719078617927,
+          "within_30_eur": 0.515272909364046,
+          "p90_absolute_error_eur": 110.64765963742808
+        }
+      },
+      {
+        "fold": 2,
+        "host_fraction": 0.75,
+        "fit_rows": 2840,
+        "score_rows": 1997,
+        "train": {
+          "rows": 2840,
+          "mae_eur": 41.92761534826287,
+          "median_absolute_error_eur": 19.126892628459814,
+          "rmse_eur": 198.4437290962668,
+          "within_20_percent": 0.6003521126760564,
+          "within_30_eur": 0.6338028169014085,
+          "p90_absolute_error_eur": 88.57186061504672
+        },
+        "score": {
+          "rows": 1997,
+          "mae_eur": 49.01097878221306,
+          "median_absolute_error_eur": 26.00774527657216,
+          "rmse_eur": 94.33995234069543,
+          "within_20_percent": 0.44516775162744116,
+          "within_30_eur": 0.542814221331998,
+          "p90_absolute_error_eur": 107.84952703984325
+        }
+      },
+      {
+        "fold": 2,
+        "host_fraction": 1.0,
+        "fit_rows": 3814,
+        "score_rows": 1997,
+        "train": {
+          "rows": 3814,
+          "mae_eur": 44.269645686414385,
+          "median_absolute_error_eur": 19.476875953583516,
+          "rmse_eur": 178.8199051917537,
+          "within_20_percent": 0.588883062401678,
+          "within_30_eur": 0.6263765076035658,
+          "p90_absolute_error_eur": 91.43937688017913
+        },
+        "score": {
+          "rows": 1997,
+          "mae_eur": 48.73452674470088,
+          "median_absolute_error_eur": 26.561389563401832,
+          "rmse_eur": 93.44947371012242,
+          "within_20_percent": 0.44466700050075114,
+          "within_30_eur": 0.5403104656985478,
+          "p90_absolute_error_eur": 107.1124775031865
+        }
+      },
+      {
+        "fold": 3,
+        "host_fraction": 0.25,
+        "fit_rows": 923,
+        "score_rows": 2018,
+        "train": {
+          "rows": 923,
+          "mae_eur": 38.466634769366216,
+          "median_absolute_error_eur": 12.84147698259872,
+          "rmse_eur": 182.34179714381324,
+          "within_20_percent": 0.6944745395449621,
+          "within_30_eur": 0.7009750812567714,
+          "p90_absolute_error_eur": 68.94321925552657
+        },
+        "score": {
+          "rows": 2018,
+          "mae_eur": 70.86622825449675,
+          "median_absolute_error_eur": 33.460682771874325,
+          "rmse_eur": 185.28840019868093,
+          "within_20_percent": 0.40386521308225964,
+          "within_30_eur": 0.4658077304261645,
+          "p90_absolute_error_eur": 139.9603785585478
+        }
+      },
+      {
+        "fold": 3,
+        "host_fraction": 0.5,
+        "fit_rows": 1796,
+        "score_rows": 2018,
+        "train": {
+          "rows": 1796,
+          "mae_eur": 42.624417256760815,
+          "median_absolute_error_eur": 16.30123982012433,
+          "rmse_eur": 231.3676675995657,
+          "within_20_percent": 0.6403118040089086,
+          "within_30_eur": 0.6525612472160356,
+          "p90_absolute_error_eur": 86.5281626113473
+        },
+        "score": {
+          "rows": 2018,
+          "mae_eur": 59.93877034435356,
+          "median_absolute_error_eur": 28.995224790186278,
+          "rmse_eur": 160.8949539455351,
+          "within_20_percent": 0.44697720515361744,
+          "within_30_eur": 0.5084241823587711,
+          "p90_absolute_error_eur": 115.57423367430718
+        }
+      },
+      {
+        "fold": 3,
+        "host_fraction": 0.75,
+        "fit_rows": 2829,
+        "score_rows": 2018,
+        "train": {
+          "rows": 2829,
+          "mae_eur": 42.344225803080505,
+          "median_absolute_error_eur": 17.60676870915499,
+          "rmse_eur": 202.61429410188674,
+          "within_20_percent": 0.616825733474726,
+          "within_30_eur": 0.6468716861081655,
+          "p90_absolute_error_eur": 87.29176419702473
+        },
+        "score": {
+          "rows": 2018,
+          "mae_eur": 57.17617408380627,
+          "median_absolute_error_eur": 28.913132554888932,
+          "rmse_eur": 143.6532374378498,
+          "within_20_percent": 0.4380574826560951,
+          "within_30_eur": 0.5099108027750248,
+          "p90_absolute_error_eur": 110.36837764309533
+        }
+      },
+      {
+        "fold": 3,
+        "host_fraction": 1.0,
+        "fit_rows": 3793,
+        "score_rows": 2018,
+        "train": {
+          "rows": 3793,
+          "mae_eur": 40.93920724753541,
+          "median_absolute_error_eur": 17.196138450504804,
+          "rmse_eur": 173.8429512763892,
+          "within_20_percent": 0.612180332190878,
+          "within_30_eur": 0.6506722910624835,
+          "p90_absolute_error_eur": 87.40667872925056
+        },
+        "score": {
+          "rows": 2018,
+          "mae_eur": 56.148191808511534,
+          "median_absolute_error_eur": 28.06829009161207,
+          "rmse_eur": 140.02899630035998,
+          "within_20_percent": 0.4514370664023786,
+          "within_30_eur": 0.5183349851337958,
+          "p90_absolute_error_eur": 108.39192115619495
+        }
+      }
+    ],
+    "diagnostic_only": true
+  },
+  "completed_at_utc": "2026-10-28T21:03:56.006375+00:00",
+  "artifacts": {
+    "cv_decision.json": "5884cb5485b9a2399fb83466291844fb9fc586fe4c4119512ba01d9fef32f807",
+    "cv_predictions.csv": "87cb8e2d5da31fd9536760fdedd7b173487d9cebe5d92ccb7782a181ad10343f",
+    "fold_1.json": "e6435c8ca55698d098f4a0581794b6c78a6ca96e77ca70a69ee1e19d2993d4c3",
+    "fold_2.json": "31b7f2ca8fa774ae199a1139247ba5f874c639cb9713e91a2230ce2cbb898018",
+    "fold_3.json": "33c78f3557be942a24cf7e45dd66c07fdd275ff06094b6e8f4b386af0c6ef8ee",
+    "protocol.json": "2f5a52e25b079bb5e9482c8c919638326b1821c66ab86c83f6bac50c6ec5d25f",
+    "purpose_review.json": "f2a9788f6566a55304964d102b4100410c9c51af7a44a26aba99f54b0124082a",
+    "run_started.json": "c6a469bf84c07b2c97819c77ee647e4d2ed4d5161e375f2d445f7c53a225dd1f",
+    "same_features_different_offers.csv": "8d84b3143b43c1950aa557d1055d47262ee8792c8af5830ee93166e14588dd8d"
+  }
+}

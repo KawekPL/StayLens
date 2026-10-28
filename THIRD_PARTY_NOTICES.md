@@ -24,4 +24,6 @@ Dane mapy © [OpenStreetMap contributors](https://www.openstreetmap.org/copyrigh
 
 ## Biblioteki i fonty
 
+Eksperymenty S03b/S03c używają CatBoost 1.2.10 (Apache License 2.0, według metadanych zainstalowanego pakietu); [projekt i dokumentacja](https://github.com/catboost/catboost). Jest to opcjonalna zależność badawcza, bez podmiany wykonawczego modelu S02. Zależności badawcze i ich hashe zapisano w requirements-research.lock.txt.
+
 React/React DOM oraz Vite: MIT. Leaflet: BSD-2-Clause. Lucide: ISC. Dokładne wersje i zależności: frontend/package-lock.json, licencje w zainstalowanych pakietach. DM Sans i Manrope dostarczane przez Google Fonts; rodziny na licencji SIL Open Font License. Przed finalnym wydaniem fonty można hostować lokalnie wraz z licencjami. Geometria znaku StayLens i ilustracja miasta w interfejsie są własnymi elementami SVG projektu.

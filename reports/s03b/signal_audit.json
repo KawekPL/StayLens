@@ -1,0 +1,22 @@
+{
+  "scope": "train only; descriptive diagnostics, not validation or a performance claim",
+  "rows": 5814,
+  "unique_form_feature_vectors": 5533,
+  "repeated_feature_groups": 162,
+  "rows_in_repeated_feature_groups": 443,
+  "repeated_groups_with_different_prices": 125,
+  "median_price_range_inside_repeated_groups_eur": 11.75,
+  "minimum_training_mae_for_deterministic_same_18_inputs_eur": 1.830187478500172,
+  "minimum_mae_within_repeated_rows_eur": 24.019661399548532,
+  "lower_bound_caveat": "In-sample exact-collision lower bound only. Does not estimate irreducible error on new properties, and does not prove that better models or features cannot improve.",
+  "minimum_nights_counts": {
+    "up_to_14": 4485,
+    "15_to_27": 50,
+    "28_or_more": 1183,
+    "missing": 96
+  },
+  "title_purpose_flags": 5,
+  "flags_are_review_signals_not_proven_invalid_records": true,
+  "no_rows_removed_or_labels_changed": true,
+  "test_evaluated": false
+}

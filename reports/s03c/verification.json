@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "rows": 5814,
+  "new_inputs": 16,
+  "feature_count": 40,
+  "same_targets_and_host_folds": true,
+  "original_control": true,
+  "full_and_empty_new_field_metrics_checked": true,
+  "frozen_code_and_outputs": true,
+  "validation_evaluated": false,
+  "test_evaluated": false,
+  "promoted": false
+}
