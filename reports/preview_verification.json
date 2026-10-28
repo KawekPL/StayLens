@@ -1,0 +1,10 @@
+{
+  "public_rows_checked": 5814,
+  "unique_ids": true,
+  "only_training_hosts": true,
+  "no_host_group_overlap": true,
+  "no_public_host_identity_fields": true,
+  "source_checksums": "verified by prepare_preview.py",
+  "browser_qa": "not performed: local browser use disabled in Work settings",
+  "model_trained": false
+}

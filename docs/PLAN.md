@@ -1,0 +1,44 @@
+# StayLens — zakres i realizacja do 3 listopada
+
+Decyzja: użytkownik zaakceptował temat 28.10.2026. Data 03.11 jest jego terminem pracy. Formalny termin z ogłoszenia prowadzącego to 01.01.2027 dla możliwości oceny 5 i rundy poprawek. Nie gwarantujemy oceny.
+
+## Potrzeba i odbiorca
+
+Osoba porównująca noclegi w Berlinie chce zobaczyć ofertę na tle innych o zbliżonych cechach, aby szybciej ocenić cenę. Główny przepływ: filtry → mapa/oferty → szczegóły → porównanie do 3 ofert → cena z modelu i kontekst błędu. Odrębny mały formularz umożliwi oszacowanie ceny noclegu o zadanych parametrach.
+
+Jedno miasto i jeden problem regresji. Bez kont użytkowników, płatności, rezerwacji, automatycznego pobierania prywatnych danych ani udawania aktualnej dostępności. Polski interfejs, źródłowe nazwy ofert pozostają w swoim języku. Nie potrzeba NLP ani tłumaczenia zbioru treningowego.
+
+## Architektura docelowa
+
+Przeglądarka → React/Leaflet → FastAPI → kontrolowany pipeline scikit-learn.
+
+Jeden obraz Docker: frontend zbudowany do plików statycznych, backend serwujący te pliki i `/api`. Model przygotowany offline i dołączony jako wersjonowany artefakt; żadnego treningu przy starcie aplikacji. Zweryfikowany, zredukowany katalog ofert obsługiwany przez API. Paginacja/limity danych, walidacja wejścia, health endpoint. Żadnego API tłumaczącego tekst.
+
+Azure Container Apps + istniejący wzorzec ACR/Log Analytics. Terraform zarządza zasobami i obrazem; GitHub Actions CI buduje/testuje, CD przekazuje digest obrazu do Terraform. Dokładne ponowne wykorzystanie zasobów wymaga planu stanu i kosztów; nowe zasoby i wdrożenie StayLens nie zostały jeszcze wykonane. Unikamy dublowania kosztu rejestru kontenerów. Konfiguracja SupportRouter wskazuje rozbieżność 10 EUR vs zgoda 10 USD; trzeba ją poprawić w ramach prac nad infra.
+
+## Harmonogram
+
+| Termin | Zakres | Kryterium |
+| --- | --- | --- |
+| 28.10 | S01 — dane, makieta klikalna, zakres | Źródło/licencja/podział zapisane, interfejs uruchamia się, użytkownik może ocenić kierunek |
+| 29.10 | S02 — pilot ML i API | Baseline + jeden kandydat, grupowana walidacja, jawny błąd, odłożony test, kontrakt API |
+| 30.10 | S03 — pełna integracja | UI korzysta z tego samego pipeline co ocena, formularz oszacowania i porównania, odpowiedzi na błędy |
+| 31.10 | S04 — dostawa | Rzeczywisty build Docker, Terraform, CI/CD i wdrożenie Azure |
+| 01.11 | S05 — odbiór | Testy głównych ścieżek desktop/mobile, ograniczenia, monitoring i poprawki |
+| 02.11 | S06 — pakiet | README, data/model card, wyniki końcowe, dostęp prowadzącego, demo i szkic maila |
+| 03.11 | Rezerwa | Ostatnie poprawki i wysłanie przez użytkownika |
+
+Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md.
+
+## Wymagania kursu
+
+Ogłoszenie użytkownika oraz L01 s.5 wymagają frontendu (Streamlit **lub inny**), Dockera, chmury, CI/CD i Terraform oraz jakości kodu, Gita i czytelnej logiki. Wszystkie pięć elementów musi mieć dowody rzeczywistego użycia w StayLens. Stare wdrożenie jest materiałem do adaptacji, nie dowodem wdrożenia nowej aplikacji.
+
+Źródło lokalne: C:/Users/szymo/Documents/ChatGPT/PJATK/SUML/tekst_zrodlowy/SUML_2627_L01_online.txt, PAGE 5. Ogłoszenie w rozmowie jest źródłem terminu i wymogów maila (repozytorium, działający link, autorzy). L02 s.13 uzasadnia opis użytkownika, potrzeby i korzyści. To nie jest odrębna rubryka punktowa.
+
+## Odbiór
+
+- Wygląd i przepływ zrozumiałe dla użytkownika, działające filtry/mapa/porównanie, czytelność na telefonie.
+- Model faktycznie wytrenowany, porównany z bazą, brak użycia testu do wyboru. Wyniki bez obietnic niepopartych oceną.
+- Ostateczny adres działa, repo dostępne prowadzącemu, kontener i IaC/CI/CD odtwarzalne.
+- Hosting dostępny również w czasie oceny: historyczny grant Azure wygasa 17.11.2026, odnowienie niepotwierdzone. Odbiór 03.11 nie oznacza gwarancji hostingu do stycznia.

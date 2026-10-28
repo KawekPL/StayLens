@@ -1,0 +1,15 @@
+node_modules/
+frontend/dist/
+.venv/
+.local/
+data/raw/
+data/prepared/
+artifacts/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.tfstate*
+.terraform/
+*.tfvars
