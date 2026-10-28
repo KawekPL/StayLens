@@ -1,0 +1,21 @@
+{
+  "/health": 200,
+  "/api/model": 200,
+  "/api/schema": 200,
+  "/openapi.json": 200,
+  "prediction_status": 200,
+  "prediction_latency_ms": 47.56,
+  "example_response": {
+    "estimated_price_eur": 181.3,
+    "currency": "EUR",
+    "unit": "night",
+    "model_version": "s02-v1",
+    "model_name": "hist_gradient_boosting",
+    "snapshot": "2026-09-19",
+    "development_mae_eur": 53.61,
+    "warnings": [],
+    "explanation": "Cena ofertowa za noc dla historycznego Berlina. Błąd walidacyjny dotyczy całego zbioru, nie jest przedziałem pewności tej oferty. Brak informacji o terminie i dostępności."
+  },
+  "reject_target_status": 422,
+  "frontend_http": 200
+}

@@ -10,7 +10,7 @@ Grupa = `host_id`. SHA256(`staylens-v1:` + host_id), pierwsze 8 znaków hex modu
 
 Manifest z URL, hashami, filtrami i schematem: [data_preflight.json](../reports/data_preflight.json). Surowe pliki nie są w Git. `prepare_preview.py` kontroluje sumy i odmawia cichej zamiany źródła.
 
-## Pierwszy eksperyment (jeszcze niewykonany)
+## Pierwotny plan eksperymentu S02 (zrealizowany poniżej)
 
 - Cel: `price`, cena ofertowa za noc w EUR. Model nie przewiduje popytu, przychodu ani rentowności.
 - Kandydaci cech do audytu na train: lokalizacja, dzielnica, typ pokoju/nieruchomości, liczba gości, sypialni/łóżek/łazienek, wybrane udogodnienia. Dane opinii mogą być dodatkowymi cechami dla istniejącej oferty, z konsekwentnym traktowaniem braków dla nowej.
@@ -25,6 +25,16 @@ Manifest z URL, hashami, filtrami i schematem: [data_preflight.json](../reports/
 ## Co obecnie wyświetla UI
 
 Mediana wyników obejmuje przefiltrowane rekordy train. „Mediana dzielnicy” obejmuje inne oferty tej samej dzielnicy i typu, z wyłączeniem wybranej oferty. Przy mniej niż 5 porównywalnych rekordach brak procentowego odniesienia. Nie jest to wycena ML ani dowód okazji; nie kontroluje wszystkich różnic w standardzie czy terminie. Oceny i liczby opinii pochodzą ze źródła, nie zostały wygenerowane.
+
+## Wykonany eksperyment S02 — 28.10.2026
+
+Zamrożono [protokół](../configs/s02_protocol.json), wykonano audyt cech train, porównanie mediany segmentów z jednym HistGradientBoostingRegressor, trzy grupowane podziały train oraz osobną walidację. Bez logarytmowania celu, bez usuwania skrajnych cen, bez cech opinii/ocen i bez przeszukiwania hiperparametrów. Lista 18 cech w protokole. Kolumnę liczby łazienek, pustą we wszystkich wierszach train, odtworzono z bathrooms_text; zostały 4 braki.
+
+Boosting spełnił wszystkie kryteria: >=10% redukcji MAE validation, RMSE <=110% baseline, brak pogorszenia mediany błędu oraz poprawa zbiorczego MAE CV. Wynik validation: MAE 53,61 EUR vs 67,87 EUR (21,0% poprawy), mediana błędu 27,46 vs 39,00 EUR. CV: 54,90 vs 69,23 EUR. Test nadal nieoceniany. Dane przedziałów cenowych ujawniają duży błąd w drogich ofertach; Hotel room i Shared room mają bardzo małą próbę oceny.
+
+Pełne liczby, grupy, bootstrap, analiza powtórzeń cech i ograniczenia: [raport S02](../reports/s02/REPORT.md). Parametry i wyniki tego eksperymentu zachować; dalsze zmiany wymagają nowej wersji protokołu. Ostateczna pojedyncza ocena testowa dopiero po zamrożeniu rozwiązania, bez używania jej do kolejnego strojenia.
+
+W S03 katalog pokazuje oferty train, dlatego należy użyć dla nich zapisanych przewidywań out-of-fold, a nie przewidywań pełnego modelu na własnym treningu. Formularz nowych parametrów korzysta z wybranego modelu pełnego train. To dwie jawnie oznaczone ścieżki tego samego ustalonego algorytmu/kontraktu, a nie tożsamy dopasowany artefakt. Żadna nie daje gwarancji „okazji” ani indywidualnego przedziału pewności.
 
 ## Ograniczenia
 

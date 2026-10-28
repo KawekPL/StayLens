@@ -30,6 +30,8 @@ Azure Container Apps + istniejący wzorzec ACR/Log Analytics. Terraform zarządz
 
 Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md.
 
+S02 ukończony wcześniej, 28.10: [porównanie modeli](../reports/s02/REPORT.md). Wybrany boosting (MAE validation 53,61 EUR vs 67,87 EUR). S03 wykorzysta API pełnego modelu dla nowych parametrów oraz zapisane przewidywania out-of-fold dla ofert train z katalogu. Test końcowy pozostaje do odbioru po zamrożeniu rozwiązania. Szczególnie duże błędy dla drogich ofert oraz małe próby hotel/shared należy pokazać w UI.
+
 ## Wymagania kursu
 
 Ogłoszenie użytkownika oraz L01 s.5 wymagają frontendu (Streamlit **lub inny**), Dockera, chmury, CI/CD i Terraform oraz jakości kodu, Gita i czytelnej logiki. Wszystkie pięć elementów musi mieć dowody rzeczywistego użycia w StayLens. Stare wdrożenie jest materiałem do adaptacji, nie dowodem wdrożenia nowej aplikacji.

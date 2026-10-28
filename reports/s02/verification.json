@@ -1,0 +1,16 @@
+{
+  "protocol_and_code_hashes_match": true,
+  "test_evaluated": false,
+  "cv_rows_hosts_targets_metrics_match": true,
+  "cv_reproduced_exactly": true,
+  "validation_rows_hosts_targets_metrics_match": true,
+  "validation_reproduced_exactly": true,
+  "train_validation_host_overlap": 0,
+  "matching_feature_rows": 2,
+  "sensitivity_mae_excluding_feature_matches": {
+    "segment_median": 67.92793399638336,
+    "hist_gradient_boosting": 53.63809139764913
+  },
+  "sensitivity_does_not_change_primary_selection": true,
+  "prediction_interval_claimed": false
+}

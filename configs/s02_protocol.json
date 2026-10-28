@@ -1,0 +1,50 @@
+{
+  "experiment_id": "s02-v1",
+  "frozen_before_fit": true,
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "target": "positive listing price in EUR per night, untrimmed",
+  "split": "existing SHA256 host split, seed prefix staylens-v1; train/validation only; test disabled",
+  "features": {
+    "categorical": ["district", "room_type", "property_type"],
+    "numeric": ["latitude", "longitude", "accommodates", "bedrooms", "beds", "bathrooms", "minimum_nights", "wifi", "kitchen", "washer", "air_conditioning", "elevator", "parking", "workspace", "self_check_in"]
+  },
+  "baseline": {
+    "name": "segment_median",
+    "min_segment_size": 10,
+    "hierarchy": [["district", "room_type", "capacity_bucket"], ["district", "room_type"], ["room_type", "capacity_bucket"], ["room_type"]],
+    "fallback": "training global median",
+    "capacity_buckets": [2, 4, 6, 16]
+  },
+  "candidate": {
+    "name": "hist_gradient_boosting",
+    "loss": "absolute_error",
+    "learning_rate": 0.05,
+    "max_iter": 250,
+    "max_leaf_nodes": 15,
+    "max_depth": 6,
+    "min_samples_leaf": 30,
+    "l2_regularization": 10.0,
+    "early_stopping": false,
+    "random_state": 42,
+    "target_transform": "none",
+    "categorical_encoding": "OrdinalEncoder fitted within each training fold; unknown category=-1 treated as missing; native categorical splits"
+  },
+  "cv": {"n_splits": 3, "shuffle": true, "random_state": 42, "group": "host_id", "data": "train only"},
+  "selection": {
+    "minimum_validation_mae_reduction_fraction": 0.10,
+    "maximum_validation_rmse_ratio": 1.10,
+    "validation_median_absolute_error_must_not_worsen": true,
+    "cv_pooled_mae_must_improve": true,
+    "fallback": "segment_median",
+    "no_parameter_search": true
+  },
+  "metrics": ["mae_eur", "median_absolute_error_eur", "rmse_eur", "within_20_percent", "within_30_eur", "p90_absolute_error_eur"],
+  "diagnostics": {
+    "segments": ["room_type", "district", "price_band", "missing_feature_count"],
+    "price_bands_eur": [0, 100, 200, 400, 1000000000],
+    "host_cluster_bootstrap_replicates": 1000,
+    "bootstrap_seed": 42,
+    "prediction_intervals": "not produced; validation error is not a per-listing confidence interval",
+    "test_evaluation": "not permitted in S02"
+  }
+}
