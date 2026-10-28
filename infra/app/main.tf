@@ -4,7 +4,6 @@ resource "azurerm_container_app" "staylens" {
   container_app_environment_id = var.environment_id
   revision_mode                = "Single"
   workload_profile_name        = "Consumption"
-  max_inactive_revisions       = 2
   tags                         = { project = "StayLens", environment = "student" }
   identity {
     type         = "UserAssigned"

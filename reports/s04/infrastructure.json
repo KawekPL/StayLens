@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-28",
+  "subscription_type": "Azure for Students",
+  "spending_limit": "On",
+  "grant_status": "Active",
+  "grant_expiration_utc": "2026-11-17T20:33:09.1987585Z",
+  "estimated_credit_balance_usd": 98.06,
+  "billing_currency": "EUR",
+  "eur_per_usd_from_credit_api": 0.8799718409010912,
+  "budget": {
+    "name": "budget-staylens-student-total",
+    "scope": "entire subscription, including shared resources and SupportRouter",
+    "amount_eur": 8,
+    "actual_cost_alert_thresholds_percent": [80, 100],
+    "hard_monthly_limit": false
+  },
+  "bootstrap_apply": {"created": 17, "changed": 0, "destroyed": 0},
+  "bootstrap_state_migrated_to_private_blob": true,
+  "initial_bootstrap_convergence_exit_code": 0,
+  "oidc_subject_correction": {
+    "created": 0,
+    "changed": 1,
+    "destroyed": 0,
+    "subject": "repo:KawekPL@317614566/StayLens@1437674578:ref:refs/heads/main"
+  },
+  "state_storage": {
+    "public_blob_access": false,
+    "shared_key_access": false,
+    "minimum_tls_version": "TLS1_2",
+    "separate_bootstrap_and_app_containers": true
+  },
+  "shared_log_analytics": {"retention_days": 30, "daily_quota_gb": 0.1},
+  "new_acr_created": false,
+  "new_log_analytics_created": false,
+  "supportrouter_image_after_bootstrap": "sha256:d7214acc17af711b759500ba17725de72704bfb6f2202c62d652c10b2b4ee2ff",
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "original_research_modules_changed": false,
+  "final_test_evaluated": false
+}

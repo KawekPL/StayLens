@@ -147,13 +147,23 @@ jobs:
           echo "APP_URL=$(terraform -chdir=infra/app output -raw url)" >> "$GITHUB_ENV"
       - name: Check public HTTPS, catalogue, model and form
         run: python scripts/smoke_deployment.py "$APP_URL" --revision "$GITHUB_SHA" --output .local/azure-smoke.json
-      - name: Check infrastructure converged
-        run: terraform -chdir=infra/app plan -input=false -detailed-exitcode -no-color
+      - name: Check deployed configuration and narrow Azure readback defaults
+        run: |
+          set +e
+          terraform -chdir=infra/app plan -input=false -detailed-exitcode -out=convergence.tfplan -no-color
+          result=$?
+          set -e
+          if [ "$result" != 0 ] && [ "$result" != 2 ]; then exit "$result"; fi
+          terraform -chdir=infra/app show -json convergence.tfplan > .local/convergence.plan.json
+          az containerapp show -g "$TF_VAR_resource_group_name" -n staylens -o json > .local/observed-app.json
+          python scripts/check_deployment_drift.py .local/convergence.plan.json .local/observed-app.json "$TF_VAR_image_digest" --output .local/effective-configuration.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: deployment-evidence
-          path: .local/azure-smoke.json
+          path: |
+            .local/azure-smoke.json
+            .local/effective-configuration.json
           include-hidden-files: true
           retention-days: 30
       - name: Summarize deployment
