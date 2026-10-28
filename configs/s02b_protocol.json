@@ -1,0 +1,67 @@
+{
+  "experiment_id": "s02b-v1",
+  "frozen_before_fit": true,
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "parent_experiment": "s02-v1; original files and deployed API preserved",
+  "purpose": "Feature engineering and controlled augmentation for expensive listing prices",
+  "prior_knowledge": "S02 train/CV/validation results and tail diagnosis already observed. This is a development experiment, not a fresh unbiased validation study.",
+  "split": "unchanged host hash split; test prohibited",
+  "cv": {"n_splits": 3, "shuffle": true, "random_state": 42},
+  "base_hyperparameters": "configs/s02_protocol.json candidate; no search beyond the six declared variants",
+  "feature_engineering": {
+    "additional_categorical": ["neighbourhood"],
+    "additional_amenities": ["dishwasher", "clothes_dryer", "outdoor_space", "private_outdoor_space", "bathtub", "hot_tub", "sauna", "waterfront", "water_view", "gym", "fireplace", "free_onsite_parking", "swimming_pool"],
+    "additional_raw": ["bathroom_shared"],
+    "derived": ["guests_per_bedroom", "beds_per_guest", "bathrooms_per_guest", "reference_distance_km", "missing_basic_count"],
+    "reference_point_lat_lon": [52.52, 13.405],
+    "no_target_encoding": true,
+    "no_text_photos_reviews_or_invented_floor_area": true
+  },
+  "variants": [
+    {"name": "s02_control", "features": "original", "overrides": {}, "augmentation": "none"},
+    {"name": "engineered", "features": "engineered", "overrides": {}, "augmentation": "none"},
+    {"name": "engineered_leaf15", "features": "engineered", "overrides": {"min_samples_leaf": 15}, "augmentation": "none"},
+    {"name": "engineered_squared", "features": "engineered", "overrides": {"min_samples_leaf": 15, "loss": "squared_error"}, "augmentation": "none"},
+    {"name": "engineered_repeat", "features": "engineered", "overrides": {"min_samples_leaf": 15}, "augmentation": "repeat"},
+    {"name": "engineered_masked", "features": "engineered", "overrides": {"min_samples_leaf": 15}, "augmentation": "masked"}
+  ],
+  "augmentation": {
+    "tail_threshold_eur": 400,
+    "copies_per_tail_row": 1,
+    "masked_amenity_fraction": 0.25,
+    "seed": 20261028,
+    "timing": "only after CV split, from fit hosts only; never score/validation/test",
+    "label_policy": "retain parent's observed price exactly; no new price labels or coordinate jitter",
+    "semantics": "repeat = duplicate observation for weighting; masked = synthetic incomplete view of a real observation, not a new property",
+    "provenance": ["is_augmented", "augmentation_kind", "parent_listing_id", "host_id", "masked_features"],
+    "public_catalog": "never include augmented records"
+  },
+  "prediction_floor_eur": 0.01,
+  "cv_selection": {
+    "all_mae_max_ratio": 1.0,
+    "common_mae_max_ratio": 1.03,
+    "tail_mae_max_ratio": 1.0,
+    "rmse_max_ratio": 1.10,
+    "median_error_max_ratio": 1.05,
+    "minimum_all_mae_improvement": 0.03,
+    "or_minimum_tail_mae_improvement": 0.10,
+    "ranking": "eligible candidate with minimum pooled real-data MAE, then name; otherwise control"
+  },
+  "validation_gate": {
+    "evaluate_only": "control and preselected CV winner; never switch to another candidate using validation",
+    "all_mae_max_ratio": 1.02,
+    "common_mae_max_ratio": 1.05,
+    "tail_mae_max_ratio": 0.95,
+    "rmse_max_ratio": 1.10,
+    "median_error_max_ratio": 1.05,
+    "failure": "retain S02 model; preserve all results without retuning"
+  },
+  "evaluation": {
+    "rows": "real, unaugmented, untrimmed held-out rows only",
+    "segments": ["all", "up_to_400", "over_400", "over_1000", "room_type", "district"],
+    "bootstrap_host_replicates": 1000,
+    "bootstrap_seed": 42,
+    "test_evaluated": false,
+    "no_prediction_interval": true
+  }
+}

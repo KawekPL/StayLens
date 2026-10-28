@@ -38,4 +38,14 @@ W S03 katalog pokazuje oferty train, dlatego należy użyć dla nich zapisanych 
 
 ## Ograniczenia
 
+### Eksperyment S02b — cechy i augmentacja
+
+28.10.2026, po analizie słabości drogich ofert, użytkownik poprosił o sztuczne dane i data engineering. W osobnym eksperymencie rozszerzono 18 cech do 38 oraz porównano sześć z góry ustalonych wariantów. Augmentacja oznaczała maskowanie części udogodnień w dodatkowej wersji istniejącej drogiej oferty, z zachowaniem jej ceny i współrzędnych. Osobny wariant powtarzał te oferty bez maskowania. Każdy dodał 263 wiersze, nie 263 nowe obserwacje rynku. Wszystko generowane wewnątrz części fit po podziale gospodarzy; ocena wyłącznie na danych rzeczywistych.
+
+Najniższe ogólne MAE CV uzyskały cechy z mniejszymi liśćmi (54,33 vs 54,90 EUR), ale wynik drogich ofert pogorszył się (397,30 vs 394,00 EUR). Błąd kwadratowy pomógł drogim ofertom kosztem większości danych. Maskowane wersje nie dały wymaganej poprawy. Żaden wariant nie spełnił zamrożonych kryteriów, więc nadal obowiązuje S02. Nowych kandydatów nie oceniano na validation; test pozostaje odłożony. Wyniki nie są oceną wszystkich możliwych metod generowania danych.
+
+[Pełny raport i wykres S02b](../reports/s02b/REPORT.md), [protokół](../configs/s02b_protocol.json), [weryfikacja pochodzenia i metryk](../reports/s02b/verification.json). Przygotowane CSV są w ignorowanym data/prepared/s02b-v1, z jawnymi flagami pochodzenia; nie trafiają do publicznego katalogu. Zgoda na badanie sztucznych danych nie oznacza przedstawiania ich jako prawdziwych ofert.
+
+### Ograniczenia źródła i zastosowania
+
 Historyczny snapshot, bez bieżącej dostępności. Lokalizacje są anonimizowane/przybliżone. Danych zagranicznych nie przedstawiamy jako polskich. Zdjęcia pozostają pod oryginalnymi URL i mogą nie działać; UI ma zastępstwo. Zbiór, model i UI nie są afiliowane z Airbnb. Przed wdrożeniem trzeba ocenić możliwość uogólniania, powtarzalne oferty i zakres właściwych predykcji; sam duży zbiór nie dowodzi braku overfittingu.

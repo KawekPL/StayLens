@@ -1,0 +1,30 @@
+{
+  "source_protocol_and_code_hashes_match": true,
+  "s02_prediction_files_unchanged": true,
+  "augmentation": {
+    "repeat": {
+      "real_rows": 5814,
+      "added_rows": 263,
+      "new_hosts": 0,
+      "price_or_coordinate_changes": 0,
+      "parent_provenance_verified": true
+    },
+    "masked": {
+      "real_rows": 5814,
+      "added_rows": 263,
+      "new_hosts": 0,
+      "price_or_coordinate_changes": 0,
+      "parent_provenance_verified": true
+    }
+  },
+  "fold_parent_isolation_verified": true,
+  "real_cv_rows": 5814,
+  "real_validation_rows": 1108,
+  "augmented_scoring_rows": 0,
+  "test_evaluated": false,
+  "cv_metrics_recomputed": true,
+  "selection_recomputed": true,
+  "selected_variant": "s02_control",
+  "candidate_validation_not_run": true,
+  "manifest_model_hash_matches": true
+}

@@ -56,3 +56,15 @@ Użytkownik zlecił samodzielne wykonanie całego etapu. Protokół, parametry i
 Wyniki: [reports/s02/REPORT.md](../reports/s02/REPORT.md). Odtwarzanie/API: [API_AND_REPRODUCTION.md](API_AND_REPRODUCTION.md).
 
 **Kolejny etap S03:** podłączenie formularza i szczegółów/porównania do modelu, API katalogu i paginacja, obsługa ładowania/błędów oraz ograniczeń. Dla katalogu ofert train wykorzystać zapisane przewidywania out-of-fold (bez gospodarza danej oferty w treningu), dla nowych parametrów pełny model train. Zmienić etykiety „bez modelu” dopiero po działającej integracji. Następnie S04 Docker/GitHub/CI/CD/Terraform/Azure, S05 odbiór i odłożony test po zamrożeniu modelu, S06 pakiet oraz dostęp prowadzącego. Termin 03.11 bez zmian.
+
+## 28 października 2026 — S02b ukończony, model S02 zachowany
+
+Na prośbę użytkownika wykonano data engineering i kontrolowany eksperyment ze sztucznymi danymi. Dodano wersjonowany kontrakt 38 cech: mniejszy obszar Berlina, 13 udogodnień, wspólna łazienka, proporcje pojemności, dystans do stałego punktu i brakujące cechy. Nie zmieniano kontraktu S02 w działającym API.
+
+Przygotowano 263 maskowane wersje prawdziwych drogich ofert i osobny kontrolny zbiór 263 dokładnych powtórzeń. Każdy wariant pełnego treningu ma 6077 wierszy, ale nadal tylko 5814 rzeczywistych obserwacji. Ceny i współrzędne niezmienione, parent_listing_id/host_id/rodzaj maskowania zachowane lokalnie. W CV generowanie zawsze po podziale, tylko z gospodarzy fit. Zero sztucznych wierszy w ocenie i publicznym katalogu.
+
+Porównano 6 wcześniej ustalonych wariantów na 3-fold GroupKFold. MAE ogólne / ponad 400 EUR: kontrola S02 54,90 / 394,00; cechy 54,47 / 397,53; cechy + min. 15 przykładów w liściu 54,33 / 397,30; błąd kwadratowy 60,96 / 340,41; powtarzanie 55,32 / 376,54; maskowanie 54,75 / 395,00. Żaden nie spełnił kryteriów łączących poprawę i ochronę pozostałych ofert. Nie wybierano nowego kandydata na validation; sprawdzono tylko zgodność kontroli S02 z zapisanymi przewidywaniami. Test końcowy nadal nieoceniany. Nie zmieniono progów po wynikach.
+
+37 testów przeszło, 0 pominięć; niezależna kontrola pochodzenia wszystkich dodatkowych wierszy, rozdzielenia foldów, metryk, wyboru i hashy poprawna. Istniejące ostrzeżenie upstream TestClient/httpx pozostaje takie jak w S02. Wygląd/UI/API i chmura niezmienione. Artefakty i przygotowane CSV poza Git; kod, manifesty, protokół, raport i wykres w repo. Szczegóły: [raport S02b](../reports/s02b/REPORT.md).
+
+Następna zaplanowana praca S03 korzysta z S02. S02b nie dostarczył podstaw do zastąpienia modelu. Dalsze badania wymagają osobnego protokołu; warto szukać rzeczywistych informacji o standardzie/powierzchni lub kolejnych prawdziwych obserwacji. Nie przedstawiać powielania lub maskowania jako zwiększenia liczby niezależnych obserwacji rynku.

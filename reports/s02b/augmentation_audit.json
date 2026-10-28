@@ -1,0 +1,18 @@
+{
+  "repeat": {
+    "real_rows": 5814,
+    "added_rows": 263,
+    "real_hosts": 3114,
+    "new_hosts_added": 0,
+    "new_price_labels": 0,
+    "evaluation_contains_augmented_rows": false
+  },
+  "masked": {
+    "real_rows": 5814,
+    "added_rows": 263,
+    "real_hosts": 3114,
+    "new_hosts_added": 0,
+    "new_price_labels": 0,
+    "evaluation_contains_augmented_rows": false
+  }
+}

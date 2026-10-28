@@ -9,6 +9,7 @@ Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Ber
 - Wskaźniki w obecnym podglądzie są medianami cen; integracja z modelem jest kolejnym etapem S03.
 - **Model ML wytrenowany i porównany:** boosting MAE 53,61 EUR, mediana segmentów 67,87 EUR na 1108 ofertach walidacyjnych (poprawa 21%). Grupowane CV: 54,90 vs 69,23 EUR. Test końcowy nadal nieoceniany. [Wyniki i ograniczenia](reports/s02/REPORT.md).
 - FastAPI gotowe lokalnie: schemat, walidacja wejścia, predykcja z zapisanego modelu, metadane i health endpoint. Docker i wdrożenie nowej aplikacji pozostają do wykonania.
+- Dodatkowy eksperyment S02b: 38 cech, augmentacja i 6 wariantów. Żaden nie spełnił kryteriów zastąpienia S02; obecny model zachowany. [Raport S02b](reports/s02b/REPORT.md). Łącznie 37 testów backendu przeszło.
 - Build, testy funkcji i odczyt HTTP sprawdzone. Po naprawie startu 28.10 potwierdzono w przeglądarce wyświetlanie ofert/mapy, filtr Mitte, szczegóły i reset. Pełny odbiór UI/mobile jeszcze niewykonany.
 
 ## Uruchomienie
@@ -70,6 +71,7 @@ npm.cmd run build
 - [Atrybucja źródeł](THIRD_PARTY_NOTICES.md)
 - [Raport wstępnej kontroli danych](reports/data_preflight.json)
 - [Porównanie modeli S02](reports/s02/REPORT.md)
+- [Data engineering i sztuczne wersje ofert — S02b](reports/s02b/REPORT.md)
 - [API, instalacja i odtwarzanie](docs/API_AND_REPRODUCTION.md)
 
 Źródło: [Inside Airbnb](https://insideairbnb.com/get-the-data/), CC BY 4.0. Ceny w EUR, historyczne ceny ofertowe, bez potwierdzenia dostępności i przychodów. Lokalizacje są przybliżone. StayLens nie jest powiązany z Airbnb. Zdjęcia ładowane z oryginalnych linków nie są kopiowane do projektu; prawa do nich pozostają po stronie właścicieli.
