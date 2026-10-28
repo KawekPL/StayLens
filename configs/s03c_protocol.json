@@ -1,0 +1,18 @@
+{
+  "experiment_id": "s03c-v1",
+  "frozen_before_fit": true,
+  "prior_knowledge": "S02/S02b/S02c known; first two complete S03b folds and part of third seen: algorithm-only gains small. This separate, bounded final hypothesis tests CatBoost with existing richer Inside Airbnb attributes. No threshold or earlier result is changed.",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "cv": {"n_splits": 3, "shuffle": true, "random_state": 42},
+  "source": "Only existing pinned Inside Airbnb. No Doorstep, synthetic observations, removed expensive rows, text embeddings or target-derived inputs.",
+  "features": "Original 18, 13 extra amenities and shared-bathroom flag from S02b, two scope-specific declared areas from S02c, five S03b derived features, deterministic coordinate grid floor(lat*50)/floor(lon*50). Total 40. All available from an extended form, with unknowns preserved. Raw neighbourhood omitted to avoid geocoding/train-serving mismatch.",
+  "variants": [
+    {"name": "rich_catboost_mae", "loss": "MAE", "target": "identity"},
+    {"name": "rich_catboost_log", "loss": "RMSE", "target": "log1p"}
+  ],
+  "catboost_parameters": {"iterations": 900, "depth": 6, "learning_rate": 0.04, "l2_leaf_reg": 10, "random_seed": 42, "thread_count": 2, "verbose": false, "allow_writing_files": false, "task_type": "CPU", "boosting_type": "Ordered"},
+  "selection": "Identical CV and validation gates to frozen configs/s03b_protocol.json; baseline always original S02. At most one CV winner evaluated on validation. Do not try runner-up after validation failure.",
+  "missing_new_inputs_gate": {"max_mae_ratio_to_s02": 1.03, "min_within20_difference_to_s02": -0.01, "procedure": "Score every held-out row again with all 16 newly requested values unknown, using the same fitted model; no retraining on score rows"},
+  "test_evaluated": false,
+  "stopping_rule": "Finish these two candidates then stop research for this iteration. If neither qualifies, keep S02 and explicitly report that useful precision was not achieved. No more candidate or threshold changes in this iteration."
+}
