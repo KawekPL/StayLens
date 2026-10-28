@@ -62,4 +62,10 @@ resource "azurerm_container_app" "staylens" {
       }
     }
   }
+  lifecycle {
+    # In Single mode Azure routes all traffic to the active revision, and can
+    # omit traffic_weight on GET (also observed on the existing shared setup).
+    # Keep probes/scaling/image tracked; ignore only this redundant API field.
+    ignore_changes = [ingress[0].traffic_weight]
+  }
 }

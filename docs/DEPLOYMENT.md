@@ -43,7 +43,7 @@ W drugiej konsoli: `py -3.12 scripts/smoke_deployment.py http://127.0.0.1:8080`.
 1. Świeży Linux runner pobiera zweryfikowane artefakty; instaluje pełny lock badawczy, sprawdza Ruff, wszystkie testy Python (zero pominięć), testy JS i build frontendu.
 2. Waliduje Terraform bez uprawnień chmurowych. Buduje obraz, uruchamia ograniczony kontener i sprawdza rzeczywiste HTTP, oryginalną wycenę 181,30 EUR, błędy oraz brak dostępu do plików modelu.
 3. Zapisuje dokładnie przetestowany obraz jako krótkotrwały artefakt GitHub. Zadanie deploy pobiera ten obraz; nie buduje drugiego, potencjalnie innego obrazu.
-4. Deploy działa wyłącznie z `main`, poza PR. OIDC Azure ufa `repo:KawekPL/StayLens:ref:refs/heads/main`; nie ma stałego hasła Azure w GitHub. Sprawdzany jest także aktualny commit głównej gałęzi.
+4. Deploy działa wyłącznie z `main`, poza PR. OIDC Azure ufa `repo:KawekPL@317614566/StayLens@1437674578:ref:refs/heads/main`; nie ma stałego hasła Azure w GitHub. To [format niezmiennych identyfikatorów GitHuba](https://docs.github.com/en/actions/reference/security/oidc) używany przez nowe repozytoria od 15.07.2026. Wartości potwierdzono przez REST repo oraz ustawienia OIDC, nie zgadnięto z nazwy. Sprawdzany jest także aktualny commit głównej gałęzi.
 5. Obraz trafia do ACR pod SHA commita. Terraform dostaje **digest**, nie zmienny tag. Kontrola planu odrzuca usuwanie zasobów, inne aplikacje i zwiększenie limitu replik/zasobów.
 6. Terraform stosuje plan, HTTP sprawdza publiczne wdrożenie i wersję commita. Kolejny plan ma wykazać brak zmian. Wyniki testów i odbioru są artefaktami workflow.
 

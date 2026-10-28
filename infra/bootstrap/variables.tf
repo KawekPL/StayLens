@@ -16,6 +16,14 @@ variable "github_repository" {
   type    = string
   default = "KawekPL/StayLens"
 }
+variable "github_owner_id" {
+  type    = string
+  default = "317614566"
+}
+variable "github_repository_id" {
+  type    = string
+  default = "1437674578"
+}
 variable "shared_acr_id" {
   type = string
 }
