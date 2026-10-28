@@ -1,0 +1,38 @@
+{
+  "started_at_utc": "2026-10-28T20:03:27.271203+00:00",
+  "protocol_sha256": "d237b7e812540de79ce1409c0a6432e4c3056cc9470631ff61fcb5e3441e9674",
+  "base_protocol_sha256": "bec28876e6d698b89525e9a72b736639b729fb535d34947c588d17e59356441d",
+  "runner_sha256": "328c405eaffa758261d25609daa0d35a24d0af45c17d571d68982dfe88f5cb96",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "external_sha256": "02ad47102440ca7094613c4568b905dd52eaef4446f501adfdb7686e98809dc9",
+  "code_sha256": {
+    "src/staylens/__init__.py": "d70c6780b0d55cf1ecd8d8ce7e7c6c8c524d8f21d6871b02d550c2c1d4bc51cf",
+    "src/staylens/api.py": "24832220d5d9ba040a60562c2e14b1b9c115c7d9646a27db432a25d64c634f43",
+    "src/staylens/augmentation.py": "9d18be30c2d57d3ab94ca63383e0e5aacf59079015162984e25801e2762de4b5",
+    "src/staylens/data.py": "e04552cd0ea1460e85ab280d07883035a347049c26f08500a1f943b54ed8a384",
+    "src/staylens/engineering.py": "feda8879e2a3ddfda0f893f8c0162e5ec6531a4ac3ead3209560f8056d07803a",
+    "src/staylens/enrichment.py": "fd6fc0d2aa4db22f090676abe4cb0ec124b98e2a0b239723175f3ba133588d02",
+    "src/staylens/evaluation.py": "a75e5357e5fd3f3582ad3132f04e166fd974bae057a7b53cb59d13a943f31747",
+    "src/staylens/experiment_b.py": "e54c436235708fe8862b0cb08f7cd5949d70b25ab38174e411dc39dcc80fafd3",
+    "src/staylens/features.py": "d5a59ab2c0bf896b558c3948346fa665976e01f4fd3be93dbe28dcb5f989e186",
+    "src/staylens/models.py": "0c64216d6368cfbcd98018b0cb3ec3122dcd5be62b2f0033667008515136ff2d"
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "test_evaluated": false,
+  "outputs_sha256": {
+    "area_evidence_train.csv": "9dfa1a5811f8fa5451cf0cdf1143e444cdd9fdd55d934a659c085934ac54172b",
+    "cv_predictions.csv": "6b83e26c7535c2d2d7865a5e818baba13a627e201d07c8ab5bd054812ba1671f",
+    "cv_selection.json": "69cbd3f738527cba989eae289cb91c5f7b3aa7a1806d5f1badf312d08bb60da9",
+    "join_provenance_train.csv": "b1104c4a13e28ed37f380e4c8fc3bc98bfd7b545c198501d804cdd8fea258455",
+    "protocol.json": "c47e5f32c00ab69358fa9b79a189b76467523864d048c25e088ba17124315dfb",
+    "run_started.json": "c15e2503daa0214a3a42a9d933114697da2a25e376f2a5670dae686f16c1189a",
+    "train_features.csv": "c952b0d863f2b2b9dc11fe21ece4172fcb014662a7c11a0f7908eb4dc7a37d4e"
+  }
+}

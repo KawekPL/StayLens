@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests": "60 passed, 0 skipped; existing TestClient deprecation warning",
+  "hashes": "protocol, runner, source modules, both datasets, all saved experiment artifacts",
+  "checks": [
+    "host folds",
+    "exact external IDs/host/date/attributes",
+    "no row multiplication",
+    "recomputed metrics and selection",
+    "original S02 CV reproduced",
+    "no validation/test evaluation"
+  ],
+  "caveat": "checks establish pipeline consistency, not independent truth of host/provider claims"
+}

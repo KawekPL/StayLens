@@ -34,6 +34,8 @@ S02 ukończony wcześniej, 28.10: [porównanie modeli](../reports/s02/REPORT.md)
 
 Dodatkowy S02b wykonany 28.10 na prośbę użytkownika: 38 cech oraz kontrolowana augmentacja, 6 wariantów. [Wyniki](../reports/s02b/REPORT.md) nie uzasadniły zastąpienia S02. Harmonogram S03–S06 pozostaje bez zmian; nowy kontrakt cech jest eksperymentalny, nie jest częścią działającego API. Nie zwiększamy dalej zbioru sztucznymi wierszami bez nowej, sprawdzalnej hipotezy.
 
+Dodatkowy S02c wykonany 28.10: [audyt zewnętrznych źródeł i cztery warianty](../reports/s02c/REPORT.md). Nowe sygnały jakości połączone bezpiecznie dla 1962 ofert; deklarowany metraż z istniejących opisów dla 785. MAE CV 54,57 vs 54,90 EUR, poniżej ustalonego minimum korzyści. Nadal integrujemy S02. Nie przedłużamy eksperymentów przez dobieranie kolejnych parametrów do już znanych wyników; priorytetem S03–S06 do 03.11.
+
 ## Wymagania kursu
 
 Ogłoszenie użytkownika oraz L01 s.5 wymagają frontendu (Streamlit **lub inny**), Dockera, chmury, CI/CD i Terraform oraz jakości kodu, Gita i czytelnej logiki. Wszystkie pięć elementów musi mieć dowody rzeczywistego użycia w StayLens. Stare wdrożenie jest materiałem do adaptacji, nie dowodem wdrożenia nowej aplikacji.

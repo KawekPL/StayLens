@@ -1,0 +1,55 @@
+{
+  "experiment_id": "s02c-v1",
+  "frozen_before_fit": true,
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "external_sha256": "02ad47102440ca7094613c4568b905dd52eaef4446f501adfdb7686e98809dc9",
+  "purpose": "Evaluate actual host-declared area and independent-source quality proxies, no synthetic prices or observations",
+  "prior_knowledge": "S02 and S02b development results previously observed. Parser and join audited on train without prices before fitting. Validation has been observed historically; this is not a fresh unbiased test.",
+  "split": "unchanged host split; final test prohibited",
+  "cv": {"n_splits": 3, "shuffle": true, "random_state": 42},
+  "base_hyperparameters": "configs/s02_protocol.json candidate, unchanged; no parameter search",
+  "variants": {
+    "s02_control": [],
+    "declared_area": ["declared_entire_area_m2", "declared_room_area_m2"],
+    "external_quality": ["external_guest_favourite", "external_accessibility_count"],
+    "area_and_quality": ["declared_entire_area_m2", "declared_room_area_m2", "external_guest_favourite", "external_accessibility_count"]
+  },
+  "area": {
+    "provenance": "existing Inside Airbnb title/description; host declarations, not independent measurements",
+    "parser": "src/staylens/enrichment.py frozen by run manifest before fit",
+    "bounds_m2": {"entire": [8, 1000], "room": [8, 150]},
+    "exclude": "ranges, sums, outdoor space, ambiguous scope, conflicting claims, Shared room",
+    "missing": "NaN, never invented or zero",
+    "audit": "55 accepted claim snippets sampled seed42 and reviewed by assistant before training, without prices; not independent human validation"
+  },
+  "external_join": {
+    "provider": "Doorstep Analytics free EssentialsPackage Berlin 19092026",
+    "key": "exact string Airbnb_ListingID, one-to-one; never float or geographic nearest match",
+    "checks": "same host and room type, no known capacity/bedroom/bed/bathroom contradictions, scrape day <= Inside Airbnb last_scraped",
+    "quarantine": "all external features unknown for unmatched or conflicting rows; original offer kept",
+    "date_caveat": "calendar-day snapshot comparison; intraday order unknown",
+    "standard_caveat": "Guest Favourite is a review/reliability badge, accessibility count is a listing attribute; neither is certified hotel stars or measured luxury",
+    "use": "local research only; no external raw data or enriched public catalog released; free-content CC BY-NC-SA terms and raw-CSV scope require care before deployment"
+  },
+  "prediction_floor_eur": 0.01,
+  "cv_selection": {
+    "all_mae_max_ratio": 1.0,
+    "common_mae_max_ratio": 1.03,
+    "tail_mae_max_ratio": 1.0,
+    "rmse_max_ratio": 1.10,
+    "median_error_max_ratio": 1.05,
+    "minimum_all_mae_improvement": 0.03,
+    "or_minimum_tail_mae_improvement": 0.10
+  },
+  "validation_gate": {
+    "evaluate_only": "CV winner and control if a new candidate passes; otherwise do not load validation",
+    "all_mae_max_ratio": 1.02,
+    "common_mae_max_ratio": 1.05,
+    "tail_mae_max_ratio": 0.95,
+    "rmse_max_ratio": 1.10,
+    "median_error_max_ratio": 1.05,
+    "failure": "retain S02, no second candidate or retuning"
+  },
+  "test_evaluated": false,
+  "deployment": "separate from experiment; keep S02 API and public catalog unchanged"
+}

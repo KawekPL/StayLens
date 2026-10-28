@@ -68,3 +68,13 @@ Porównano 6 wcześniej ustalonych wariantów na 3-fold GroupKFold. MAE ogólne 
 37 testów przeszło, 0 pominięć; niezależna kontrola pochodzenia wszystkich dodatkowych wierszy, rozdzielenia foldów, metryk, wyboru i hashy poprawna. Istniejące ostrzeżenie upstream TestClient/httpx pozostaje takie jak w S02. Wygląd/UI/API i chmura niezmienione. Artefakty i przygotowane CSV poza Git; kod, manifesty, protokół, raport i wykres w repo. Szczegóły: [raport S02b](../reports/s02b/REPORT.md).
 
 Następna zaplanowana praca S03 korzysta z S02. S02b nie dostarczył podstaw do zastąpienia modelu. Dalsze badania wymagają osobnego protokołu; warto szukać rzeczywistych informacji o standardzie/powierzchni lub kolejnych prawdziwych obserwacji. Nie przedstawiać powielania lub maskowania jako zwiększenia liczby niezależnych obserwacji rynku.
+
+## 28 października 2026 — S02c: zewnętrzne dane i deklarowany metraż
+
+Sprawdzono źródła Doorstep Analytics, Inside Airbnb, AirROI, Hotelstars i visitBerlin. Pobrano darmowy EssentialsPackage Doorstep Berlin 19092026: 5847 rekordów/69 pól, daty 18–19.09.2026, przypięty SHA256. Nie znaleziono w nim powierzchni, ale są sygnały Guest Favourite i liczba udogodnień dostępności. Nie są skalą luksusu ani gwiazdkami hotelowymi.
+
+Do train pasuje 3852 ID. Po odłożeniu konfliktów gospodarza (105), pojemności (3) i łóżek (1782) oraz sprawdzeniu typu/daty/pozostałych cech zaakceptowano 1962 połączenia. Brak połączenia oznacza NaN; wszystkie 5814 ofert pozostały w ocenie. Z posiadanych opisów Inside Airbnb parser odzyskał 667 powierzchni lokalu i 118 powierzchni pokoju. Są deklaracjami gospodarza, nie niezależnym pomiarem; odrzucono zakresy, sumy, ogrody/tarasy i niejasny zakres. Asystent sprawdził próbkę 55 fragmentów bez cen, bez deklarowania niezależnej walidacji człowieka.
+
+W osobnym zamrożonym eksperymencie 3-fold CV porównano kontrolę S02, metraż, nowe sygnały jakości oraz oba dodatki. MAE ogólne: 54,90 / 54,59 / 54,79 / 54,57 EUR. Łączny zysk 0,61%, dla >400 EUR 0,85%; żaden kandydat nie spełnił kryterium minimalnej korzyści. Nie uruchomiono oceny validation ani testu. Kontrola odtworzyła stare przewidywania S02. **Model/API/UI bez zmiany; następny krok S03.**
+
+60 testów przeszło (0 pominięć), lint poprawny, osobna kontrola hashy/podziałów/połączeń i metryk poprawna. Źródła, cechy, opisy, gospodarze i predykcje wyłącznie w ignorowanych lokalnych plikach; repo zawiera kod/protokół/raporty. Warunki darmowych treści Doorstep mówią o CC BY-NC-SA, ale nie określają jednoznacznie zakresu dla surowego CSV; nie publikowano go ani wzbogaconego katalogu. Bez kont, płatności lub przekazywania danych kontaktowych. [Raport i źródła](../reports/s02c/REPORT.md).

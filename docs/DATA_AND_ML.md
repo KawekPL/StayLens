@@ -46,6 +46,14 @@ Najniższe ogólne MAE CV uzyskały cechy z mniejszymi liśćmi (54,33 vs 54,90 
 
 [Pełny raport i wykres S02b](../reports/s02b/REPORT.md), [protokół](../configs/s02b_protocol.json), [weryfikacja pochodzenia i metryk](../reports/s02b/verification.json). Przygotowane CSV są w ignorowanym data/prepared/s02b-v1, z jawnymi flagami pochodzenia; nie trafiają do publicznego katalogu. Zgoda na badanie sztucznych danych nie oznacza przedstawiania ich jako prawdziwych ofert.
 
+### Eksperyment S02c — rzeczywiste wzbogacenie
+
+[Raport S02c](../reports/s02c/REPORT.md) dokumentuje pięć sprawdzonych źródeł. Bezpłatny plik Doorstep daje dokładne ID Airbnb, lecz nie metraż; po kontroli gospodarza/daty/cech wykorzystano 1962 z 3852 połączeń. Konflikty pozostają bez nowych cech. Dwa sygnały (Guest Favourite, liczba udogodnień dostępności) nie stanowią skali luksusu. Brak publikacji danych Doorstep; warunki i niejednoznaczny zakres praw do surowego CSV opisano w raporcie i THIRD_PARTY_NOTICES.md.
+
+Z posiadanych opisów Inside Airbnb wyodrębniono deklarowany metraż 785 ofert (667 całych lokali, 118 pokoi). Zakresy, sumy, sprzeczności, części ogrodowe i niepewny zakres pominięto. To informacje gospodarzy przetworzone regułami, nie pomiary urzędowe. Braki pozostają NaN. Moduł enrichment.py i protokół s02c są oddzielone od kontraktu aktywnego modelu.
+
+Cztery ustalone warianty z tymi samymi parametrami i foldami gospodarzy dały CV MAE: kontrola 54,90; metraż 54,59; jakość 54,79; oba 54,57 EUR. Nie osiągnięto wymaganej skali poprawy; validation nie wczytano do oceny, test nadal odłożony. Nadal obowiązuje S02. Samo dodanie metrażu do przyszłego formularza nie sprawi, że użyje go aktywny model.
+
 ### Ograniczenia źródła i zastosowania
 
 Historyczny snapshot, bez bieżącej dostępności. Lokalizacje są anonimizowane/przybliżone. Danych zagranicznych nie przedstawiamy jako polskich. Zdjęcia pozostają pod oryginalnymi URL i mogą nie działać; UI ma zastępstwo. Zbiór, model i UI nie są afiliowane z Airbnb. Przed wdrożeniem trzeba ocenić możliwość uogólniania, powtarzalne oferty i zakres właściwych predykcji; sam duży zbiór nie dowodzi braku overfittingu.

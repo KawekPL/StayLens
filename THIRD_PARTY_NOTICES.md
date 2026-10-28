@@ -10,6 +10,14 @@ Zmiany: wybór rekordów z poprawną dodatnią ceną i lokalizacją w Berlinie, 
 
 Fotografie nie są kopiowane ani dołączane do repo; UI korzysta z publicznych URL w źródle. Praw do fotografii i znaków Airbnb nie utożsamiamy z licencją tabelarycznego zbioru. Prawa pozostają przy odpowiednich właścicielach. Każda oferta ma odnośnik do źródła. Przed publicznym wydaniem trzeba potwierdzić końcowy sposób prezentacji zdjęć lub zastąpić je własnymi wyraźnie ilustracyjnymi materiałami.
 
+## Doorstep Analytics — wyłącznie lokalny eksperyment S02c
+
+Źródło: [Berlin, Germany](https://doorstepanalytics.com/report?country=Germany&location=Berlin), autor/dostawca Doorstep Analytics (Simon Salamian). Darmowy EssentialsPackage 19092026 pobrany 28.10.2026, obserwacje 18–19.09.2026. Dokładna wersja, SHA256, przetwarzanie i wyniki: [raport S02c](reports/s02c/REPORT.md).
+
+Zmieniono: wybrano wyłącznie dwie cechy (Guest Favourite, liczba udogodnień dostępności), dopasowano po dokładnym ID i sprawdzono gospodarza/datę/cechy obiektu; sprzeczności odłożono. Nie przedstawiamy tego jako certyfikacji standardu ani poparcia dostawcy.
+
+[Warunki](https://doorstepanalytics.com/legal/terms), sprawdzone 28.10.2026: publiczne darmowe grafiki, mapy i raporty są opisane jako CC BY-NC-SA 4.0. Surowy pobrany CSV nie ma w tym sformułowaniu jednoznacznie określonego zakresu. Dane pozostają lokalnym materiałem badawczym poza Git; brak ich publikacji i integracji z publicznym katalogiem. Przed taką publikacją/komercyjnym wykorzystaniem trzeba wyjaśnić prawa. Nie zakładamy, że obejmuje je licencja Inside Airbnb. Płatna licencja dostawcy nie została zakupiona.
+
 ## Mapa
 
 Dane mapy © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL. Kafelki z https://tile.openstreetmap.org, z zachowaniem [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/): atrybucja widoczna, standardowy ruch przeglądarki i cache, brak masowego pobierania/prefetch/offline. Wersja demonstracyjna o niskim ruchu; brak gwarancji dostępności serwera map.
