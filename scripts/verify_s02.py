@@ -18,7 +18,9 @@ def main():
     assert sha256(ROOT / "configs/s02_protocol.json") == report["protocol_sha256"]
     assert sha256(ROOT / "scripts/run_s02.py") == report["runner_sha256"]
     for name, expected in report["source_code_sha256"].items():
-        assert sha256(ROOT / name.replace("\\", "/")) == expected, f"Experiment code changed: {name}"
+        assert sha256(ROOT / name.replace("\\", "/")) == expected, (
+            f"Experiment code changed: {name}"
+        )
     train, validation, _ = load_development(ROOT / "data/raw/listings.csv.gz")
     checks = {"protocol_and_code_hashes_match": True, "test_evaluated": False}
     for subset, key, expected_split, source in [
