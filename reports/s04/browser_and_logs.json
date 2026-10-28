@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-28",
+  "url": "https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io",
+  "browser": "in-app browser, normal desktop viewport",
+  "checks": {
+    "catalog_map_and_external_photos_render": true,
+    "default_filtered_offers": 3438,
+    "mitte_filtered_offers": 873,
+    "compare_selected_listing": "45475252",
+    "compare_price_eur": 122,
+    "compare_model_price_display_eur": 182,
+    "compare_peer_median_eur": 169,
+    "estimator_full_example_price_display_eur": 181,
+    "exact_price_verified_separately_by_http_eur": 181.3,
+    "browser_console_errors_observed": 0,
+    "model_limitations_visible": true,
+    "new_mobile_or_physical_device_test_in_s04": false
+  },
+  "screenshots_local_only": [".local/azure-catalog.png", ".local/azure-estimator.png"],
+  "monitoring": {
+    "log_analytics_query_succeeded": true,
+    "recent_rows_returned": 8,
+    "request_fields_observed": ["event", "route", "status", "duration_ms"],
+    "estimate_request_log_present": true,
+    "console_stream_cli_check": "Azure CLI failed with eventStreamEndpoint; Log Analytics REST verified as fallback",
+    "model_accuracy_monitoring_with_real_booking_labels": false
+  }
+}

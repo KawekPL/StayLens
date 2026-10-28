@@ -2,7 +2,11 @@
 
 Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Berlinie. Projekt zaliczeniowy SUML, wybrany przez użytkownika 28 października 2026. Termin pracy: **3 listopada 2026**, pakiet do oddania 2 listopada. Zastępuje SupportRouter PL jako wybrany temat; tamten projekt zachowano.
 
-## Stan: działająca lokalna aplikacja z ML (S03)
+## Stan: aplikacja wdrożona na Azure (S04)
+
+**[Otwórz StayLens](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io)** · [Repozytorium](https://github.com/KawekPL/StayLens) (prywatne) · [Udane CI/CD](https://github.com/KawekPL/StayLens/actions/runs/40779379265)
+
+Docker, GitHub Actions, Terraform i rzeczywiste wdrożenie ukończone 28.10.2026. **95 testów Python, 7 JS**, test kontenera i publicznego HTTPS; model S02 bez zmian. [Raport S04](reports/s04/REPORT.md) i [instrukcja dostawy/odtwarzania](docs/DEPLOYMENT.md). Pierwsze wejście po uśpieniu może potrwać dłużej. Grant Azure ważny do 17.11.2026; odnowienie i dostęp prowadzącego do prywatnego repo pozostają do ustalenia.
 
 - React + FastAPI: mapa, filtry, wyszukiwarka, sortowanie, paginacja, szczegóły i porównanie do trzech ofert oraz formularz **Wycena**.
 - Rzeczywiste dane Inside Airbnb Berlin z 19.09.2026. Podgląd obejmuje 5814 ofert z części treningowej.
@@ -12,7 +16,7 @@ Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Ber
 - Dodatkowe eksperymenty [S02b](reports/s02b/REPORT.md) i [S02c](reports/s02c/REPORT.md) nie spełniły kryteriów zastąpienia S02. Aktywny model pozostał bez zmian.
 - S03: **75 testów Pythona, 7 testów JS**, produkcyjny build, rzeczywiste HTTP przez proxy oraz przeglądarkowe sprawdzenie głównych ścieżek desktop/mobile. [Raport S03](reports/s03/REPORT.md).
 - Późniejszy audyt jakości [S03b](reports/s03b/REPORT.md) i [S03c](reports/s03c/REPORT.md): 10 nowych wariantów i krzywe uczenia. Najlepsze CV 53,34 zamiast 54,90 EUR, zbyt mała poprawa do awansu. **Precyzyjnej wyceny nie osiągnięto; aktywny model i validation 53,61 EUR pozostają bez zmian.** Pełna suita po tych badaniach: 81 testów Pythona; wymaga dodatkowego lockfile research.
-- Docker, GitHub, CI/CD, Terraform i wdrożenie StayLens są kolejnym etapem S04. Obecny adres jest lokalny.
+- S04 dostarcza jeden obraz React + FastAPI + zamrożony model, automatyczne CI/CD przez OIDC oraz osobną aplikację i stany Terraform w Azure. Kolejny etap to końcowy odbiór S05 i pakiet do oddania S06.
 
 ## Uruchomienie
 
@@ -43,7 +47,7 @@ cd C:\Users\szymo\Documents\ChatGPT\StayLens
 .\.venv\Scripts\python.exe scripts\build_catalog.py
 ```
 
-Skrypt weryfikuje SHA256 źródeł i zapisanych przewidywań, przygotowuje wyłącznie train i nie trenuje modelu. Dane, model oraz duży katalog pozostają poza Git; sam świeży klon nie wystarcza do startu bez odtworzenia tych plików. Dostarczanie zweryfikowanych artefaktów do kontenera/CI jest zakresem S04.
+Skrypt weryfikuje SHA256 źródeł i zapisanych przewidywań, przygotowuje wyłącznie train i nie trenuje modelu. Dane, model oraz duży katalog pozostają poza Git. Świeży klon pobiera gotowy, przypięty pakiet z prywatnego wydania GitHub przez `py -3.12 scripts/release_artifacts.py fetch`; następnie można zbudować Docker bez surowych danych i ponownego treningu. [Pełna instrukcja](docs/DEPLOYMENT.md).
 
 ## Sprawdzenia
 
@@ -78,5 +82,7 @@ npm.cmd run build
 - [Audyt celu ofert, inne modele i krzywe uczenia — S03b](reports/s03b/REPORT.md)
 - [Bogatsze rzeczywiste wejścia i końcowa decyzja badawcza — S03c](reports/s03c/REPORT.md)
 - [API, instalacja i odtwarzanie](docs/API_AND_REPRODUCTION.md)
+- [Docker, CI/CD, Terraform, Azure, koszty i rollback](docs/DEPLOYMENT.md)
+- [Dowody wdrożenia S04](reports/s04/REPORT.md)
 
 Źródło: [Inside Airbnb](https://insideairbnb.com/get-the-data/), CC BY 4.0. Ceny w EUR, historyczne ceny ofertowe, bez potwierdzenia dostępności i przychodów. Lokalizacje są przybliżone. StayLens nie jest powiązany z Airbnb. Zdjęcia ładowane z oryginalnych linków nie są kopiowane do projektu; prawa do nich pozostają po stronie właścicieli.

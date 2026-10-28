@@ -77,7 +77,19 @@ Alert **nie jest twardym limitem i nie wyłącza usług**. Ochrona studencka dzi
 
 Źródła domyślnych wartości i implementacji: [skalowanie Azure](https://learn.microsoft.com/en-us/azure/container-apps/scale-app#scale-behavior), [schemat sond Azure](https://learn.microsoft.com/en-us/azure/templates/microsoft.app/2025-07-01/containerapps), [kod odczytu AzureRM 4.81](https://github.com/hashicorp/terraform-provider-azurerm/blob/v4.81.0/internal/services/containerapps/helpers/container_apps.go). Stan bootstrap nie ma tych różnic i osiąga zwykły plan exit 0.
 
-`GET /health` potwierdza załadowanie modelu/katalogu; `/api/release` podaje commit obrazu; `/api/model` ujawnia metryki i ograniczenia. Logi: `az containerapp logs show -g rg-staylens-14055600 -n staylens --type console --tail 50`. Historyczne logi trafiają do wspólnego Log Analytics (istniejąca retencja 30 dni i dzienny limit ingestii 0,1 GB). Nie wdrożono monitorowania jakości na prawdziwych cenach rezerwacji — aplikacja nie zbiera takich etykiet.
+`GET /health` potwierdza załadowanie modelu/katalogu; `/api/release` podaje commit obrazu; `/api/model` ujawnia metryki i ograniczenia. Historyczne logi trafiają do wspólnego Log Analytics (istniejąca retencja 30 dni i dzienny limit ingestii 0,1 GB). Potwierdzono odczyt logów API i formularza przez zapytanie do workspace. Nie wdrożono monitorowania jakości na prawdziwych cenach rezerwacji — aplikacja nie zbiera takich etykiet.
+
+Zapytanie w Azure Portal → workspace `log-supportrouter-14055600` → Logs:
+
+```kusto
+ContainerAppConsoleLogs_CL
+| where ContainerAppName_s == 'staylens'
+| project TimeGenerated, Log_s
+| order by TimeGenerated desc
+| take 50
+```
+
+Odczyt REST przez `POST https://api.loganalytics.azure.com/v1/workspaces/{customerId}/query` z uwierzytelnieniem `az rest --resource https://api.loganalytics.io` także sprawdzono. Bezpośrednie `az containerapp logs show --type console` w lokalnym CLI zwróciło błąd `eventStreamEndpoint`; nie traktuj go jako awarii aplikacji. Użyj sprawdzonego Log Analytics. Nie omijano uwierzytelniania ani nie kopiowano tokenów do plików.
 
 Rollback wykonuje się przez ten sam `infra/app` i zdalny stan, zmieniając wyłącznie `image_digest` na poprzedni, istniejący digest repozytorium `staylens` w ACR. Najpierw `terraform plan -out=rollback.tfplan`, potem `check_deployment_plan.py` na JSON planu, sprawdzenie nazwy/grupy i `terraform apply rollback.tfplan`. Po zmianie uruchom `smoke_deployment.py` na adresie Azure i sprawdź `/api/release`. Nie używaj ręcznego `az containerapp update`, które powodowałoby rozbieżność ze stanem Terraform. Aktualne digesta i dowody wykonania zapisujemy w `reports/s04` oraz GitHub Actions.
 

@@ -1,5 +1,7 @@
 # API i odtwarzanie S02/S03
 
+**S04:** gotowy obraz serwuje produkcyjny frontend oraz API przez `staylens.production:create_production_app`. Pobieranie przypiętych artefaktów, świeży klon, Docker i Azure opisano w [DEPLOYMENT.md](DEPLOYMENT.md). Pełne CI ma teraz 95 testów Python i 7 JS. Poniższe instrukcje zachowują odtwarzanie historycznych badań i lokalny tryb deweloperski. Nie używaj pakietu CI z usuniętym `host_id` do zastępowania oryginalnych artefaktów badawczych.
+
 Python 3.12; zależności dokładnie przypięte w `pyproject.toml` i dwóch uniwersalnych lockfile z SHA256. Modele są lokalne, nie ma klucza OpenAI ani treningu przy starcie serwera.
 
 ## Instalacja

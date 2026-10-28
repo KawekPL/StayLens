@@ -1,6 +1,18 @@
 # Status StayLens
 
-**Aktualnie: S03 i dodatkowe badania jakości S03b/S03c ukończone 28.10.2026. Brak nowego modelu spełniającego warunki awansu; aplikacja nadal na S02.** Następny planowany etap dostawczy S04 (Docker, artefakty, GitHub/CI/CD, Terraform i Azure). Lokalna aplikacja: http://127.0.0.1:5174/. Wcześniejsze sekcje poniżej opisują stan w chwili zakończenia danego etapu.
+**Aktualnie: S04 ukończony 28.10.2026 — Docker, CI/CD, Terraform i publiczne Azure. Model pozostaje S02, zgodnie z decyzją użytkownika o zakończeniu strojenia.** [Aplikacja](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io), [udany pipeline](https://github.com/KawekPL/StayLens/actions/runs/40779379265), [raport S04](../reports/s04/REPORT.md). Następny etap S05/S06: odbiór i pakiet do oddania. Wcześniejsze sekcje opisują stan historyczny.
+
+## 28 października 2026 — S04 ukończony
+
+Utworzono prywatne repo `KawekPL/StayLens`, główną gałąź `main` i przypięte wydanie artefaktów `s02-artifacts-v1`. Jeden obraz Docker buduje frontend i serwuje go razem z API; kontener działa jako użytkownik bez roota. Model, biblioteki wykonawcze, oryginalne artefakty i moduły badań bez zmian. Test końcowy nadal nieoceniany.
+
+GitHub Actions na świeżym Linuksie: **95 testów Python, 7 JS, zero pominięć**, Ruff, build frontendu, walidacja Terraform, build/test kontenera, OIDC, publikacja przetestowanego obrazu do ACR, plan/apply i test publicznego HTTPS — sukces. Wdrożony commit `205f2276e0185a3918b0c9dc09b02fad49a743dd`, obraz `sha256:6376509c8b33eadc5ec1719f7b861c56e00f4cc54a0c336446494def5003465c`. W przeglądarce potwierdzono renderowanie katalogu/mapy/zdjęć, filtr Mitte, porównanie i wycenę. To nie nowy test fizycznego telefonu. Log Analytics potwierdził logi żądań bez treści formularzy; lokalny streaming logów CLI ma błąd `eventStreamEndpoint`, opisano działający odczyt przez workspace.
+
+Terraform utworzył 17 zasobów/przypisań bootstrap oraz jedną aplikację. Dwa prywatne stany Blob, logowanie Entra/OIDC, klucze Storage i publiczny dostęp do Blob wyłączone. Wspólny rejestr i środowisko Azure nie zostały skopiowane ani przejęte do nowego stanu; SupportRouter nie usunięto ani nie aktualizowano. StayLens ma 0–1 repliki, 0,5 vCPU/1 GiB i trzy sondy HTTP. Bootstrap ma plan exit 0. Plan aplikacji nadal ujawnia pięć dokładnych różnic odczytu domyślnych wartości Azure; niezależny kontroler dopuszcza tylko te przypadki i weryfikuje rzeczywistą konfigurację. Inne zmiany blokują CI. Nie opisujemy surowego planu aplikacji jako bezwarunkowego „no changes”.
+
+Pierwszy deploy ujawnił nowy format OIDC GitHuba (z ID właściciela/repo); naprawiono przez Terraform. Drugi wdrożył działającą aplikację, lecz nie przeszedł naiwnego warunku plan exit 0. Trzeci pełny przebieg przeszedł wszystkie kontrole. Szczegóły i odtwarzanie w [DEPLOYMENT.md](DEPLOYMENT.md).
+
+Odczyt Azure: grant Active do **17.11.2026**, spendingLimit On, estimatedBalance 98,06 USD. Zgoda pozostaje 10 USD/miesiąc. Dodano konserwatywny budżet **8 EUR dla całej subskrypcji**, z alertami 80/100% (kurs API 0,8799718409 EUR/USD). Alert nie jest twardym limitem. Stary alert 10 EUR nie został zmieniony; nowy obejmuje także zasoby wspólne. Odnowienia grantu nie potwierdzono. Repo nadal prywatne, bez dostępu prowadzącego, zaproszeń i wysłania pracy. Termin 03.11 pozostaje aktualny.
 
 ## 28 października 2026 — zakończony dodatkowy audyt jakości S03b/S03c
 

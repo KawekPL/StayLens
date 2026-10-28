@@ -14,7 +14,7 @@ Przeglądarka → React/Leaflet → FastAPI → kontrolowany pipeline scikit-lea
 
 Jeden obraz Docker: frontend zbudowany do plików statycznych, backend serwujący te pliki i `/api`. Model przygotowany offline i dołączony jako wersjonowany artefakt; żadnego treningu przy starcie aplikacji. Zweryfikowany, zredukowany katalog ofert obsługiwany przez API. Paginacja/limity danych, walidacja wejścia, health endpoint. Żadnego API tłumaczącego tekst.
 
-Azure Container Apps + istniejący wzorzec ACR/Log Analytics. Terraform zarządza zasobami i obrazem; GitHub Actions CI buduje/testuje, CD przekazuje digest obrazu do Terraform. Dokładne ponowne wykorzystanie zasobów wymaga planu stanu i kosztów; nowe zasoby i wdrożenie StayLens nie zostały jeszcze wykonane. Unikamy dublowania kosztu rejestru kontenerów. Konfiguracja SupportRouter wskazuje rozbieżność 10 EUR vs zgoda 10 USD; trzeba ją poprawić w ramach prac nad infra.
+Azure Container Apps + współdzielone istniejące ACR/Log Analytics/środowisko. S04 wykonany: Terraform zarządza osobną grupą/tożsamościami/Storage/aplikacją StayLens; GitHub Actions testuje obraz i wdraża jego digest. Nie dublujemy rejestru ani nie przejmujemy starego stanu. Nowy alert 8 EUR obejmuje całą subskrypcję, pozostając poniżej zgody 10 USD przy sprawdzonym kursie. Stary alert SupportRouter 10 EUR pozostawiono bez zmiany. [Architektura, koszty i granice współdzielenia](DEPLOYMENT.md).
 
 ## Harmonogram
 
@@ -28,7 +28,7 @@ Azure Container Apps + istniejący wzorzec ACR/Log Analytics. Terraform zarządz
 | 02.11 | S06 — pakiet | README, data/model card, wyniki końcowe, dostęp prowadzącego, demo i szkic maila |
 | 03.11 | Rezerwa | Ostatnie poprawki i wysłanie przez użytkownika |
 
-Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md. **S01, S02 i S03 wykonane 28.10; kolejnym etapem jest S04.** Daty późniejszych etapów pozostają rezerwą, nie wymagają czekania z pracą.
+Nie traktuj dat jako wykonanych zadań. Statusy w STATUS.md. **S01–S04 wykonane 28.10; kolejnymi etapami są S05 i S06.** Daty późniejszych etapów pozostają rezerwą, nie wymagają czekania z pracą. Użytkownik zakończył dalsze strojenie modelu. [Dowody S04](../reports/s04/REPORT.md).
 
 Po S03 użytkownik zlecił dodatkowe badanie jakości przed wdrożeniem. S03b/S03c ukończono 28.10: 10 nowych wariantów, audyt celu ofert, rzeczywiste dodatkowe atrybuty i krzywa uczenia. Najlepsze MAE CV 53,34 vs 54,90 EUR nie osiągnęło ustalonego minimum korzyści; model pozostał S02. [Decyzja i ograniczenia](../reports/s03c/REPORT.md). Zakończono tę iterację strojenia; S04 nie rozwiąże problemu dokładności. Model pozostaje orientacyjnym punktem odniesienia, bez obietnicy precyzyjnej wyceny.
 

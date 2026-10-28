@@ -1,7 +1,7 @@
 {
   "base_url": "https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io",
   "release": {
-    "revision": "3e590be09db193763cf7c03204b1d2447745801a",
+    "revision": "205f2276e0185a3918b0c9dc09b02fad49a743dd",
     "app_version": "0.4.0",
     "model_version": "s02-v1"
   },
