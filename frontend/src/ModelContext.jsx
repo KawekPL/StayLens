@@ -1,5 +1,23 @@
 import React from "react";
 import { Info } from "lucide-react";
+import evaluation from "../public/final-evaluation.json";
+
+export function FinalEvaluationNote() {
+  const eur = (value) =>
+    value.toLocaleString("pl-PL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  return (
+    <p>
+      Test końcowy: {evaluation.test_rows} ofert {evaluation.test_hosts} innych
+      gospodarzy. Średni błąd wyniósł {eur(evaluation.metrics.mae_eur)} €, wobec{" "}
+      {eur(evaluation.baseline_metrics.mae_eur)} € dla mediany segmentu. Model
+      pozostał bez zmian. To ocena na tym samym historycznym obrazie Berlina,
+      bez gwarancji jakości dla innych terminów lub miast.
+    </p>
+  );
+}
 
 export function ModelCaution({ compact = false }) {
   return (

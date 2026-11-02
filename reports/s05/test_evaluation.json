@@ -1,0 +1,568 @@
+{
+  "evaluation_id": "s05-final-v1",
+  "started_at_utc": "2026-11-02T08:50:38.062298+00:00",
+  "protocol_sha256": "66ecb3b80d24b0556e4a991b501641d9004193a417b9f90282b3bdfa3c246c75",
+  "runner_sha256": "369dc2bbfb51b3edb906751062bf1478e24b24aee3c3505c4cec65dc34936d32",
+  "git_revision": "a0895abbe6e3d525c79662266df371ff71e9192e",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "model_hashes": {
+    "hist_gradient_boosting": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+    "segment_median": "563a3e16f7fb50deafc21b38be23cd756de0a33bd39f7774388b4aa3aa17391d"
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "fastapi": "0.162.0",
+    "pydantic": "2.14.1",
+    "threadpoolctl": "3.7.0"
+  },
+  "completed_at_utc": "2026-11-02T08:50:39.746524+00:00",
+  "test_evaluated": true,
+  "model_version": "s02-v1",
+  "selected_before_test": "hist_gradient_boosting",
+  "fit_calls": 0,
+  "s02_artifacts_unchanged": true,
+  "partitions": {
+    "train": {
+      "rows": 5814,
+      "hosts": 3114
+    },
+    "validation": {
+      "rows": 1108,
+      "hosts": 680
+    },
+    "test": {
+      "rows": 1235,
+      "hosts": 624
+    }
+  },
+  "pairwise_host_and_listing_overlap": 0,
+  "test_metrics": {
+    "hist_gradient_boosting": {
+      "rows": 1235,
+      "mae_eur": 56.100734965797365,
+      "median_absolute_error_eur": 28.664838013334247,
+      "rmse_eur": 152.8133980070038,
+      "within_20_percent": 0.42672064777327934,
+      "within_30_eur": 0.5133603238866397,
+      "p90_absolute_error_eur": 104.15040309278099
+    },
+    "segment_median": {
+      "rows": 1235,
+      "mae_eur": 68.35097570850202,
+      "median_absolute_error_eur": 42.33500000000001,
+      "rmse_eur": 161.042669123437,
+      "within_20_percent": 0.32226720647773277,
+      "within_30_eur": 0.38461538461538464,
+      "p90_absolute_error_eur": 133.9000000000002
+    }
+  },
+  "mae_reduction_fraction": 0.17922554309902672,
+  "test_segments": {
+    "room_type": {
+      "Entire home/apt": {
+        "hist_gradient_boosting": {
+          "rows": 947,
+          "mae_eur": 61.38293157350025,
+          "median_absolute_error_eur": 31.972765600416622,
+          "rmse_eur": 168.49495940957578,
+          "within_20_percent": 0.4371700105596621,
+          "within_30_eur": 0.47624076029567053,
+          "p90_absolute_error_eur": 118.20610662323483
+        },
+        "segment_median": {
+          "rows": 947,
+          "mae_eur": 75.69471488912355,
+          "median_absolute_error_eur": 49.25,
+          "rmse_eur": 176.93819174478548,
+          "within_20_percent": 0.3199577613516367,
+          "within_30_eur": 0.32312565997888065,
+          "p90_absolute_error_eur": 142.828
+        }
+      },
+      "Hotel room": {
+        "hist_gradient_boosting": {
+          "rows": 12,
+          "mae_eur": 46.962497458682854,
+          "median_absolute_error_eur": 47.19312302500481,
+          "rmse_eur": 49.814519862916605,
+          "within_20_percent": 0.16666666666666666,
+          "within_30_eur": 0.16666666666666666,
+          "p90_absolute_error_eur": 63.8377030419463
+        },
+        "segment_median": {
+          "rows": 12,
+          "mae_eur": 41.295,
+          "median_absolute_error_eur": 44.43000000000001,
+          "rmse_eur": 45.55712787259531,
+          "within_20_percent": 0.3333333333333333,
+          "within_30_eur": 0.3333333333333333,
+          "p90_absolute_error_eur": 65.43
+        }
+      },
+      "Private room": {
+        "hist_gradient_boosting": {
+          "rows": 274,
+          "mae_eur": 38.14722808581405,
+          "median_absolute_error_eur": 20.063545212982845,
+          "rmse_eur": 83.58208168338899,
+          "within_20_percent": 0.4051094890510949,
+          "within_30_eur": 0.6605839416058394,
+          "p90_absolute_error_eur": 77.6428287776336
+        },
+        "segment_median": {
+          "rows": 274,
+          "mae_eur": 44.11686131386861,
+          "median_absolute_error_eur": 26.5,
+          "rmse_eur": 92.52549291833587,
+          "within_20_percent": 0.33211678832116787,
+          "within_30_eur": 0.6021897810218978,
+          "p90_absolute_error_eur": 77.75600000000003
+        }
+      },
+      "Shared room": {
+        "hist_gradient_boosting": {
+          "rows": 2,
+          "mae_eur": 69.44050881888396,
+          "median_absolute_error_eur": 69.44050881888396,
+          "rmse_eur": 70.19630489378645,
+          "within_20_percent": 0.0,
+          "within_30_eur": 0.0,
+          "p90_absolute_error_eur": 77.65900330742585
+        },
+        "segment_median": {
+          "rows": 2,
+          "mae_eur": 73.5,
+          "median_absolute_error_eur": 73.5,
+          "rmse_eur": 73.98986417070923,
+          "within_20_percent": 0.0,
+          "within_30_eur": 0.0,
+          "p90_absolute_error_eur": 80.3
+        }
+      }
+    },
+    "district": {
+      "Charlottenburg-Wilm.": {
+        "hist_gradient_boosting": {
+          "rows": 203,
+          "mae_eur": 57.011008609002765,
+          "median_absolute_error_eur": 24.86795662170195,
+          "rmse_eur": 104.41262654821134,
+          "within_20_percent": 0.43349753694581283,
+          "within_30_eur": 0.5517241379310345,
+          "p90_absolute_error_eur": 125.75495382256553
+        },
+        "segment_median": {
+          "rows": 203,
+          "mae_eur": 67.7784236453202,
+          "median_absolute_error_eur": 37.0,
+          "rmse_eur": 112.94104846587634,
+          "within_20_percent": 0.32019704433497537,
+          "within_30_eur": 0.43349753694581283,
+          "p90_absolute_error_eur": 159.12400000000005
+        }
+      },
+      "Friedrichshain-Kreuzberg": {
+        "hist_gradient_boosting": {
+          "rows": 205,
+          "mae_eur": 50.50967765323243,
+          "median_absolute_error_eur": 33.25550952846612,
+          "rmse_eur": 76.3813837789284,
+          "within_20_percent": 0.4146341463414634,
+          "within_30_eur": 0.44878048780487806,
+          "p90_absolute_error_eur": 117.50484385200171
+        },
+        "segment_median": {
+          "rows": 205,
+          "mae_eur": 60.135341463414626,
+          "median_absolute_error_eur": 43.58,
+          "rmse_eur": 86.1922154123151,
+          "within_20_percent": 0.34146341463414637,
+          "within_30_eur": 0.3902439024390244,
+          "p90_absolute_error_eur": 125.479
+        }
+      },
+      "Lichtenberg": {
+        "hist_gradient_boosting": {
+          "rows": 33,
+          "mae_eur": 43.24453239412713,
+          "median_absolute_error_eur": 32.01685551089787,
+          "rmse_eur": 73.30710345449388,
+          "within_20_percent": 0.24242424242424243,
+          "within_30_eur": 0.3939393939393939,
+          "p90_absolute_error_eur": 67.51456649790796
+        },
+        "segment_median": {
+          "rows": 33,
+          "mae_eur": 48.90287878787879,
+          "median_absolute_error_eur": 34.0,
+          "rmse_eur": 77.95183631965355,
+          "within_20_percent": 0.3939393939393939,
+          "within_30_eur": 0.3939393939393939,
+          "p90_absolute_error_eur": 76.386
+        }
+      },
+      "Marzahn - Hellersdorf": {
+        "hist_gradient_boosting": {
+          "rows": 16,
+          "mae_eur": 24.54804296791504,
+          "median_absolute_error_eur": 19.47729065411508,
+          "rmse_eur": 30.32325707047372,
+          "within_20_percent": 0.5625,
+          "within_30_eur": 0.625,
+          "p90_absolute_error_eur": 48.38474309598012
+        },
+        "segment_median": {
+          "rows": 16,
+          "mae_eur": 36.09625,
+          "median_absolute_error_eur": 27.86,
+          "rmse_eur": 45.606994666388616,
+          "within_20_percent": 0.3125,
+          "within_30_eur": 0.5625,
+          "p90_absolute_error_eur": 82.78
+        }
+      },
+      "Mitte": {
+        "hist_gradient_boosting": {
+          "rows": 244,
+          "mae_eur": 67.64597940709675,
+          "median_absolute_error_eur": 35.66846248797606,
+          "rmse_eur": 121.41183774765905,
+          "within_20_percent": 0.36065573770491804,
+          "within_30_eur": 0.4426229508196721,
+          "p90_absolute_error_eur": 135.7937020232109
+        },
+        "segment_median": {
+          "rows": 244,
+          "mae_eur": 82.90055327868853,
+          "median_absolute_error_eur": 54.885000000000005,
+          "rmse_eur": 134.9878027766328,
+          "within_20_percent": 0.1885245901639344,
+          "within_30_eur": 0.26229508196721313,
+          "p90_absolute_error_eur": 154.00000000000023
+        }
+      },
+      "Neukölln": {
+        "hist_gradient_boosting": {
+          "rows": 116,
+          "mae_eur": 37.55818746569414,
+          "median_absolute_error_eur": 21.3895850805093,
+          "rmse_eur": 65.22622993776349,
+          "within_20_percent": 0.5431034482758621,
+          "within_30_eur": 0.6206896551724138,
+          "p90_absolute_error_eur": 78.2088121101241
+        },
+        "segment_median": {
+          "rows": 116,
+          "mae_eur": 56.04504310344827,
+          "median_absolute_error_eur": 30.415,
+          "rmse_eur": 96.03714590140594,
+          "within_20_percent": 0.43103448275862066,
+          "within_30_eur": 0.5,
+          "p90_absolute_error_eur": 128.745
+        }
+      },
+      "Pankow": {
+        "hist_gradient_boosting": {
+          "rows": 184,
+          "mae_eur": 46.873657690289825,
+          "median_absolute_error_eur": 26.300527848521668,
+          "rmse_eur": 77.4689998164462,
+          "within_20_percent": 0.483695652173913,
+          "within_30_eur": 0.5597826086956522,
+          "p90_absolute_error_eur": 101.92209274038612
+        },
+        "segment_median": {
+          "rows": 184,
+          "mae_eur": 56.62657608695652,
+          "median_absolute_error_eur": 37.504999999999995,
+          "rmse_eur": 87.6527746931781,
+          "within_20_percent": 0.41304347826086957,
+          "within_30_eur": 0.3695652173913043,
+          "p90_absolute_error_eur": 119.33000000000004
+        }
+      },
+      "Reinickendorf": {
+        "hist_gradient_boosting": {
+          "rows": 20,
+          "mae_eur": 16.772047164742737,
+          "median_absolute_error_eur": 17.090117054469722,
+          "rmse_eur": 20.2252313526589,
+          "within_20_percent": 0.4,
+          "within_30_eur": 0.9,
+          "p90_absolute_error_eur": 26.86489157445464
+        },
+        "segment_median": {
+          "rows": 20,
+          "mae_eur": 25.0155,
+          "median_absolute_error_eur": 26.75,
+          "rmse_eur": 31.563638019087726,
+          "within_20_percent": 0.35,
+          "within_30_eur": 0.75,
+          "p90_absolute_error_eur": 41.34400000000002
+        }
+      },
+      "Spandau": {
+        "hist_gradient_boosting": {
+          "rows": 27,
+          "mae_eur": 43.1356341710306,
+          "median_absolute_error_eur": 40.1882851497546,
+          "rmse_eur": 51.673062777797526,
+          "within_20_percent": 0.2222222222222222,
+          "within_30_eur": 0.3333333333333333,
+          "p90_absolute_error_eur": 87.54525029160048
+        },
+        "segment_median": {
+          "rows": 27,
+          "mae_eur": 42.41333333333333,
+          "median_absolute_error_eur": 28.25,
+          "rmse_eur": 56.99684630651847,
+          "within_20_percent": 0.18518518518518517,
+          "within_30_eur": 0.5555555555555556,
+          "p90_absolute_error_eur": 75.06000000000002
+        }
+      },
+      "Steglitz - Zehlendorf": {
+        "hist_gradient_boosting": {
+          "rows": 36,
+          "mae_eur": 53.1730593871165,
+          "median_absolute_error_eur": 15.868310787554982,
+          "rmse_eur": 121.84331423773116,
+          "within_20_percent": 0.6388888888888888,
+          "within_30_eur": 0.6388888888888888,
+          "p90_absolute_error_eur": 75.71518381050943
+        },
+        "segment_median": {
+          "rows": 36,
+          "mae_eur": 72.90791666666668,
+          "median_absolute_error_eur": 40.05,
+          "rmse_eur": 135.6198255208491,
+          "within_20_percent": 0.3333333333333333,
+          "within_30_eur": 0.3888888888888889,
+          "p90_absolute_error_eur": 160.175
+        }
+      },
+      "Tempelhof - Schöneberg": {
+        "hist_gradient_boosting": {
+          "rows": 81,
+          "mae_eur": 79.24852425316205,
+          "median_absolute_error_eur": 22.572774083305625,
+          "rmse_eur": 423.3499970543689,
+          "within_20_percent": 0.4691358024691358,
+          "within_30_eur": 0.6049382716049383,
+          "p90_absolute_error_eur": 66.199130885564
+        },
+        "segment_median": {
+          "rows": 81,
+          "mae_eur": 98.57185185185185,
+          "median_absolute_error_eur": 43.81,
+          "rmse_eur": 420.79524397338105,
+          "within_20_percent": 0.2962962962962963,
+          "within_30_eur": 0.2962962962962963,
+          "p90_absolute_error_eur": 109.38
+        }
+      },
+      "Treptow - Köpenick": {
+        "hist_gradient_boosting": {
+          "rows": 70,
+          "mae_eur": 88.80379078580363,
+          "median_absolute_error_eur": 42.158931675474484,
+          "rmse_eur": 264.89825343099193,
+          "within_20_percent": 0.3142857142857143,
+          "within_30_eur": 0.35714285714285715,
+          "p90_absolute_error_eur": 101.12891252033748
+        },
+        "segment_median": {
+          "rows": 70,
+          "mae_eur": 96.18042857142859,
+          "median_absolute_error_eur": 37.58,
+          "rmse_eur": 283.88234107762725,
+          "within_20_percent": 0.35714285714285715,
+          "within_30_eur": 0.38571428571428573,
+          "p90_absolute_error_eur": 124.29150000000001
+        }
+      }
+    },
+    "price_band": {
+      "(0, 100]": {
+        "hist_gradient_boosting": {
+          "rows": 441,
+          "mae_eur": 24.047621053435154,
+          "median_absolute_error_eur": 15.743676429689856,
+          "rmse_eur": 34.10453392980762,
+          "within_20_percent": 0.4467120181405896,
+          "within_30_eur": 0.7414965986394558,
+          "p90_absolute_error_eur": 59.167390708206604
+        },
+        "segment_median": {
+          "rows": 441,
+          "mae_eur": 41.89537414965986,
+          "median_absolute_error_eur": 38.269999999999996,
+          "rmse_eur": 49.95531673700793,
+          "within_20_percent": 0.2018140589569161,
+          "within_30_eur": 0.39909297052154197,
+          "p90_absolute_error_eur": 75.27499999999998
+        }
+      },
+      "(100, 200]": {
+        "hist_gradient_boosting": {
+          "rows": 491,
+          "mae_eur": 37.306261759563334,
+          "median_absolute_error_eur": 30.76326879869214,
+          "rmse_eur": 48.06299487193554,
+          "within_20_percent": 0.45213849287169044,
+          "within_30_eur": 0.48065173116089616,
+          "p90_absolute_error_eur": 79.47128602400224
+        },
+        "segment_median": {
+          "rows": 491,
+          "mae_eur": 37.264653767820775,
+          "median_absolute_error_eur": 29.900000000000006,
+          "rmse_eur": 48.258246622282364,
+          "within_20_percent": 0.4725050916496945,
+          "within_30_eur": 0.5112016293279023,
+          "p90_absolute_error_eur": 77.0
+        }
+      },
+      "(200, 400]": {
+        "hist_gradient_boosting": {
+          "rows": 237,
+          "mae_eur": 63.9524182818143,
+          "median_absolute_error_eur": 60.15356452192455,
+          "rmse_eur": 79.40856766790947,
+          "within_20_percent": 0.4430379746835443,
+          "within_30_eur": 0.29957805907172996,
+          "p90_absolute_error_eur": 126.8673510719219
+        },
+        "segment_median": {
+          "rows": 237,
+          "mae_eur": 84.92124472573839,
+          "median_absolute_error_eur": 77.80000000000001,
+          "rmse_eur": 101.57011525426026,
+          "within_20_percent": 0.31645569620253167,
+          "within_30_eur": 0.20253164556962025,
+          "p90_absolute_error_eur": 158.828
+        }
+      },
+      "(400, 1000000000]": {
+        "hist_gradient_boosting": {
+          "rows": 66,
+          "mae_eur": 381.8986233554433,
+          "median_absolute_error_eur": 274.30507659444277,
+          "rmse_eur": 623.9902461357946,
+          "within_20_percent": 0.045454545454545456,
+          "within_30_eur": 0.0,
+          "p90_absolute_error_eur": 498.67324956879645
+        },
+        "segment_median": {
+          "rows": 66,
+          "mae_eur": 416.8835606060606,
+          "median_absolute_error_eur": 298.4425,
+          "rmse_eur": 643.6213589252401,
+          "within_20_percent": 0.030303030303030304,
+          "within_30_eur": 0.0,
+          "p90_absolute_error_eur": 529.885
+        }
+      }
+    },
+    "missing_feature_count": {
+      "0": {
+        "hist_gradient_boosting": {
+          "rows": 1191,
+          "mae_eur": 55.700082546955066,
+          "median_absolute_error_eur": 28.956819767154613,
+          "rmse_eur": 153.6917740987365,
+          "within_20_percent": 0.42989084802686817,
+          "within_30_eur": 0.5121746431570109,
+          "p90_absolute_error_eur": 103.32034551602095
+        },
+        "segment_median": {
+          "rows": 1191,
+          "mae_eur": 68.28702770780856,
+          "median_absolute_error_eur": 43.05500000000001,
+          "rmse_eur": 161.57276114168224,
+          "within_20_percent": 0.3224181360201511,
+          "within_30_eur": 0.380352644836272,
+          "p90_absolute_error_eur": 134.5
+        }
+      },
+      "1": {
+        "hist_gradient_boosting": {
+          "rows": 26,
+          "mae_eur": 91.17356565534251,
+          "median_absolute_error_eur": 36.21887718120705,
+          "rmse_eur": 160.92251854847788,
+          "within_20_percent": 0.2692307692307692,
+          "within_30_eur": 0.46153846153846156,
+          "p90_absolute_error_eur": 260.0552637636676
+        },
+        "segment_median": {
+          "rows": 26,
+          "mae_eur": 91.50057692307692,
+          "median_absolute_error_eur": 31.894999999999992,
+          "rmse_eur": 185.32448630971982,
+          "within_20_percent": 0.38461538461538464,
+          "within_30_eur": 0.46153846153846156,
+          "p90_absolute_error_eur": 261.21500000000003
+        }
+      },
+      "2": {
+        "hist_gradient_boosting": {
+          "rows": 18,
+          "mae_eur": 31.949814572075677,
+          "median_absolute_error_eur": 24.52692517840211,
+          "rmse_eur": 43.16538261698081,
+          "within_20_percent": 0.4444444444444444,
+          "within_30_eur": 0.6666666666666666,
+          "p90_absolute_error_eur": 65.28650996163849
+        },
+        "segment_median": {
+          "rows": 18,
+          "mae_eur": 39.143888888888895,
+          "median_absolute_error_eur": 26.330000000000013,
+          "rmse_eur": 49.70715670582837,
+          "within_20_percent": 0.2222222222222222,
+          "within_30_eur": 0.5555555555555556,
+          "p90_absolute_error_eur": 63.002000000000024
+        }
+      }
+    }
+  },
+  "bootstrap": {
+    "method": "paired bootstrap of final-test hosts, row-weighted MAE, percentile 95% interval",
+    "hosts": 624,
+    "replicates": 1000,
+    "seed": 42,
+    "mae_improvement_eur_95ci": [
+      8.931126278151297,
+      15.666523447358308
+    ],
+    "mae_reduction_fraction_95ci": [
+      0.12799706280190007,
+      0.2393183651783743
+    ],
+    "not_a_prediction_interval": true
+  },
+  "identical_test_feature_rows_in_development": {
+    "train": 3,
+    "validation": 0
+  },
+  "predictions_sha256": "3227731b68cc8ec332bd71125ad1ff62fcf6c791c8e2b4be488d5f272aaa6f78",
+  "test_price_quantiles_eur": {
+    "0": 22.35,
+    "0.5": 130.0,
+    "0.95": 416.919,
+    "0.99": 687.6900000000018,
+    "1": 3837.63
+  },
+  "decision": "Keep deployed S02 irrespective of test results; report shortcomings honestly",
+  "limits": [
+    "Historical offered prices, not transaction prices",
+    "New hosts in the same city/snapshot, not temporal or geographic validation",
+    "No individual prediction interval",
+    "Do not tune this model using these test results"
+  ]
+}

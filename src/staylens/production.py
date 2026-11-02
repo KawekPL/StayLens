@@ -19,7 +19,38 @@ def create_production_app(static_dir=None, artifact_dir=None, catalog_dir=None):
     if not (directory / "index.html").is_file():
         raise RuntimeError("Built frontend is missing; run npm run build first")
     app = create_application(artifact_dir, catalog_dir)
-    app.version = "0.4.0"
+    app.version = "0.5.0"
+    evaluation = json.loads((directory / "final-evaluation.json").read_text(encoding="utf-8"))
+    if (
+        evaluation["model_sha256"]
+        != "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf"
+    ):
+        raise ValueError("Final evaluation belongs to a different model")
+    original_info = next(
+        route.endpoint for route in app.routes if getattr(route, "path", None) == "/api/model"
+    )
+    app.router.routes = [
+        route for route in app.router.routes if getattr(route, "path", None) != "/api/model"
+    ]
+
+    @app.get("/api/model")
+    def final_model_info():
+        # Preserve the historical artifact manifest; expose the later assessment separately.
+        info = original_info()
+        return {
+            **info,
+            "test_evaluated": True,
+            "final_evaluation": evaluation,
+            "limitations": [
+                value
+                for value in info["limitations"]
+                if not value.startswith("Not a final test result")
+            ]
+            + [
+                "Final test covers other hosts in the same Berlin snapshot, not future or geographic drift"
+            ],
+        }
+
     app.add_middleware(GZipMiddleware, minimum_size=1000)
 
     @app.middleware("http")

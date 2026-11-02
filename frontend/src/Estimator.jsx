@@ -3,7 +3,7 @@ import L from "leaflet";
 import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { api, AMENITY_LABELS, estimatePayload } from "./client.js";
 import { money, ROOM_NAMES } from "./market.js";
-import { ModelCaution } from "./ModelContext.jsx";
+import { ModelCaution, FinalEvaluationNote } from "./ModelContext.jsx";
 
 function LocationPicker({ latitude, longitude, onChange }) {
   const container = useRef(null),
@@ -331,9 +331,9 @@ export default function Estimator({ meta, onBack }) {
                 <summary>Jak powstał wynik?</summary>
                 <p>
                   Model S02 wytrenowany na 5814 ofertach. Osobna walidacja
-                  obejmowała 1108 ofert innych gospodarzy. Dane z 19.09.2026;
-                  test końcowy nie został jeszcze oceniony.
+                  obejmowała 1108 ofert innych gospodarzy. Dane z 19.09.2026.
                 </p>
+                <FinalEvaluationNote />
               </details>
             </>
           ) : (

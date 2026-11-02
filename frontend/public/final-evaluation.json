@@ -1,0 +1,31 @@
+{
+  "evaluation_id": "s05-final-v1",
+  "evaluated_on": "2026-11-02",
+  "model_version": "s02-v1",
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "test_rows": 1235,
+  "test_hosts": 624,
+  "metrics": {
+    "rows": 1235,
+    "mae_eur": 56.100734965797365,
+    "median_absolute_error_eur": 28.664838013334247,
+    "rmse_eur": 152.8133980070038,
+    "within_20_percent": 0.42672064777327934,
+    "within_30_eur": 0.5133603238866397,
+    "p90_absolute_error_eur": 104.15040309278099
+  },
+  "baseline_metrics": {
+    "rows": 1235,
+    "mae_eur": 68.35097570850202,
+    "median_absolute_error_eur": 42.33500000000001,
+    "rmse_eur": 161.042669123437,
+    "within_20_percent": 0.32226720647773277,
+    "within_30_eur": 0.38461538461538464,
+    "p90_absolute_error_eur": 133.9000000000002
+  },
+  "mae_reduction_fraction": 0.17922554309902672,
+  "model_unchanged": true,
+  "fit_calls": 0,
+  "scope": "Other hosts in the historical Berlin snapshot 2026-09-19; offered prices, not bookings",
+  "report": "https://github.com/KawekPL/StayLens/blob/main/reports/s05/REPORT.md"
+}

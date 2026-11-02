@@ -1,0 +1,10 @@
+{
+  "all_six_metrics_independently_recomputed": true,
+  "saved_predictions_checksum_matches": true,
+  "test_rows": 1235,
+  "test_hosts": 624,
+  "no_host_or_listing_overlap": true,
+  "original_models_and_artifacts_unchanged": true,
+  "protocol_and_runner_unchanged": true,
+  "no_training_or_new_predictions_in_verification": true
+}

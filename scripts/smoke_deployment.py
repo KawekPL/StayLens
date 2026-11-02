@@ -58,7 +58,13 @@ def run(base, revision=None):
     if revision:
         assert release["revision"] == revision, release
     model = json.loads(request("/api/model"))
-    assert model["test_evaluated"] is False and model["training_rows"] == 5814
+    assert model["test_evaluated"] is True and model["training_rows"] == 5814
+    final = model["final_evaluation"]
+    assert final["test_rows"] == 1235 and final["test_hosts"] == 624
+    assert math.isclose(final["metrics"]["mae_eur"], 56.100734965797365)
+    assert (
+        final["model_sha256"] == "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf"
+    )
     assert math.isclose(model["validation_metrics"]["mae_eur"], 53.610766, abs_tol=0.00001)
     page = json.loads(request("/api/catalog/listings"))
     assert page["total"] == 3438 and len(page["items"]) == 12
@@ -87,7 +93,8 @@ def run(base, revision=None):
         "catalog_total": page["total"],
         "estimate_eur": estimate["estimated_price_eur"],
         "model_unchanged": True,
-        "test_evaluated": False,
+        "test_evaluated": True,
+        "test_mae_eur": final["metrics"]["mae_eur"],
         "http_checks": "passed",
     }
 

@@ -26,7 +26,11 @@ import "./styles.css";
 import { DEFAULT_FILTERS, ROOM_NAMES, count, money } from "./market.js";
 import { api, catalogUrl } from "./client.js";
 import Estimator from "./Estimator.jsx";
-import { ModelCaution, ListingWarnings } from "./ModelContext.jsx";
+import {
+  ModelCaution,
+  ListingWarnings,
+  FinalEvaluationNote,
+} from "./ModelContext.jsx";
 
 function Photo({ row, className = "" }) {
   const [failed, setFailed] = useState(false);
@@ -466,9 +470,10 @@ function About({ meta, onBack }) {
             Model S02 uczył się z 5814 ofert. Na 1108 ofertach innych gospodarzy
             średni błąd wyniósł 53,61 € wobec 67,87 € dla prostej mediany. Dla
             katalogu używamy prognoz bez ocenianego gospodarza w treningu
-            (średni błąd 54,90 €). Formularz korzysta z pełnego modelu. Test
-            końcowy pozostaje odłożony. Metraż nie jest cechą tego modelu.
+            (średni błąd 54,90 €). Formularz korzysta z pełnego modelu. Metraż
+            nie jest cechą tego modelu.
           </p>
+          <FinalEvaluationNote />
         </article>
       </div>
       <ModelCaution />
