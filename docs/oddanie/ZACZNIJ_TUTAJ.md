@@ -52,6 +52,8 @@ docker run --rm --name staylens-submission -p 127.0.0.1:8080:8080 --cpus 0.5 --m
 
 Otwórz http://127.0.0.1:8080. Zatrzymanie: Ctrl+C w terminalu kontenera. Nie potrzeba konta Azure, tokena OpenAI, ponownego treningu ani pobierania prywatnego wydania. W drugiej konsoli z Pythonem 3.12 można uruchomić `py -3.12 scripts/smoke_deployment.py http://127.0.0.1:8080`.
 
+02.11 sprawdzono rzeczywistą budowę i uruchomienie z wypakowanego ZIP w osobnym katalogu. Test HTTP przeszedł, łącznie z wyceną181,30EUR i katalogiem3438ofert. Zapis znajduje się w `StayLens/reports/s05/package_check.json`. Kontener korzysta z przygotowanego modelu; niczego nie trenuje przy starcie.
+
 Archiwum jest eksportem źródeł, bez historii `.git`. Historia, CI i wersjonowane wydania pozostają w repo. Pełne odtwarzanie środowiska testowego z GitHub opisuje `docs/DEPLOYMENT.md`; surowe dane badań pobiera skrypt `prepare_preview.py`. Nie uruchamiać eksperymentów ponownie tylko w celu obejrzenia aplikacji. Końcowy test został otwarty raz; jego wynik nie służy do dalszego strojenia.
 
 ## Dostępność podczas oceniania

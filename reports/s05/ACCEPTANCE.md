@@ -27,11 +27,15 @@ Wydanie aplikacji 0.5.0, modelS02, commit `7ab5350e9a721a67f3cb48f84a7ae38a67f04
 
 Dowody maszynowe: [HTTP](azure_smoke.json), [konfiguracja](effective_configuration.json), [CI/hosting/repo](operations.json), [wynik testu](test_evaluation.json), [niezależna weryfikacja ML](verification.json).
 
+## Próba odtworzenia pakietu
+
+ZIP z kodem commita `a0b6d92` wypakowano do nowego katalogu. Z tego katalogu (bez użycia plików pierwotnego workspace jako wejścia budowy) zbudowano obraz Docker linux/amd64 i uruchomiono go jako użytkownik 10001 z limitem 0,5 CPU/1 GiB, read-only i bez dodatkowych uprawnień. Istniejące warstwy zależności Dockera mogły zostać użyte z cache. Kontrola rzeczywistego HTTP pod lokalnym portem8082 przeszła: katalog3438, wycena181,30EUR, aktualna ocena końcowa, błędy422/404 i niedostępne pliki prywatne. [Dowód](package_check.json). Finalny ZIP uzupełniono później wyłącznie o ten zapis i dokumentację; kod aplikacji i wszystkie wejścia obrazu pozostają te same. Każde pakowanie weryfikuje CRC, listę plików i ich dokładną zawartość.
+
 ## Zakres odbioru przeglądarkowego
 
 Testy w przeglądarce aplikacji Codex, tryb desktop i wąski. Żądane rozmiary viewport 1440×1000 i390×844; warstwa przeglądarki raportowała efektywne szerokości CSS 1096 i288px. Dla tych efektywnych szerokości `scrollWidth == clientWidth`. Nie przedstawiamy tego jako fizycznego testu telefonu ani dokładnej emulacji konkretnego modelu urządzenia. Po testach przywrócono domyślny rozmiar i pozostawiono publiczny adres.
 
-Zrzuty tylko lokalnie w `.local/s05-screenshots/`: desktop-estimator.png, desktop-catalog.png, mobile-estimator.png, mobile-map.png. Nie kopiowano fotografii źródłowych do repo/pakietu. Część kontroli katalogu zaczęto podczas wdrażania nowej wersji; po wdrożeniu odświeżono stronę i sprawdzono końcowy formularz, opis testu, widok wąski, sortowanie oraz API. Logika predykcji/katalogu pozostaje bez zmian.
+Zrzuty tylko lokalnie w `.local/s05-screenshots/`: desktop-estimator.png, desktop-catalog.png, mobile-estimator.png, mobile-map.png i final-preview.png. Nie kopiowano fotografii źródłowych do repo/pakietu. Po przywróceniu zwykłego podglądu (375px CSS) cztery sprawdzone obrazy Numa miały complete=true i naturalWidth3500/4000; wcześniejsze zrzuty mogły przedstawiać jeszcze pola zastępcze podczas ładowania. Warstwa przechwytywania przy nadpisanym rozmiarze skalowała obraz, dlatego sam zrzut nie jest dowodem dokładnych rozmiarów fizycznego ekranu. Część kontroli katalogu zaczęto podczas wdrażania nowej wersji; po wdrożeniu odświeżono stronę i sprawdzono końcowy formularz, opis testu, widok wąski, sortowanie oraz API. Logika predykcji/katalogu pozostaje bez zmian.
 
 ## Rzeczy pozostające poza tą kontrolą
 

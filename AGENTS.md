@@ -2,6 +2,8 @@
 
 ## Aktualne decyzje użytkownika
 
+- Pakiet S06 sprawdzono 02.11 przez rzeczywistą budowę Docker ze świeżo wypakowanego ZIP i HTTP181,30EUR/katalog3438. Dowód reports/s05/package_check.json. `scripts/build_submission.py` wymaga czystego repo i tworzy artifacts/submission/StayLens_s29670_2026-11-02.zip plus SHA256, z kodem Git i zweryfikowanym .runtime. Pakiet jest przygotowany do samodzielnej wysyłki przez autora; wysłanie ani ocena niepotwierdzone.
+
 - 02.11.2026 użytkownik zlecił końcowy odbiór, jednorazową ocenę testową i pakiet ze szkicem maila; model bez zmian. Autor potwierdzony: **Szymon Kawlowski, s29670**. Wyraźnie zgodził się na upublicznienie repo StayLens wraz z dokumentacją autora; repo PUBLIC, odczyt anonimowy200. Nie wysyłaj maila bez osobnego polecenia.
 - S05: jednorazowy test1235ofert/624gospodarzy, MAE56,10EUR vs68,35EUR mediany, poprawa17,92%, mediana błędu28,66EUR. Model S02 identyczny SHA, zero fit. Protokół configs/s05_final_protocol.json zamrożony w a0895ab; runner i zapisane wyniki są odtąd historyczne. Nie uruchamiaj nowej oceny/test-driven tuningu. verify_final_evaluation.py tylko przelicza zapisane lokalne przewidywania; nie publikuje ID ani surowych danych. Oryginalnego manifestu S02 nie zmieniono.
 - Produkcja0.5.0 z commita7ab5350, CI41416768082:97Python+7JS, zero pominięć. Wrapper /api/model i UI uzupełniają historyczny manifest o final-evaluation.json. Aktualne raporty reports/s05, pakietdocs/oddanie. Grant ponownie odczytany02.11: expiry17.11, spendingLimitOn, estimated98,06USD, kurs0,89770636EUR/USD.8EUR pozostaje poniżej zgody10USD, nie jest twardym limitem. Odnowienie/wysłanie niepotwierdzone. Poniższe punkty S01–S04 są historią; pierwszeństwo mają powyższe decyzje.

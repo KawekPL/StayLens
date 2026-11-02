@@ -1,0 +1,17 @@
+{
+  "checked_on": "2026-11-02",
+  "tested_archive_source_commit": "a0b6d92327acfb5266d40d599ee06fcdb69aaba3",
+  "deployed_application_code_commit": "7ab5350e9a721a67f3cb48f84a7ae38a67f04451",
+  "build_context": "fresh extraction of the submission ZIP; no original workspace files as build inputs",
+  "docker_build": "passed, linux/amd64; existing dependency layers reused",
+  "runtime": {"user": "10001:10001", "cpu": 0.5, "memory": "1g", "read_only": true, "cap_drop": "ALL"},
+  "local_url": "http://127.0.0.1:8082",
+  "http_smoke": "passed",
+  "app_version": "0.5.0",
+  "model_version": "s02-v1",
+  "example_prediction_eur": 181.3,
+  "default_catalog_count": 3438,
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "final_archive_note": "The final ZIP additionally includes this evidence and documentation-only updates. Application, model, frontend and Docker inputs remain identical to the tested package. MANIFEST.json records the final source commit and all file checksums.",
+  "archive_integrity": "CRC and exact member/content verification performed by build_submission.py on every packaging run"
+}

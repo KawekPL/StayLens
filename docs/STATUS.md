@@ -4,6 +4,8 @@
 
 ## 2 listopada 2026 — końcowa ocena i przekazanie
 
+Pakiet S06 zweryfikowany również z wypakowanego archiwum: rzeczywista budowa Docker i smokeHTTP przeszły. Kod/model identyczne z wydaniem produkcyjnym; finalny ZIP dodaje dowody i dokumentację. Skrypt `build_submission.py` zapisuje archiwum oraz SHA256 w `artifacts/submission/`, bez sekretów i wierszowych danych testowych. [Dowód](../reports/s05/package_check.json).
+
 Użytkownik zlecił końcowy odbiór, ocenę odłożonego testu i pakiet ze szkicem maila. Potwierdził dane: Szymon Kawlowski, s29670, oraz wyraził zgodę na publiczne repo z dokumentacją autora. Repo upublicznione, odczyt anonimowy200. Nie wysłano maila ani zaproszeń.
 
 Protokół i runner zamrożono w a0895ab przed odczytem testu.1235ofert/624innych gospodarzy: MAE56,10EUR vs68,35EUR, poprawa17,92%, mediana błędu28,66EUR. Zero fit, brak zmiany modelu/preprocessingu i wszystkich oryginalnych artefaktów S02. Wysokie ceny nadal mają duży błąd; wynik opisano bez obietnicy dokładnej wyceny. Przewidywania z ID tylko lokalnie. Niezależna kontrola sześciu metryk i hashy przeszła. [Raport](../reports/s05/REPORT.md).
