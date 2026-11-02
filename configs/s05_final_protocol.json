@@ -1,0 +1,22 @@
+{
+  "evaluation_id": "s05-final-v1",
+  "authorized_on": "2026-11-02",
+  "purpose": "One final test of the already selected S02 model; no fitting, selection, tuning or filtering by error",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "models": {
+    "hist_gradient_boosting": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+    "segment_median": "563a3e16f7fb50deafc21b38be23cd756de0a33bd39f7774388b4aa3aa17391d"
+  },
+  "split": "Original host_split: SHA256(staylens-v1:host_id), first 8 hex digits modulo 100; test >=85",
+  "eligibility": "Original S02: host present, finite price >0, 52.3<latitude<52.7 and 13.05<longitude<13.8; no upper price cutoff",
+  "expected_rows": {"train": 5814, "validation": 1108, "test": 1235},
+  "features": "Original frozen source_features and feature_frame; same 18 fields as S02",
+  "metrics": ["mae_eur", "median_absolute_error_eur", "rmse_eur", "within_20_percent", "within_30_eur", "p90_absolute_error_eur"],
+  "segments": ["room_type", "district", "price_band", "missing_feature_count"],
+  "price_bands_eur": [0, 100, 200, 400, 1000000000],
+  "bootstrap": {"unit": "host", "replicates": 1000, "seed": 42, "interval": "paired MAE improvement, percentile 95%, not individual prediction interval"},
+  "additional_diagnostic": "Count test feature rows identical to train/validation without removing them from scores",
+  "decision": "Keep deployed S02 irrespective of test results; report shortcomings honestly",
+  "storage": "Predictions with identifiers only under ignored artifacts/s05-final; publish aggregates, hashes and code",
+  "repeat_policy": "Refuse to overwrite an existing evaluation; independent recomputation from saved predictions is verification, not new model selection"
+}
