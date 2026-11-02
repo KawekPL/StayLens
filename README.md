@@ -1,22 +1,24 @@
 # StayLens
 
-Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Berlinie. Projekt zaliczeniowy SUML, wybrany przez użytkownika 28 października 2026. Termin pracy: **3 listopada 2026**, pakiet do oddania 2 listopada. Zastępuje SupportRouter PL jako wybrany temat; tamten projekt zachowano.
+Polskojęzyczna aplikacja do eksplorowania i porównywania ofert noclegów w Berlinie. Projekt zaliczeniowy SUML — **Szymon Kawlowski, s29670**, praca indywidualna. Frontend React, API FastAPI i lokalny model scikit-learn, wdrożone w Azure.
 
-## Stan: aplikacja wdrożona na Azure (S04)
+## Wydanie do oceny — 0.5.0, 02.11.2026
 
-**[Otwórz StayLens](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io)** · [Repozytorium](https://github.com/KawekPL/StayLens) (prywatne) · [Udane CI/CD](https://github.com/KawekPL/StayLens/actions/runs/40779379265)
+**[Otwórz StayLens](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io)** · [Repozytorium publiczne](https://github.com/KawekPL/StayLens) · [Udane CI/CD](https://github.com/KawekPL/StayLens/actions/runs/41416768082)
 
-Docker, GitHub Actions, Terraform i rzeczywiste wdrożenie ukończone 28.10.2026. **95 testów Python, 7 JS**, test kontenera i publicznego HTTPS; model S02 bez zmian. [Raport S04](reports/s04/REPORT.md) i [instrukcja dostawy/odtwarzania](docs/DEPLOYMENT.md). Pierwsze wejście po uśpieniu może potrwać dłużej. Grant Azure ważny do 17.11.2026; odnowienie i dostęp prowadzącego do prywatnego repo pozostają do ustalenia.
+**[Przewodnik dla prowadzącego](docs/oddanie/ZACZNIJ_TUTAJ.md)** · [Karta danych/modelu](docs/oddanie/KARTA_DANYCH_I_MODELU.md) · [Scenariusz demonstracji](docs/oddanie/DEMO_I_OBJASNIENIE.md)
+
+Docker, GitHub Actions, Terraform i rzeczywiste wdrożenie działają. **97 testów Python, 7 JS**, test kontenera i publicznego HTTPS. Model S02 bez zmian; końcowy test: **MAE 56,10 EUR** wobec **68,35 EUR** mediany segmentów, na 1235 ofertach innych gospodarzy. [Raport testu](reports/s05/REPORT.md), [odbiór aplikacji](reports/s05/ACCEPTANCE.md), [instrukcja odtwarzania](docs/DEPLOYMENT.md). Pierwsze wejście po uśpieniu może potrwać dłużej. Grant Azure ważny do 17.11.2026; odnowienie niepotwierdzone. Przygotowanie pakietu nie oznacza wysłania pracy ani otrzymania oceny.
 
 - React + FastAPI: mapa, filtry, wyszukiwarka, sortowanie, paginacja, szczegóły i porównanie do trzech ofert oraz formularz **Wycena**.
 - Rzeczywiste dane Inside Airbnb Berlin z 19.09.2026. Podgląd obejmuje 5814 ofert z części treningowej.
 - Katalog pokazuje zapisane oszacowania z grupowanego CV: dana oferta i jej gospodarz nie uczestniczyli w treningu modelu, który ją oceniał. Formularz nowych parametrów korzysta z modelu dopasowanego do całego train. Mediany są osobnymi statystykami.
-- **Model ML wytrenowany i porównany:** boosting MAE 53,61 EUR, mediana segmentów 67,87 EUR na 1108 ofertach walidacyjnych (poprawa 21%). Grupowane CV: 54,90 vs 69,23 EUR. Test końcowy nadal nieoceniany. [Wyniki i ograniczenia](reports/s02/REPORT.md).
+- **Rozwój modelu:** boosting MAE 53,61 EUR, mediana segmentów 67,87 EUR na 1108 ofertach walidacyjnych (poprawa 21%). Grupowane CV: 54,90 vs 69,23 EUR. [Wyniki rozwojowe](reports/s02/REPORT.md). Końcowy test oceniono osobno 02.11, bez kolejnego treningu.
 - Formularz sprawdza lokalizację w granicach Berlina, dobiera dzielnicę oraz rozróżnia brak udogodnienia od braku informacji. Wyniki zawierają ograniczenia jakości, szczególnie dla drogich ofert.
 - Dodatkowe eksperymenty [S02b](reports/s02b/REPORT.md) i [S02c](reports/s02c/REPORT.md) nie spełniły kryteriów zastąpienia S02. Aktywny model pozostał bez zmian.
 - S03: **75 testów Pythona, 7 testów JS**, produkcyjny build, rzeczywiste HTTP przez proxy oraz przeglądarkowe sprawdzenie głównych ścieżek desktop/mobile. [Raport S03](reports/s03/REPORT.md).
 - Późniejszy audyt jakości [S03b](reports/s03b/REPORT.md) i [S03c](reports/s03c/REPORT.md): 10 nowych wariantów i krzywe uczenia. Najlepsze CV 53,34 zamiast 54,90 EUR, zbyt mała poprawa do awansu. **Precyzyjnej wyceny nie osiągnięto; aktywny model i validation 53,61 EUR pozostają bez zmian.** Pełna suita po tych badaniach: 81 testów Pythona; wymaga dodatkowego lockfile research.
-- S04 dostarcza jeden obraz React + FastAPI + zamrożony model, automatyczne CI/CD przez OIDC oraz osobną aplikację i stany Terraform w Azure. Kolejny etap to końcowy odbiór S05 i pakiet do oddania S06.
+- S04 dostarcza jeden obraz React + FastAPI + zamrożony model, automatyczne CI/CD przez OIDC oraz osobną aplikację i stany Terraform w Azure. S05/S06 dodają odbiór, końcowy test i pakiet do oddania; model pozostaje ten sam.
 
 ## Uruchomienie
 

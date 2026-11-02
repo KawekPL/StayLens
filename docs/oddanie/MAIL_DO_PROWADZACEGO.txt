@@ -1,0 +1,19 @@
+Do: ddeja@pjwstk.edu.pl
+Temat: SUML — projekt StayLens — Szymon Kawlowski, s29670
+
+Szanowny Panie,
+
+przesyłam do oceny projekt zaliczeniowy SUML: StayLens — aplikację do przeglądania i porównywania ofert noclegów w Berlinie oraz orientacyjnego szacowania ich cen z wykorzystaniem uczenia maszynowego.
+
+Aplikacja: https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io/
+Repozytorium: https://github.com/KawekPL/StayLens
+
+Projekt wykorzystuje React i FastAPI, Docker, Azure Container Apps, GitHub Actions oraz Terraform. Dokumentacja obejmuje źródło danych, procedurę oceny modelu, jego ograniczenia i wyniki końcowego testu. Model pracuje na historycznych cenach ofertowych; aplikacja nie potwierdza bieżącej dostępności noclegów.
+
+Repozytorium jest publiczne. W załączeniu przekazuję również pakiet z kodem, dokumentacją i modelem, umożliwiający uruchomienie aplikacji w Dockerze.
+
+Projekt wykonałem indywidualnie. Proszę o informację zwrotną i ewentualne uwagi do poprawy.
+
+Z poważaniem
+Szymon Kawlowski
+s29670

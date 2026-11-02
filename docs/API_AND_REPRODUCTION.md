@@ -1,5 +1,7 @@
 # API i odtwarzanie S02/S03
 
+**S05, 02.11:** produkcyjne `staylens.production:create_production_app` w wersji0.5.0 wymaga także statycznego `final-evaluation.json` (dostarczanego przez build Vite). `/api/model` dodaje `test_evaluated: true` i `final_evaluation` z wynikiem testu1235ofert. Zamrożony historyczny `staylens.api:create_app`/manifest S02 nadal opisuje pierwotną ocenę rozwojową. Model, wejścia i przewidywania nie zmieniły się. Pełne CI:97 testów Python i7 JS. Repo jest publiczne; pakiet dla odbiorcy ma gotowe `.runtime` i nie wymaga pobierania z GitHub.
+
 **S04:** gotowy obraz serwuje produkcyjny frontend oraz API przez `staylens.production:create_production_app`. Pobieranie przypiętych artefaktów, świeży klon, Docker i Azure opisano w [DEPLOYMENT.md](DEPLOYMENT.md). Pełne CI ma teraz 95 testów Python i 7 JS. Poniższe instrukcje zachowują odtwarzanie historycznych badań i lokalny tryb deweloperski. Nie używaj pakietu CI z usuniętym `host_id` do zastępowania oryginalnych artefaktów badawczych.
 
 Python 3.12; zależności dokładnie przypięte w `pyproject.toml` i dwóch uniwersalnych lockfile z SHA256. Modele są lokalne, nie ma klucza OpenAI ani treningu przy starcie serwera.

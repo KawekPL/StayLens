@@ -1,5 +1,7 @@
 # Dane i plan ML
 
+**Stan końcowy 02.11.2026:** jednorazowo oceniono zamrożony S02 na 1235 ofertach/624 innych gospodarzach. MAE56,10EUR vs68,35EUR baseline; model i preprocessing bez zmian. [Raport](../reports/s05/REPORT.md), [karta danych/modelu](oddanie/KARTA_DANYCH_I_MODELU.md). Poniższy plan i eksperymenty opisują historię rozwoju; wzmianki o odłożonym teście odnoszą się do stanu przed S05. Test jest już otwarty i nie służy do dalszego strojenia.
+
 ## Źródło
 
 [Inside Airbnb — Berlin](https://insideairbnb.com/get-the-data/), snapshot 19.09.2026, licencja zbioru CC BY 4.0. [Słownik pól](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/edit) definiuje `price` jako dzienną cenę w lokalnej walucie. Znak `$` to artefakt eksportu: dla Berlina używamy EUR, nie USD.

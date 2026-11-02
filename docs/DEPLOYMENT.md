@@ -1,5 +1,7 @@
 # Dostawa StayLens — S04
 
+**Aktualizacja 02.11.2026:** wydanie aplikacji 0.5.0, repo publiczne po zgodzie autora; pobranie wydania nie wymaga dostępu do prywatnego repo. GitHub CLI nadal obsługuje polecenie fetch. CI 41416768082: 97 testów Python i 7 JS, wdrożenie poprawne. Oryginalny model/manifest S02 zachowane; `/api/model` i UI pokazują osobną ocenę końcową (MAE56,10EUR, 1235ofert). Nie uruchamia się jej ponownie w CI. [Odbiór S05](../reports/s05/ACCEPTANCE.md), [pakiet i start bez GitHub](oddanie/ZACZNIJ_TUTAJ.md). Fragmenty dotyczące prywatności repo niżej opisują pierwotny S04; aktualne repo i wydanie artefaktów są publiczne. Stan Terraform, surowe dane i sekrety pozostają prywatne.
+
 Model wykonawczy pozostaje dokładnie S02, SHA256 `47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf`. Nie ma treningu podczas budowy obrazu ani startu serwera. Test końcowy nie jest oceniany w CI.
 
 ## Architektura
@@ -47,7 +49,7 @@ W drugiej konsoli: `py -3.12 scripts/smoke_deployment.py http://127.0.0.1:8080`.
 5. Obraz trafia do ACR pod SHA commita. Terraform dostaje **digest**, nie zmienny tag. Kontrola planu odrzuca usuwanie zasobów, inne aplikacje i zwiększenie limitu replik/zasobów.
 6. Terraform stosuje plan, HTTP sprawdza publiczne wdrożenie i wersję commita. Kolejny plan jest sprawdzany przez `check_deployment_drift.py`: każda rzeczywista różnica kończy pipeline błędem. Dopuszczonych jest wyłącznie pięć dokładnych różnic odczytu opisanych poniżej; niezależny odczyt ARM potwierdza działającą konfigurację. Wyniki testów i odbioru są artefaktami workflow.
 
-Repo jest prywatne. Dostęp prowadzącego trzeba uzgodnić przed oddaniem; samo wysłanie linku nie daje mu uprawnień. Nie wysyłano zaproszeń ani maila.
+Repo jest publiczne od 02.11; odczyt bez logowania sprawdzono. Nie wysyłano zaproszeń ani maila.
 
 ## Terraform i tożsamości
 

@@ -1,0 +1,18 @@
+{
+  "base_url": "https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io",
+  "release": {
+    "revision": "7ab5350e9a721a67f3cb48f84a7ae38a67f04451",
+    "app_version": "0.5.0",
+    "model_version": "s02-v1"
+  },
+  "health": {
+    "status": "ok",
+    "model_version": "s02-v1"
+  },
+  "catalog_total": 3438,
+  "estimate_eur": 181.3,
+  "model_unchanged": true,
+  "test_evaluated": true,
+  "test_mae_eur": 56.100734965797365,
+  "http_checks": "passed"
+}

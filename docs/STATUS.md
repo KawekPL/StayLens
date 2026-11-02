@@ -1,6 +1,16 @@
 # Status StayLens
 
-**Aktualnie: S04 ukończony 28.10.2026 — Docker, CI/CD, Terraform i publiczne Azure. Model pozostaje S02, zgodnie z decyzją użytkownika o zakończeniu strojenia.** [Aplikacja](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io), [udany pipeline](https://github.com/KawekPL/StayLens/actions/runs/40779379265), [raport S04](../reports/s04/REPORT.md). Następny etap S05/S06: odbiór i pakiet do oddania. Wcześniejsze sekcje opisują stan historyczny.
+**Aktualnie: S05/S06 — końcowy odbiór, test i pakiet do oddania, 02.11.2026.** [Aplikacja](https://staylens.ashybay-e9483837.polandcentral.azurecontainerapps.io), [publiczne repo](https://github.com/KawekPL/StayLens), [udany pipeline](https://github.com/KawekPL/StayLens/actions/runs/41416768082), [odbiór](../reports/s05/ACCEPTANCE.md), [pakiet](oddanie/ZACZNIJ_TUTAJ.md). Model pozostaje S02. Poniższe starsze sekcje to historia; wzmianki o prywatnym repo i nieocenionym teście są już nieaktualne.
+
+## 2 listopada 2026 — końcowa ocena i przekazanie
+
+Użytkownik zlecił końcowy odbiór, ocenę odłożonego testu i pakiet ze szkicem maila. Potwierdził dane: Szymon Kawlowski, s29670, oraz wyraził zgodę na publiczne repo z dokumentacją autora. Repo upublicznione, odczyt anonimowy200. Nie wysłano maila ani zaproszeń.
+
+Protokół i runner zamrożono w a0895ab przed odczytem testu.1235ofert/624innych gospodarzy: MAE56,10EUR vs68,35EUR, poprawa17,92%, mediana błędu28,66EUR. Zero fit, brak zmiany modelu/preprocessingu i wszystkich oryginalnych artefaktów S02. Wysokie ceny nadal mają duży błąd; wynik opisano bez obietnicy dokładnej wyceny. Przewidywania z ID tylko lokalnie. Niezależna kontrola sześciu metryk i hashy przeszła. [Raport](../reports/s05/REPORT.md).
+
+Wersja0.5.0, kod7ab5350, obrazsha256:f9bc66c2e5984fe4d0d0d61ed90b1fc008706d5559bdef50b680a2c41788f5ae. Zmieniono wyłącznie opis/udostępnienie oceny końcowej, nie model. CI97testów Python i7JS, zero pominięć, Docker/Terraform/publiczneHTTPS poprawne. Testy UI katalogu, wyszukiwania, paginacji, porównania, wyceny, niepoprawnej lokalizacji i wąskiego widoku; szczegóły i faktyczne szerokości CSS w raporcie odbioru. Nie jest to fizyczny test telefonu. Logi Log Analytics potwierdzone.
+
+Przygotowano przewodnik, kartę danych/modelu, demo/objaśnienia, szkic maila i skrypt archiwum z kodem oraz zamrożonym `.runtime`. Odczyt Azure02.11 potwierdził expiry17.11, spendingLimitOn, estimated98,06USD. Listopadowy kurs0,89770636EUR/USD utrzymuje alert8EUR poniżej zgody10USD; odnowienie niepotwierdzone. Pozostaje wysłanie przez autora i dopilnowanie dostępności podczas oceny. Żadnego dalszego test-driven tuningu.
 
 ## 28 października 2026 — S04 ukończony
 

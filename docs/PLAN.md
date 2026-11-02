@@ -1,5 +1,7 @@
 # StayLens — zakres i realizacja do 3 listopada
 
+**02.11.2026: końcowy odbiór S05 i przygotowanie S06.** Oceniono raz zamrożony model: test MAE56,10EUR vs68,35EUR. Publiczne repo po wyraźnej zgodzie autora; CI/CD i wdrożenie0.5.0 poprawne. [Raport testu](../reports/s05/REPORT.md), [odbiór](../reports/s05/ACCEPTANCE.md), [pakiet](oddanie/ZACZNIJ_TUTAJ.md). Harmonogram poniżej jest historycznym planem. Pozostaje wysłanie przez autora i utrzymanie hostingu podczas oceny; nie planujemy nowego strojenia.
+
 Decyzja: użytkownik zaakceptował temat 28.10.2026. Data 03.11 jest jego terminem pracy. Formalny termin z ogłoszenia prowadzącego to 01.01.2027 dla możliwości oceny 5 i rundy poprawek. Nie gwarantujemy oceny.
 
 ## Potrzeba i odbiorca
