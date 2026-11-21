@@ -84,6 +84,14 @@ jobs:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Check that the Azure subscription is active
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: |
+          state=$(az rest --method get --url "https://management.azure.com/subscriptions/$ARM_SUBSCRIPTION_ID?api-version=2022-12-01" --query state -o tsv)
+          if [ "$state" != "Enabled" ]; then
+            echo "::error::Azure subscription is $state. Renew Azure for Students, then rerun this workflow."
+            exit 1
+          fi
       - name: Publish the tested image and resolve its immutable digest
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         env:
