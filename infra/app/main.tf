@@ -1,3 +1,29 @@
+terraform {
+  required_version = "= 1.16.5"
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "= 4.81.0" }
+  }
+  backend "azurerm" {}
+}
+provider "azurerm" {
+  features {}
+  subscription_id                 = var.subscription_id
+  resource_provider_registrations = "none"
+}
+
+variable "subscription_id" { type = string }
+variable "resource_group_name" { type = string }
+variable "environment_id" { type = string }
+variable "runtime_identity_id" { type = string }
+variable "acr_login_server" { type = string }
+variable "image_digest" {
+  type = string
+  validation {
+    condition     = can(regex("^sha256:[0-9a-f]{64}$", var.image_digest))
+    error_message = "Deploy an immutable image digest, never a mutable tag."
+  }
+}
+
 resource "azurerm_container_app" "staylens" {
   name                         = "staylens"
   resource_group_name          = var.resource_group_name
@@ -68,3 +94,6 @@ resource "azurerm_container_app" "staylens" {
     ignore_changes = [ingress[0].traffic_weight]
   }
 }
+
+output "url" { value = "https://${azurerm_container_app.staylens.ingress[0].fqdn}" }
+output "image_digest" { value = var.image_digest }

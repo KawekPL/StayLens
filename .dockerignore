@@ -11,5 +11,5 @@ src/**/__pycache__/
 frontend/node_modules/
 frontend/dist/
 frontend/public/data/listings.json
-!.runtime/
-!.runtime/**
+!runtime/
+!runtime/**

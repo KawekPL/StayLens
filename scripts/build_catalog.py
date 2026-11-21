@@ -1,5 +1,6 @@
-"""Build S03 from train and saved S02 out-of-fold predictions. Never fit a model."""
+"""Zbuduj katalog z train i zapisanych prognoz CV. Nie trenuje modelu."""
 
+import argparse
 import csv
 import gzip
 import json
@@ -23,15 +24,18 @@ def nullable(value):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--artifact-dir", type=Path, default=ROOT / "artifacts/training-run")
+    parser.add_argument("--output", type=Path, default=ROOT / "data/prepared/catalog")
+    args = parser.parse_args()
     source = ROOT / "data/raw/listings.csv.gz"
-    artifact = ROOT / "artifacts/s02-v1"
+    artifact = args.artifact_dir
     cv_path = artifact / "cv_predictions.csv"
-    # Original S02 OOF artifact, independently verified in S02b/S02c.
-    # Pin it here so catalogue preparation needs S02 only, not later experiments.
-    expected = "0d14d99ec33c5f7bbcc55a6dd41ec322e17eee10dc3fed89d0cb5a692266998c"
-    if sha256(source) != SOURCE_SHA256 or sha256(cv_path) != expected:
-        raise ValueError("Pinned source or original OOF predictions changed")
+    if sha256(source) != SOURCE_SHA256:
+        raise ValueError("Pinned source changed")
     model = json.loads((artifact / "manifest.json").read_text(encoding="utf-8"))
+    if sha256(cv_path) != model["oof_predictions_sha256"]:
+        raise ValueError("OOF predictions do not belong to this training run")
     predictions = pd.read_csv(cv_path, dtype={"listing_id": str, "host_id": str}).set_index(
         "listing_id"
     )
@@ -48,7 +52,7 @@ def main():
             predicted = predictions.loc[record["id"]]
             if predicted.host_id != record["host_id"] or predicted.price != price:
                 raise ValueError("OOF/source identity or target mismatch")
-            estimate = float(predicted.hist_gradient_boosting)
+            estimate = float(predicted[model["selected_model"]])
             if not math.isfinite(estimate) or estimate <= 0:
                 raise ValueError("Invalid saved prediction")
             features = source_features(record)
@@ -124,8 +128,8 @@ def main():
         "cvMaeEur": model["cv_metrics"]["mae_eur"],
         "testEvaluated": False,
     }
-    out = ROOT / "data/prepared/s03"
-    out.mkdir(parents=True, exist_ok=True)
+    out = args.output
+    out.mkdir(parents=True, exist_ok=False)
     (out / "catalog.json").write_text(
         json.dumps(
             {"meta": meta, "listings": rows},
@@ -153,11 +157,6 @@ def main():
         "test_evaluated": False,
     }
     (out / "manifest.json").write_text(
-        json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n"
-    )
-    reports = ROOT / "reports/s03"
-    reports.mkdir(parents=True, exist_ok=True)
-    (reports / "catalog_manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
     print(json.dumps(manifest, indent=2))

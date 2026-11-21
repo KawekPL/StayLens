@@ -3,7 +3,7 @@ import L from "leaflet";
 import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { api, AMENITY_LABELS, estimatePayload } from "./client.js";
 import { money, ROOM_NAMES } from "./market.js";
-import { ModelCaution, FinalEvaluationNote } from "./ModelContext.jsx";
+import { ModelCaution, FinalEvaluationNote } from "./ModelNotes.jsx";
 
 function LocationPicker({ latitude, longitude, onChange }) {
   const container = useRef(null),
@@ -80,17 +80,15 @@ const INITIAL = {
 };
 
 export default function Estimator({ meta, onBack }) {
-  const [form, setForm] = useState(INITIAL),
-    [district, setDistrict] = useState("");
-  const [locationError, setLocationError] = useState(""),
-    [error, setError] = useState("");
-  const [busy, setBusy] = useState(false),
-    [result, setResult] = useState(null),
-    [retry, setRetry] = useState(0);
-  const request = useRef(null),
-    revision = useRef(0);
+  const [form, setForm] = useState(INITIAL);
+  const [district, setDistrict] = useState("");
+  const [locationError, setLocationError] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState(null);
+  const [retry, setRetry] = useState(0);
+  const request = useRef(null);
   function change(values) {
-    revision.current += 1;
     request.current?.abort();
     setBusy(false);
     setResult(null);
@@ -133,7 +131,6 @@ export default function Estimator({ meta, onBack }) {
     request.current?.abort();
     const controller = new AbortController();
     request.current = controller;
-    const submitted = revision.current;
     setBusy(true);
     setError("");
     setResult(null);
@@ -144,8 +141,7 @@ export default function Estimator({ meta, onBack }) {
         body: JSON.stringify(estimatePayload(form, district)),
         signal: controller.signal,
       });
-      if (!controller.signal.aborted && submitted === revision.current)
-        setResult(data);
+      if (!controller.signal.aborted) setResult(data);
     } catch (e) {
       if (!controller.signal.aborted) setError(e.message);
     } finally {

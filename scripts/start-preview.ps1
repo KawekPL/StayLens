@@ -2,63 +2,39 @@ param([switch]$OpenBrowser)
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$frontendRoot = Join-Path $projectRoot 'frontend'
-$viteEntry = Join-Path $frontendRoot 'node_modules\vite\bin\vite.js'
-$runtimeDirectory = Join-Path $projectRoot '.local'
-$previewUrl = 'http://127.0.0.1:5174/'
-& (Join-Path $PSScriptRoot 'start-api.ps1')
+$python = Join-Path $projectRoot '.venv\Scripts\python.exe'
+$logs = Join-Path $projectRoot '.local'
+$url = 'http://127.0.0.1:8080'
 
-function Test-StayLensPreview {
+if (Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue) {
+    throw 'Port 8080 jest zajety. Zamknij poprzedni podglad przed uruchomieniem nowego.'
+}
+if (-not (Test-Path -LiteralPath $python)) { throw 'Najpierw utworz .venv i zainstaluj zaleznosci z README.' }
+
+Push-Location (Join-Path $projectRoot 'frontend')
+try {
+    & npm.cmd run build
+    if ($LASTEXITCODE -ne 0) { throw 'Nie udalo sie zbudowac frontendu.' }
+} finally { Pop-Location }
+
+New-Item -ItemType Directory -Path $logs -Force | Out-Null
+$process = Start-Process -FilePath $python -WindowStyle Hidden -PassThru `
+    -WorkingDirectory $projectRoot `
+    -ArgumentList @('-m', 'uvicorn', 'staylens.api:create_app', '--factory', '--host', '127.0.0.1', '--port', '8080', '--no-access-log') `
+    -RedirectStandardOutput (Join-Path $logs 'preview.stdout.log') `
+    -RedirectStandardError (Join-Path $logs 'preview.stderr.log')
+$process.Id | Set-Content -LiteralPath (Join-Path $logs 'preview.pid')
+
+for ($attempt = 0; $attempt -lt 40; $attempt++) {
+    $process.Refresh()
+    if ($process.HasExited) { break }
     try {
-        $response = Invoke-WebRequest -Uri $previewUrl -UseBasicParsing -TimeoutSec 2
-        return ($response.StatusCode -eq 200 -and $response.Content -match '<title>StayLens')
-    } catch {
-        return $false
-    }
+        $health = Invoke-RestMethod "$url/health" -TimeoutSec 2
+        if ($health.status -eq 'ok' -and $health.model_version -eq 's02-v1') {
+            Write-Output "StayLens: $url (PID $($process.Id)). Zatrzymanie: Stop-Process -Id $($process.Id)"
+            if ($OpenBrowser) { Start-Process $url }
+            exit 0
+        }
+    } catch { Start-Sleep -Milliseconds 300 }
 }
-
-if (Test-StayLensPreview) {
-    Write-Output "StayLens is already running: $previewUrl"
-    if ($OpenBrowser) { Start-Process $previewUrl }
-    exit 0
-}
-
-$listener = Get-NetTCPConnection -LocalPort 5174 -State Listen -ErrorAction SilentlyContinue
-if ($listener) {
-    throw 'Port 5174 is occupied by another service. No process was stopped.'
-}
-if (-not (Test-Path -LiteralPath $viteEntry)) {
-    throw "Vite is not installed. Run npm.cmd ci in $frontendRoot first."
-}
-
-$nodeExecutable = (Get-Command node.exe -ErrorAction Stop).Source
-New-Item -ItemType Directory -Path $runtimeDirectory -Force | Out-Null
-$stdoutPath = Join-Path $runtimeDirectory 'preview.stdout.log'
-$stderrPath = Join-Path $runtimeDirectory 'preview.stderr.log'
-
-# A separate hidden Windows process keeps the preview independent of the
-# temporary command session. Bind to loopback only, not to the local network.
-$previewProcess = Start-Process -FilePath $nodeExecutable `
-    -ArgumentList @("`"$viteEntry`"", '--host', '127.0.0.1', '--port', '5174', '--strictPort') `
-    -WorkingDirectory $frontendRoot -WindowStyle Hidden -PassThru `
-    -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
-
-for ($attempt = 0; $attempt -lt 20; $attempt++) {
-    if (Test-StayLensPreview) {
-        @{
-            processId = $previewProcess.Id
-            projectRoot = $projectRoot
-            url = $previewUrl
-            startedAt = (Get-Date).ToUniversalTime().ToString('o')
-        } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $runtimeDirectory 'preview-process.json') -Encoding UTF8
-        Write-Output "StayLens is running: $previewUrl (PID $($previewProcess.Id))"
-        if ($OpenBrowser) { Start-Process $previewUrl }
-        exit 0
-    }
-    $previewProcess.Refresh()
-    if ($previewProcess.HasExited) { break }
-    Start-Sleep -Milliseconds 300
-}
-
-$startupError = if (Test-Path -LiteralPath $stderrPath) { Get-Content -LiteralPath $stderrPath -Raw } else { 'No startup log.' }
-throw "StayLens did not become ready. See $stderrPath. $startupError"
+throw "Aplikacja nie wystartowala. Sprawdz $logs\preview.stderr.log"

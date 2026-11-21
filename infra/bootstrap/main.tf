@@ -1,3 +1,66 @@
+terraform {
+  required_version = "= 1.16.5"
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "= 4.81.0" }
+  }
+}
+provider "azurerm" {
+  features {}
+  subscription_id                 = var.subscription_id
+  resource_provider_registrations = "none"
+  storage_use_azuread             = true
+}
+
+terraform {
+  backend "azurerm" {
+    storage_account_name = "stlens14055600"
+    container_name       = "tfstate-bootstrap"
+    key                  = "staylens.tfstate"
+    use_azuread_auth     = true
+  }
+}
+
+variable "subscription_id" {
+  type = string
+}
+variable "operator_object_id" {
+  type = string
+}
+variable "suffix" {
+  type    = string
+  default = "14055600"
+}
+variable "location" {
+  type    = string
+  default = "polandcentral"
+}
+variable "github_repository" {
+  type    = string
+  default = "KawekPL/StayLens"
+}
+variable "github_owner_id" {
+  type    = string
+  default = "317614566"
+}
+variable "github_repository_id" {
+  type    = string
+  default = "1437674578"
+}
+variable "shared_acr_id" {
+  type = string
+}
+variable "shared_environment_id" {
+  type = string
+}
+variable "monthly_budget_eur" {
+  type    = number
+  default = 8
+  validation {
+    condition     = var.monthly_budget_eur > 0 && var.monthly_budget_eur <= 8
+    error_message = "Budget guardrail: at most 8 EUR (below the approved 10 USD at the checked exchange rate)."
+  }
+}
+
 locals {
   tags = { project = "StayLens", environment = "student" }
   roles = {
@@ -85,3 +148,8 @@ resource "azurerm_consumption_budget_subscription" "student" {
     }
   }
 }
+
+output "resource_group_name" { value = azurerm_resource_group.project.name }
+output "state_storage_account" { value = azurerm_storage_account.state.name }
+output "deploy_client_id" { value = azurerm_user_assigned_identity.deploy.client_id }
+output "runtime_identity_id" { value = azurerm_user_assigned_identity.runtime.id }

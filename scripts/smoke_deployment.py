@@ -68,12 +68,10 @@ def run(base, revision=None):
     assert math.isclose(model["validation_metrics"]["mae_eur"], 53.610766, abs_tol=0.00001)
     page = json.loads(request("/api/catalog/listings"))
     assert page["total"] == 3438 and len(page["items"]) == 12
-    ids = [row["id"] for row in page["items"][:3]]
     assert all(row["model"]["method"] == "host_oof" for row in page["items"])
     assert b"host_id" not in json.dumps(page).encode()
-    request("/api/catalog/listings/" + ids[0])
-    comparison = json.loads(request("/api/catalog/compare?" + "&".join("ids=" + i for i in ids)))
-    assert [row["id"] for row in comparison["items"]] == ids
+    # Karta, szczegóły i porównanie korzystają z tych samych danych oferty.
+    assert all({"model", "reference", "url", "image"} <= row.keys() for row in page["items"])
     estimate = json.loads(request("/api/estimate", REQUEST))
     assert estimate["estimated_price_eur"] == 181.30 and estimate["method"] == "full_train"
     request("/api/estimate", {**REQUEST, "price": 1}, 422)

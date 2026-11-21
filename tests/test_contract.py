@@ -1,6 +1,3 @@
-import json
-from pathlib import Path
-
 import numpy as np
 import pytest
 
@@ -8,8 +5,6 @@ from staylens.data import host_split
 from staylens.evaluation import metrics, select_model
 from staylens.features import FEATURES, amenity_flags, bathrooms, feature_frame, source_features
 from staylens.models import SegmentMedian
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.mark.parametrize(
@@ -65,11 +60,10 @@ def test_metric_units_and_tail_sensitivity():
 
 
 def test_selection_rejects_candidate_with_bad_rmse():
-    protocol = json.loads((ROOT / "configs/s02_protocol.json").read_text())
     base = {"mae_eur": 100, "rmse_eur": 200, "median_absolute_error_eur": 50}
     candidate = {"mae_eur": 70, "rmse_eur": 250, "median_absolute_error_eur": 40}
     values = {"segment_median": base, "hist_gradient_boosting": candidate}
-    selection = select_model(values, values, protocol["selection"])
+    selection = select_model(values, values)
     assert selection["selected"] == "segment_median"
     assert selection["checks"]["validation_rmse"] is False
 

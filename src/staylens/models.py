@@ -57,28 +57,29 @@ class SegmentMedian(RegressorMixin, BaseEstimator):
         return predictions
 
 
-def make_models(protocol):
-    baseline = protocol["baseline"]
-    parameters = {
-        key: value
-        for key, value in protocol["candidate"].items()
-        if key not in {"name", "target_transform", "categorical_encoding"}
-    }
+def make_models():
     encoder = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1, dtype=float)
     transform = ColumnTransformer(
         [("categories", encoder, CATEGORICAL), ("numbers", "passthrough", NUMERIC)]
     )
     return {
-        "segment_median": SegmentMedian(
-            baseline["min_segment_size"], baseline["hierarchy"], baseline["capacity_buckets"]
-        ),
+        "segment_median": SegmentMedian(),
         "hist_gradient_boosting": Pipeline(
             [
                 ("features", transform),
                 (
                     "regressor",
                     HistGradientBoostingRegressor(
-                        categorical_features=list(range(len(CATEGORICAL))), **parameters
+                        categorical_features=list(range(len(CATEGORICAL))),
+                        loss="absolute_error",
+                        learning_rate=0.05,
+                        max_iter=250,
+                        max_leaf_nodes=15,
+                        max_depth=6,
+                        min_samples_leaf=30,
+                        l2_regularization=10.0,
+                        early_stopping=False,
+                        random_state=42,
                     ),
                 ),
             ]

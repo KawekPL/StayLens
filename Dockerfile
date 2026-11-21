@@ -21,7 +21,7 @@ RUN python -m pip install --no-cache-dir --no-deps . \
     && groupadd --gid 10001 staylens \
     && useradd --uid 10001 --gid 10001 --no-create-home staylens
 COPY --from=frontend /build/dist/ ./frontend/dist/
-COPY .runtime/ ./runtime/
+COPY runtime/ ./runtime/
 COPY THIRD_PARTY_NOTICES.md ./
 ARG VCS_REF=local
 ENV STAYLENS_REVISION=$VCS_REF
@@ -32,4 +32,4 @@ USER 10001:10001
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --start-period=45s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2).read()"
-CMD ["python", "-m", "uvicorn", "staylens.production:create_production_app", "--factory", "--host", "0.0.0.0", "--port", "8080", "--workers", "1", "--no-access-log", "--no-server-header"]
+CMD ["python", "-m", "uvicorn", "staylens.api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8080", "--workers", "1", "--no-access-log", "--no-server-header"]

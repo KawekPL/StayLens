@@ -1,0 +1,209 @@
+{
+  "model_version": "s02-v1",
+  "selected_model": "hist_gradient_boosting",
+  "model_file": "hist_gradient_boosting.joblib",
+  "model_sha256": "47ed42c9c8ccec4db103da7ec437ea240d5045191eaf20df9e9e4bd85265d7bf",
+  "source_sha256": "657ea25841a3f9a5be45dd1db011804f8b29dd7e4d8143b961f4704ee6bf7673",
+  "protocol_sha256": "bec28876e6d698b89525e9a72b736639b729fb535d34947c588d17e59356441d",
+  "snapshot": "2026-09-19",
+  "city": "Berlin",
+  "currency": "EUR",
+  "target": "offered nightly listing price",
+  "features": [
+    "district",
+    "room_type",
+    "property_type",
+    "latitude",
+    "longitude",
+    "accommodates",
+    "bedrooms",
+    "beds",
+    "bathrooms",
+    "minimum_nights",
+    "wifi",
+    "kitchen",
+    "washer",
+    "air_conditioning",
+    "elevator",
+    "parking",
+    "workspace",
+    "self_check_in"
+  ],
+  "training_rows": 5814,
+  "validation_rows": 1108,
+  "test_evaluated": false,
+  "validation_metrics": {
+    "rows": 1108,
+    "mae_eur": 53.61076632292413,
+    "median_absolute_error_eur": 27.45906989247856,
+    "rmse_eur": 118.27383193826637,
+    "within_20_percent": 0.44675090252707583,
+    "within_30_eur": 0.5279783393501805,
+    "p90_absolute_error_eur": 104.75991296932796
+  },
+  "cv_metrics": {
+    "rows": 5814,
+    "mae_eur": 54.90337502290897,
+    "median_absolute_error_eur": 27.579146452942453,
+    "rmse_eur": 181.54048684204523,
+    "within_20_percent": 0.4461644306845545,
+    "within_30_eur": 0.5252837977296182,
+    "p90_absolute_error_eur": 108.54751353786398
+  },
+  "categories": {
+    "district": {
+      "Mitte": 1448,
+      "Friedrichshain-Kreuzberg": 1161,
+      "Pankow": 847,
+      "Charlottenburg-Wilm.": 722,
+      "Neukölln": 438,
+      "Tempelhof - Schöneberg": 400,
+      "Treptow - Köpenick": 247,
+      "Steglitz - Zehlendorf": 175,
+      "Lichtenberg": 169,
+      "Reinickendorf": 80,
+      "Spandau": 68,
+      "Marzahn - Hellersdorf": 59
+    },
+    "room_type": {
+      "Entire home/apt": 4121,
+      "Private room": 1589,
+      "Shared room": 70,
+      "Hotel room": 34
+    },
+    "property_type": {
+      "Entire rental unit": 3107,
+      "Private room in rental unit": 807,
+      "Entire serviced apartment": 347,
+      "Room in hotel": 311,
+      "Entire condo": 280,
+      "Private room in condo": 130,
+      "Entire loft": 118,
+      "Private room in home": 114,
+      "Entire home": 81,
+      "Private room in hostel": 59,
+      "Entire guesthouse": 40,
+      "Shared room in hostel": 40,
+      "Room in aparthotel": 39,
+      "Private room in bed and breakfast": 36,
+      "Room in boutique hotel": 30,
+      "Private room in townhouse": 20,
+      "Private room in loft": 18,
+      "Room in serviced apartment": 17,
+      "Tiny home": 16,
+      "Private room in guesthouse": 16,
+      "Private room": 15,
+      "Houseboat": 15,
+      "Entire bungalow": 14,
+      "Shared room in hotel": 14,
+      "Entire guest suite": 13,
+      "Private room in serviced apartment": 13,
+      "Entire townhouse": 12,
+      "Entire vacation home": 12,
+      "Boat": 12,
+      "Entire place": 10,
+      "Private room in villa": 8,
+      "Shared room in rental unit": 7,
+      "Room in hostel": 6,
+      "Shared room in bed and breakfast": 5,
+      "Private room in casa particular": 4,
+      "Private room in shipping container": 4,
+      "Camper/RV": 3,
+      "Entire villa": 3,
+      "Barn": 2,
+      "Private room in vacation home": 2,
+      "Shared room in serviced apartment": 2,
+      "Shared room in guesthouse": 2,
+      "Shepherd’s hut": 1,
+      "Private room in pension": 1,
+      "Entire chalet": 1,
+      "Entire cottage": 1,
+      "Private room in boat": 1,
+      "Private room in chalet": 1,
+      "Entire cabin": 1,
+      "Hut": 1,
+      "Private room in guest suite": 1,
+      "Dome": 1
+    }
+  },
+  "numeric_ranges": {
+    "latitude": {
+      "min": 52.34172,
+      "max": 52.65076
+    },
+    "longitude": {
+      "min": 13.1168935,
+      "max": 13.72139
+    },
+    "accommodates": {
+      "min": 1.0,
+      "max": 16.0
+    },
+    "bedrooms": {
+      "min": 0.0,
+      "max": 14.0
+    },
+    "beds": {
+      "min": 1.0,
+      "max": 50.0
+    },
+    "bathrooms": {
+      "min": 0.0,
+      "max": 8.5
+    },
+    "minimum_nights": {
+      "min": 1.0,
+      "max": 365.0
+    },
+    "wifi": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "kitchen": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "washer": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "air_conditioning": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "elevator": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "parking": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "workspace": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "self_check_in": {
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "fastapi": "0.162.0",
+    "pydantic": "2.14.1",
+    "threadpoolctl": "3.7.0"
+  },
+  "limitations": [
+    "Historical Berlin snapshot; no booking dates or current availability",
+    "Offered prices, not paid prices or revenue",
+    "No per-listing confidence interval",
+    "Small hotel/shared-room samples; high-price predictions need caution",
+    "Not a final test result; no proof against future or geographic drift",
+    "Public preview listings belong to training; in-sample predictions must be labelled in the UI"
+  ]
+}

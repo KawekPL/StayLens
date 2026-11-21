@@ -1,22 +1,28 @@
-"""Offline-trained price model API. Local trusted artifacts only; no online fitting."""
+"""Serwer aplikacji: katalog ofert, wycena modelem i pliki frontendu."""
 
 import importlib.metadata
 import json
+import logging
 import os
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Annotated, Literal
 
 import joblib
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
+from starlette.middleware.gzip import GZipMiddleware
 from threadpoolctl import threadpool_limits
 
+from staylens.catalog import filtered_page, load_catalog, locate_district
 from staylens.data import sha256
-from staylens.features import AMENITIES, CATEGORICAL, FEATURES, NUMERIC, feature_frame
+from staylens.features import FEATURES, feature_frame
 from staylens.models import predict_prices
 
-DEFAULT_ARTIFACT = Path(__file__).resolve().parents[2] / "artifacts" / "s02-v1"
+ROOT = Path(__file__).resolve().parents[2]
+LOGGER = logging.getLogger("uvicorn.error")
 
 
 class PriceRequest(BaseModel):
@@ -41,18 +47,6 @@ class PriceRequest(BaseModel):
     self_check_in: bool | None = None
 
 
-class PriceResponse(BaseModel):
-    estimated_price_eur: float
-    currency: Literal["EUR"] = "EUR"
-    unit: Literal["night"] = "night"
-    model_version: str
-    model_name: str
-    snapshot: str
-    development_mae_eur: float
-    warnings: list[str]
-    explanation: str
-
-
 def load_artifact(directory):
     manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
     filename = manifest["model_file"]
@@ -69,16 +63,32 @@ def load_artifact(directory):
     return joblib.load(path), manifest  # Never accept an artifact from an API caller.
 
 
-def create_app(artifact_dir=None):
-    directory = Path(artifact_dir or os.environ.get("STAYLENS_ARTIFACT_DIR", DEFAULT_ARTIFACT))
+def create_app(artifact_dir=None, catalog_dir=None, static_dir=None):
+    model_directory = Path(
+        artifact_dir or os.environ.get("STAYLENS_ARTIFACT_DIR", ROOT / "runtime/model")
+    )
+    catalog_directory = Path(
+        catalog_dir or os.environ.get("STAYLENS_CATALOG_DIR", ROOT / "runtime/catalog")
+    )
+    directory = Path(static_dir or os.environ.get("STAYLENS_STATIC_DIR", ROOT / "frontend/dist"))
+    if not (directory / "index.html").is_file():
+        raise RuntimeError("Built frontend is missing; run npm run build first")
+    evaluation = json.loads((directory / "final-evaluation.json").read_text(encoding="utf-8"))
 
     @asynccontextmanager
     async def lifespan(app):
-        app.state.model, app.state.manifest = load_artifact(directory)
+        # Wczytujemy model i katalog raz, przy uruchamianiu serwera.
+        app.state.model, app.state.manifest = load_artifact(model_directory)
+        if evaluation["model_sha256"] != app.state.manifest["model_sha256"]:
+            raise ValueError("Final evaluation belongs to a different model")
+        rows, meta, geo = load_catalog(catalog_directory, app.state.manifest)
+        app.state.catalog = rows
+        app.state.catalog_meta = meta
+        app.state.geo = geo
         with threadpool_limits(limits=2):
             yield
 
-    app = FastAPI(title="StayLens price API", version="0.2.0", lifespan=lifespan)
+    app = FastAPI(title="StayLens", version="0.7.0", lifespan=lifespan)
 
     @app.get("/health")
     def health():
@@ -101,53 +111,138 @@ def create_app(artifact_dir=None):
             "cv_metrics",
             "limitations",
         ]
-        return {key: app.state.manifest[key] for key in fields}
-
-    @app.get("/api/schema")
-    def schema():
+        info = {key: app.state.manifest[key] for key in fields}
         return {
-            "input": PriceRequest.model_json_schema(),
-            "training_categories": app.state.manifest["categories"],
-            "training_numeric_ranges": app.state.manifest["numeric_ranges"],
-            "amenities": AMENITIES,
-            "missing_value_rule": "null = unknown; false = declared absent; true = declared present",
-            "unknown_category_rule": "Unknown district rejected; unknown property type accepted with warning and treated as missing",
+            **info,
+            "test_evaluated": True,
+            "final_evaluation": evaluation,
+            "limitations": [
+                value
+                for value in info["limitations"]
+                if not value.startswith("Not a final test result")
+            ]
+            + [
+                "Final test covers other hosts in the same Berlin snapshot, not future or geographic drift"
+            ],
         }
 
-    @app.post("/api/predict", response_model=PriceResponse)
-    def predict(request: PriceRequest):
-        manifest = app.state.manifest
-        if request.district not in manifest["categories"]["district"]:
-            raise HTTPException(422, "Unknown Berlin district; use /api/schema")
-        values = request.model_dump()
-        warnings = []
-        missing = [key for key in NUMERIC if values[key] is None]
-        if missing:
-            warnings.append(
-                "Brak części cech: " + ", ".join(missing) + ". Oszacowanie wymaga ostrożności."
-            )
-        for key in CATEGORICAL:
-            count = manifest["categories"][key].get(values[key], 0)
-            if count < 50:
-                warnings.append(f"Mało przykładów dla {key}={values[key]}: {count} w treningu.")
-        for key, bounds in manifest["numeric_ranges"].items():
-            value = values[key]
-            if value is not None and not bounds["min"] <= value <= bounds["max"]:
-                warnings.append(
-                    f"{key} poza zakresem danych treningowych; model nie gwarantuje ekstrapolacji."
-                )
-        predicted = float(predict_prices(app.state.model, feature_frame([values]))[0])
-        return PriceResponse(
-            estimated_price_eur=round(predicted, 2),
-            model_version=manifest["model_version"],
-            model_name=manifest["selected_model"],
-            snapshot=manifest["snapshot"],
-            development_mae_eur=round(manifest["validation_metrics"]["mae_eur"], 2),
-            warnings=warnings,
-            explanation="Cena ofertowa za noc dla historycznego Berlina. Błąd walidacyjny dotyczy całego zbioru, nie jest przedziałem pewności tej oferty. Brak informacji o terminie i dostępności.",
+    @app.get("/api/catalog/meta")
+    def meta():
+        return app.state.catalog_meta
+
+    @app.get("/api/catalog/listings")
+    def listings(
+        district: Annotated[str, Query(max_length=100)] = "",
+        room_type: Literal[
+            "", "Entire home/apt", "Private room", "Shared room", "Hotel room"
+        ] = "Entire home/apt",
+        guests: Annotated[int, Query(ge=1, le=16)] = 2,
+        max_price: Annotated[float, Query(gt=0, le=20000, allow_inf_nan=False)] = 300,
+        query: Annotated[str, Query(max_length=120)] = "",
+        sort: Literal["reviewed", "price-asc", "price-desc"] = "reviewed",
+        offset: Annotated[int, Query(ge=0, le=10000)] = 0,
+        limit: Annotated[int, Query(ge=1, le=60)] = 12,
+    ):
+        if district and district not in app.state.catalog_meta["districts"]:
+            raise HTTPException(422, "Wybierz dzielnicę Berlina z listy.")
+        return filtered_page(
+            app.state.catalog,
+            district=district,
+            room_type=room_type,
+            guests=guests,
+            max_price=max_price,
+            query=query,
+            sort=sort,
+            offset=offset,
+            limit=limit,
         )
 
+    @app.get("/api/location")
+    def location(
+        latitude: Annotated[float, Query(gt=52.3, lt=52.7, allow_inf_nan=False)],
+        longitude: Annotated[float, Query(gt=13.05, lt=13.8, allow_inf_nan=False)],
+    ):
+        district = locate_district(app.state.geo, latitude, longitude)
+        if not district:
+            raise HTTPException(422, "Wskaż punkt wewnątrz granic Berlina.")
+        return {"district": district}
+
+    @app.post("/api/estimate")
+    def estimate(request: PriceRequest):
+        district = locate_district(app.state.geo, request.latitude, request.longitude)
+        if district is None or district != request.district:
+            raise HTTPException(
+                422, "Dzielnica nie odpowiada lokalizacji. Wskaż punkt na mapie ponownie."
+            )
+        allowed = app.state.catalog_meta["propertyTypesByRoom"][request.room_type]
+        if request.property_type not in allowed:
+            raise HTTPException(422, "Wybierz typ obiektu pasujący do rodzaju noclegu.")
+        values = request.model_dump()
+        manifest = app.state.manifest
+        warnings = []
+        if any(value is None for value in request.model_dump().values()):
+            warnings.append(
+                "Część parametrów jest nieznana. Model uwzględnia braki, ale wynik wymaga większej ostrożności."
+            )
+        if request.room_type in {"Hotel room", "Shared room"}:
+            warnings.append(
+                "Bardzo mała próba oceny: 8 pokoi hotelowych i 4 współdzielone. Wynik dla tego rodzaju noclegu jest mniej pewny."
+            )
+        if app.state.manifest["categories"]["property_type"].get(request.property_type, 0) < 50:
+            warnings.append(
+                "Ten typ obiektu jest rzadki w danych treningowych. Traktuj wynik orientacyjnie."
+            )
+        for field, bounds in app.state.manifest["numeric_ranges"].items():
+            value = getattr(request, field)
+            if value is not None and not bounds["min"] <= value <= bounds["max"]:
+                warnings.append(
+                    "Niektóre parametry wykraczają poza obserwacje treningowe. Model może słabo odzwierciedlać taki nocleg."
+                )
+                break
+        # Formularz -> tabela z cechami -> gotowy model -> cena w EUR.
+        predicted = predict_prices(app.state.model, feature_frame([values]))[0]
+        return {
+            "estimated_price_eur": round(float(predicted), 2),
+            "currency": "EUR",
+            "unit": "night",
+            "model_version": manifest["model_version"],
+            "model_name": manifest["selected_model"],
+            "snapshot": manifest["snapshot"],
+            "development_mae_eur": round(manifest["validation_metrics"]["mae_eur"], 2),
+            "warnings": warnings,
+            "explanation": "Cena ofertowa za noc dla historycznego Berlina. Błąd walidacyjny dotyczy całego zbioru, nie jest przedziałem pewności tej oferty. Brak informacji o terminie i dostępności.",
+            "method": "full_train",
+        }
+
+    app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+    @app.middleware("http")
+    async def response_metadata(request, call_next):
+        started = time.perf_counter()
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+        if request.url.path.startswith("/assets/"):
+            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        else:
+            response.headers["Cache-Control"] = "no-cache"
+        route = getattr(request.scope.get("route"), "path", "static_or_unknown")
+        if request.url.path != "/health":
+            # Logujemy czas i szablon adresu, bez treści formularza i parametrów URL.
+            duration_ms = (time.perf_counter() - started) * 1000
+            LOGGER.info("%s: HTTP %s, %.1f ms", route, response.status_code, duration_ms)
+        return response
+
+    @app.get("/api/release")
+    def release():
+        return {
+            "revision": os.environ.get("STAYLENS_REVISION", "local"),
+            "app_version": app.version,
+            "model_version": "s02-v1",
+        }
+
+    # Only the compiled frontend is public. Model/catalogue directories are outside it.
+    app.mount("/", StaticFiles(directory=directory, html=True), name="frontend")
     return app
-
-
-app = create_app()

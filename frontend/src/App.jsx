@@ -1,23 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import L from "leaflet";
+import React, { useEffect, useState } from "react";
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  BedDouble,
-  Bookmark,
   Check,
   ChevronDown,
-  Compass,
-  ExternalLink,
   House,
   Info,
   Layers,
   MapPin,
-  Plus,
   Search,
   SlidersHorizontal,
-  Star,
   Users,
   X,
 } from "lucide-react";
@@ -26,44 +18,9 @@ import "./styles.css";
 import { DEFAULT_FILTERS, ROOM_NAMES, count, money } from "./market.js";
 import { api, catalogUrl } from "./client.js";
 import Estimator from "./Estimator.jsx";
-import {
-  ModelCaution,
-  ListingWarnings,
-  FinalEvaluationNote,
-} from "./ModelContext.jsx";
-
-function Photo({ row, className = "" }) {
-  const [failed, setFailed] = useState(false);
-  useEffect(() => setFailed(false), [row.id]);
-  return !failed && row.image ? (
-    <img
-      className={className}
-      src={row.image}
-      alt={row.title}
-      loading="lazy"
-      referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
-    />
-  ) : (
-    <div className={`photo-fallback ${className}`}>
-      <House size={38} strokeWidth={1.2} />
-      <span>{row.neighbourhood}</span>
-    </div>
-  );
-}
-
-function PriceNote({ row }) {
-  const percent = Math.round(row.model.deltaPercent);
-  return (
-    <span
-      className={`price-note ${percent > 0 || row.model.warnings.includes("high_price") ? "neutral" : ""}`}
-    >
-      {percent === 0
-        ? "Na poziomie oszacowania ML"
-        : `${Math.abs(percent)}% ${percent < 0 ? "poniżej" : "powyżej"} oszacowania ML`}
-    </span>
-  );
-}
+import MapView from "./MapView.jsx";
+import { ListingCard, Detail, Comparison } from "./Listings.jsx";
+import { ModelCaution, About } from "./ModelNotes.jsx";
 
 function MiniHistogram({ bins, total }) {
   const maximum = Math.max(1, ...bins.map((bin) => bin.count));
@@ -84,417 +41,8 @@ function MiniHistogram({ bins, total }) {
   );
 }
 
-function MapView({ rows, selected, onSelect, geo, onReset }) {
-  const container = useRef(null);
-  const mapRef = useRef(null);
-  const markers = useRef(null);
-  const clickRef = useRef(onSelect);
-  clickRef.current = onSelect;
-  useEffect(() => {
-    if (!container.current) return;
-    const map = L.map(container.current, {
-      zoomControl: false,
-      scrollWheelZoom: true,
-      minZoom: 9,
-      maxZoom: 18,
-    }).setView([52.519, 13.401], 12);
-    mapRef.current = map;
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
-      maxZoom: 19,
-    }).addTo(map);
-    L.control.zoom({ position: "bottomright" }).addTo(map);
-    markers.current = L.layerGroup().addTo(map);
-    return () => {
-      map.stop();
-      map.remove();
-      mapRef.current = null;
-    };
-  }, []);
-  useEffect(() => {
-    if (!geo || !mapRef.current) return;
-    const layer = L.geoJSON(geo, {
-      style: { color: "#819b8d", weight: 1, opacity: 0.25, fillOpacity: 0.015 },
-      interactive: false,
-    }).addTo(mapRef.current);
-    return () => layer.remove();
-  }, [geo]);
-  useEffect(() => {
-    if (!markers.current) return;
-    markers.current.clearLayers();
-    // A bounded number of markers avoids obscuring the basemap and crowding controls.
-    const visible = rows.slice(0, 60);
-    if (selected && !visible.some((row) => row.id === selected.id))
-      visible.push(selected);
-    for (const row of visible) {
-      const active = row.id === selected?.id;
-      const marker = L.marker([row.lat, row.lon], {
-        icon: L.divIcon({
-          className: `price-marker ${active ? "selected" : ""}`,
-          html: `<span>${money(row.price)}</span>`,
-          iconSize: [68, 34],
-          iconAnchor: [34, 17],
-        }),
-        title: `Oferta ${row.id}: ${money(row.price)}`,
-        zIndexOffset: active ? 1000 : 0,
-      }).on("click", () => clickRef.current(row));
-      markers.current.addLayer(marker);
-    }
-  }, [rows, selected]);
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    const updateViewport = () => {
-      map.stop();
-      map.invalidateSize({ pan: false });
-      const size = map.getSize();
-      // The mobile list hides this container. Fit only after it becomes measurable.
-      if (size.x <= 120 || size.y <= 120) return;
-      if (selected)
-        map.setView([selected.lat, selected.lon], 14, { animate: false });
-      else if (rows.length)
-        map.fitBounds(
-          L.latLngBounds(rows.slice(0, 60).map((row) => [row.lat, row.lon])),
-          { padding: [60, 60], maxZoom: 13, animate: false },
-        );
-    };
-    updateViewport();
-    const observer = new ResizeObserver(updateViewport);
-    observer.observe(container.current);
-    return () => observer.disconnect();
-  }, [rows, selected]);
-  return (
-    <div className="map-wrap">
-      <div
-        className="map-canvas"
-        ref={container}
-        aria-label="Interaktywna mapa ofert w Berlinie"
-      />
-      <div className="map-label">
-        <span className="live-dot" /> Berlin{" "}
-        <span className="map-label-separator" />{" "}
-        {Math.min(60, rows.length) +
-          (selected && !rows.slice(0, 60).some((row) => row.id === selected.id)
-            ? 1
-            : 0)}{" "}
-        ofert na mapie
-      </div>
-      <button
-        className="map-reset"
-        onClick={() => {
-          onReset();
-          mapRef.current?.setView([52.519, 13.401], 12);
-        }}
-      >
-        <Compass size={16} /> Całe miasto
-      </button>
-    </div>
-  );
-}
-
-function ListingCard({ row, saved, onSave, onSelect, active }) {
-  return (
-    <article className={`listing-card ${active ? "active" : ""}`}>
-      <button
-        className="listing-photo"
-        onClick={() => onSelect(row)}
-        aria-label={`Zobacz ofertę: ${row.title}`}
-      >
-        <Photo row={row} />
-        <span className="photo-tag">{row.neighbourhood}</span>
-      </button>
-      <button
-        className={`save-button ${saved ? "saved" : ""}`}
-        onClick={() => onSave(row)}
-        aria-pressed={saved}
-        aria-label={`${saved ? "Usuń z porównania" : "Dodaj do porównania"}: ${row.title}`}
-      >
-        <Bookmark size={17} fill={saved ? "currentColor" : "none"} />
-      </button>
-      <div className="card-copy">
-        <div className="card-eyebrow">
-          <span>{ROOM_NAMES[row.roomType] || row.roomType}</span>
-          <span className="rating">
-            <Star size={12} fill="currentColor" />{" "}
-            {row.rating?.toFixed(2) || "—"}
-          </span>
-        </div>
-        <button className="card-title" onClick={() => onSelect(row)}>
-          {row.title}
-        </button>
-        <p className="card-details">
-          <Users size={12} /> {row.guests} os. <span>·</span>
-          <BedDouble size={13} /> łóżka: {row.beds == null ? "—" : row.beds}{" "}
-          <span>·</span> {count(row.reviews)} opinii
-        </p>
-        <div className="card-bottom">
-          <div>
-            <strong>{money(row.price)}</strong>
-            <span> / noc</span>
-          </div>
-          <button
-            className="round-link"
-            onClick={() => onSelect(row)}
-            aria-label={`Szczegóły oferty ${row.id}`}
-          >
-            <ArrowUpRight size={17} />
-          </button>
-        </div>
-        <div className="card-model">
-          Model: <b>{money(row.model.estimatedPrice)}</b> / noc
-        </div>
-        <PriceNote row={row} />
-        {row.model.warnings.includes("high_price") && (
-          <p className="card-warning">Duży błąd modelu dla drogich ofert</p>
-        )}
-        {row.model.warnings.includes("small_sample") && (
-          <p className="card-warning">Mała próba oceny tego rodzaju noclegu</p>
-        )}
-      </div>
-    </article>
-  );
-}
-
-function Detail({ row, saved, onSave, onClose }) {
-  const stats = row.reference;
-  return (
-    <section className="detail-panel" aria-label="Szczegóły wybranej oferty">
-      <button
-        className="detail-close"
-        onClick={onClose}
-        aria-label="Zamknij szczegóły"
-      >
-        <X size={17} />
-      </button>
-      <div className="detail-top">
-        <span className="eyebrow">SPOJRZENIE Z BLISKA</span>
-        <h2>{row.title}</h2>
-        <p>
-          <MapPin size={13} /> {row.neighbourhood} · {row.district}
-        </p>
-      </div>
-      <div className="detail-price">
-        <div>
-          <small>Cena w ogłoszeniu</small>
-          <strong>
-            {money(row.price)} <span>/ noc</span>
-          </strong>
-        </div>
-        <div className="detail-rating">
-          <Star size={15} fill="currentColor" />
-          <b>{row.rating?.toFixed(2) || "—"}</b>
-          <small>{count(row.reviews)} opinii</small>
-        </div>
-      </div>
-      <div className="reference-box">
-        <div>
-          <span>Oszacowanie modelu</span>
-          <b>{money(row.model.estimatedPrice)}</b>
-        </div>
-        <PriceNote row={row} />
-        <p>Obliczone bez tej oferty i ofert jej gospodarza w treningu.</p>
-        <ModelCaution compact />
-      </div>
-      <ListingWarnings row={row} />
-      <p className="peer-reference">
-        Mediana dzielnicy: <b>{money(stats.median)}</b> · {count(stats.n)}{" "}
-        innych ofert tego samego typu. To osobna statystyka.
-      </p>
-      <div className="detail-facts">
-        <span>
-          <Users size={16} />
-          {row.guests} os.
-        </span>
-        <span>
-          <BedDouble size={16} />
-          Sypialnie: {row.bedrooms ?? "—"}
-        </span>
-        <span>
-          <House size={16} />
-          Min. nocy: {row.minNights ?? "—"}
-        </span>
-      </div>
-      <button
-        className={`primary-button ${saved ? "is-saved" : ""}`}
-        onClick={() => onSave(row)}
-      >
-        {saved ? <Check size={16} /> : <Plus size={16} />}{" "}
-        {saved ? "W porównaniu" : "Dodaj do porównania"}
-      </button>
-      <a
-        className="source-link"
-        href={row.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Sprawdź ogłoszenie w Airbnb <ExternalLink size={13} />
-      </a>
-    </section>
-  );
-}
-
-function Comparison({ rows, onSave, onBack, loading, error, onRetry }) {
-  return (
-    <section className="comparison-page">
-      <button className="back-button" onClick={onBack}>
-        <ArrowLeft size={17} /> Wróć do odkrywania
-      </button>
-      <span className="eyebrow">TWÓJ KRÓTKI WYBÓR</span>
-      <h1>Wszystko obok siebie.</h1>
-      <p className="page-subtitle">
-        Porównaj do trzech noclegów. Ten sam widok, łatwiejsza decyzja.
-      </p>
-      <ModelCaution />
-      {loading ? (
-        <p className="async-status" role="status">
-          Wczytujemy porównanie…
-        </p>
-      ) : error ? (
-        <div className="inline-error" role="alert">
-          <p>{error}</p>
-          <button className="primary-button" onClick={onRetry}>
-            Spróbuj ponownie
-          </button>
-        </div>
-      ) : !rows.length ? (
-        <div className="empty-state">
-          <Bookmark size={36} strokeWidth={1.3} />
-          <h2>Co wpadło Ci w oko?</h2>
-          <p>Dodaj oferty zakładką na karcie, a zobaczysz je tutaj.</p>
-          <button className="primary-button" onClick={onBack}>
-            Odkrywaj Berlin <ArrowRight size={16} />
-          </button>
-        </div>
-      ) : (
-        <div className="comparison-grid">
-          {rows.map((row) => (
-            <article className="comparison-card" key={row.id}>
-              <div className="compare-photo">
-                <Photo row={row} />
-                <button
-                  onClick={() => onSave(row)}
-                  className="save-button saved"
-                  aria-label={`Usuń z porównania: ${row.title}`}
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <div className="compare-content">
-                <span className="eyebrow">{row.neighbourhood}</span>
-                <h2>{row.title}</h2>
-                <strong className="comparison-price">
-                  {money(row.price)} <small>/ noc</small>
-                </strong>
-                <PriceNote row={row} />
-                <dl>
-                  {[
-                    ["Dzielnica", row.district],
-                    ["Typ", ROOM_NAMES[row.roomType]],
-                    ["Miejsca", row.guests],
-                    ["Sypialnie", row.bedrooms ?? "Brak danych"],
-                    ["Ocena", row.rating?.toFixed(2) ?? "Brak ocen"],
-                    ["Liczba opinii", count(row.reviews)],
-                    ["Minimum nocy", row.minNights ?? "Brak danych"],
-                    ["Cena modelu", money(row.model.estimatedPrice)],
-                    ["Mediana w dzielnicy", money(row.reference.median)],
-                  ].map(([name, value]) => (
-                    <div key={name}>
-                      <dt>{name}</dt>
-                      <dd>{value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <p className="field-help">
-                  Model oceniał tę ofertę bez jej gospodarza w treningu.
-                </p>
-                <ListingWarnings row={row} />
-                <a
-                  href={row.url}
-                  className="source-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Zobacz źródło <ExternalLink size={13} />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
-  );
-}
-
-function About({ meta, onBack }) {
-  return (
-    <section className="about-page">
-      <button className="back-button" onClick={onBack}>
-        <ArrowLeft size={17} /> Wróć do odkrywania
-      </button>
-      <span className="eyebrow">CENA POTRZEBUJE KONTEKSTU</span>
-      <h1>
-        Najpierw dane.
-        <br />
-        Potem decyzja.
-      </h1>
-      <p className="page-subtitle">
-        StayLens łączy rzeczywiste ogłoszenia z modelem szacującym cenę.
-      </p>
-      <div className="about-grid">
-        <article>
-          <span className="step-number">01</span>
-          <h2>Rzeczywiste oferty</h2>
-          <p>
-            Źródłem jest publiczny zbiór Inside Airbnb dla Berlina z{" "}
-            {meta.snapshot}. W podglądzie jest {count(meta.previewRows)} ofert z
-            części przeznaczonej do treningu. Dane bez dodatniej ceny pominięto.
-          </p>
-          <a href={meta.sourceUrl} target="_blank" rel="noopener noreferrer">
-            Źródło · CC BY 4.0 <ArrowUpRight size={15} />
-          </a>
-        </article>
-        <article>
-          <span className="step-number">02</span>
-          <h2>Porównania, które możesz sprawdzić</h2>
-          <p>
-            Mediana dzielnicy dotyczy innych ofert tego samego typu. Nie
-            uwzględnia wszystkich różnic w standardzie, wielkości ani terminie.
-            Cena z ogłoszenia nie jest potwierdzoną ceną transakcji.
-          </p>
-        </article>
-        <article>
-          <span className="step-number">03</span>
-          <h2>Model z jawnym błędem</h2>
-          <p>
-            Model S02 uczył się z 5814 ofert. Na 1108 ofertach innych gospodarzy
-            średni błąd wyniósł 53,61 € wobec 67,87 € dla prostej mediany. Dla
-            katalogu używamy prognoz bez ocenianego gospodarza w treningu
-            (średni błąd 54,90 €). Formularz korzysta z pełnego modelu. Metraż
-            nie jest cechą tego modelu.
-          </p>
-          <FinalEvaluationNote />
-        </article>
-      </div>
-      <ModelCaution />
-      <p className="field-help">
-        Pokoje hotelowe i współdzielone: tylko 8 i 4 przykłady w walidacji.
-        Wyniki tych grup wymagają szczególnej ostrożności.
-      </p>
-      <div className="about-note">
-        <Info size={20} />
-        <p>
-          To historyczny obraz rynku, bez sprawdzania dostępności na wybrany
-          termin. Lokalizacje są przybliżone. Zdjęcia pochodzą z linków ofert i
-          mogą być niedostępne. StayLens nie jest powiązany z Airbnb.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function App() {
-  const [dataset, setDataset] = useState(null);
+  const [meta, setMeta] = useState(null);
   const [geo, setGeo] = useState(null);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState({ ...DEFAULT_FILTERS });
@@ -507,23 +55,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [catalogError, setCatalogError] = useState("");
   const [retry, setRetry] = useState(0);
-  const [savedRows, setSavedRows] = useState([]);
-  const [compareState, setCompareState] = useState({
-    loading: false,
-    error: "",
-  });
-  const [detailState, setDetailState] = useState({
-    loading: false,
-    error: "",
-    row: null,
-  });
   const [toast, setToast] = useState("");
   const [mobileMap, setMobileMap] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
     api("/api/catalog/meta", { signal: controller.signal })
       .then((meta) => {
-        if (!controller.signal.aborted) setDataset({ meta });
+        if (!controller.signal.aborted) setMeta(meta);
       })
       .catch((e) => {
         if (e.name !== "AbortError") setError(e.message);
@@ -535,7 +73,7 @@ function App() {
     return () => controller.abort();
   }, []);
   useEffect(() => {
-    if (!dataset) return;
+    if (!meta) return;
     const controller = new AbortController();
     setLoading(true);
     setCatalogError("");
@@ -563,47 +101,7 @@ function App() {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [dataset, filters, sort, offset, retry]);
-  useEffect(() => {
-    const controller = new AbortController();
-    setSavedRows([]);
-    if (!saved.length) {
-      setCompareState({ loading: false, error: "" });
-      return () => controller.abort();
-    }
-    setCompareState({ loading: true, error: "" });
-    const params = new URLSearchParams();
-    saved.forEach((id) => params.append("ids", id));
-    api(`/api/catalog/compare?${params}`, { signal: controller.signal })
-      .then((data) => {
-        if (!controller.signal.aborted) {
-          setSavedRows(data.items);
-          setCompareState({ loading: false, error: "" });
-        }
-      })
-      .catch((e) => {
-        if (!controller.signal.aborted)
-          setCompareState({ loading: false, error: e.message });
-      });
-    return () => controller.abort();
-  }, [saved, retry]);
-  useEffect(() => {
-    const controller = new AbortController();
-    setDetailState({ loading: !!selected, error: "", row: null });
-    if (selected)
-      api(`/api/catalog/listings/${encodeURIComponent(selected.id)}`, {
-        signal: controller.signal,
-      })
-        .then((row) => {
-          if (!controller.signal.aborted)
-            setDetailState({ loading: false, error: "", row });
-        })
-        .catch((e) => {
-          if (!controller.signal.aborted)
-            setDetailState({ loading: false, error: e.message, row: null });
-        });
-    return () => controller.abort();
-  }, [selected?.id, retry]);
+  }, [meta, filters, sort, offset, retry]);
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(""), 3500);
@@ -638,13 +136,13 @@ function App() {
     setCatalog(null);
   }
   function toggleSave(row) {
-    if (saved.includes(row.id)) {
-      setSaved((previous) => previous.filter((id) => id !== row.id));
+    if (saved.some((item) => item.id === row.id)) {
+      setSaved((previous) => previous.filter((item) => item.id !== row.id));
       setToast("Oferta usunięta z porównania.");
     } else if (saved.length === 3)
       setToast("Możesz porównać 3 oferty. Usuń jedną, aby dodać kolejną.");
     else {
-      setSaved((previous) => [...previous, row.id]);
+      setSaved((previous) => [...previous, row]);
       setToast("Dodano do porównania.");
     }
   }
@@ -661,7 +159,7 @@ function App() {
         </button>
       </main>
     );
-  if (!dataset)
+  if (!meta)
     return (
       <main className="loading-state">
         <img src="/favicon.svg" width="54" height="54" alt="" />
@@ -753,7 +251,7 @@ function App() {
                   onChange={(e) => update("district", e.target.value)}
                 >
                   <option value="">Cały Berlin</option>
-                  {dataset.meta.districts.map((d) => (
+                  {meta.districts.map((d) => (
                     <option key={d}>{d}</option>
                   ))}
                 </select>
@@ -928,7 +426,7 @@ function App() {
                         <ListingCard
                           key={row.id}
                           row={row}
-                          saved={saved.includes(row.id)}
+                          saved={saved.some((item) => item.id === row.id)}
                           onSave={toggleSave}
                           onSelect={(row) => {
                             setSelected(row);
@@ -969,39 +467,12 @@ function App() {
                 geo={geo}
                 selected={selected}
                 onSelect={setSelected}
-                onReset={() => {
-                  reset();
-                }}
+                onReset={reset}
               />
-              {selected &&
-              (detailState.loading ||
-                !detailState.row ||
-                detailState.row.id !== selected.id) ? (
-                <section
-                  className="detail-panel"
-                  role={detailState.error ? "alert" : "status"}
-                >
-                  <button
-                    className="detail-close"
-                    aria-label="Zamknij szczegóły"
-                    onClick={() => setSelected(null)}
-                  >
-                    <X size={17} />
-                  </button>
-                  <p>{detailState.error || "Wczytujemy szczegóły…"}</p>
-                  {detailState.error && (
-                    <button
-                      className="primary-button"
-                      onClick={() => setRetry((n) => n + 1)}
-                    >
-                      Spróbuj ponownie
-                    </button>
-                  )}
-                </section>
-              ) : selected ? (
+              {selected ? (
                 <Detail
-                  row={detailState.row}
-                  saved={saved.includes(selected.id)}
+                  row={selected}
+                  saved={saved.some((item) => item.id === selected.id)}
                   onSave={toggleSave}
                   onClose={() => setSelected(null)}
                 />
@@ -1057,26 +528,20 @@ function App() {
         </main>
       ) : view === "compare" ? (
         <Comparison
-          rows={savedRows}
-          loading={compareState.loading}
-          error={compareState.error}
-          onRetry={() => setRetry((n) => n + 1)}
+          rows={saved}
           onSave={toggleSave}
           onBack={() => setView("explore")}
         />
       ) : view === "estimate" ? (
-        <Estimator meta={dataset.meta} onBack={() => setView("explore")} />
+        <Estimator meta={meta} onBack={() => setView("explore")} />
       ) : (
-        <About meta={dataset.meta} onBack={() => setView("explore")} />
+        <About meta={meta} onBack={() => setView("explore")} />
       )}
       <footer className="site-footer">
         <span>
-          <span className="live-dot" /> Inside Airbnb · Berlin ·{" "}
-          {dataset.meta.snapshot}
+          <span className="live-dot" /> Inside Airbnb · Berlin · {meta.snapshot}
         </span>
-        <span>
-          Ceny historyczne · oszacowania ML · {dataset.meta.modelVersion}
-        </span>
+        <span>Ceny historyczne · oszacowania ML · {meta.modelVersion}</span>
         <button onClick={() => setView("about")}>
           O danych i ograniczeniach <ArrowUpRight size={12} />
         </button>
