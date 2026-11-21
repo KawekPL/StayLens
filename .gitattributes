@@ -9,4 +9,3 @@
 *.gz binary
 *.joblib binary
 runtime/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
-AGENTS.md export-ignore

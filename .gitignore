@@ -2,6 +2,7 @@ node_modules/
 frontend/dist/
 .venv/
 .local/
+/AGENTS.md
 data/raw/
 data/prepared/
 artifacts/
